@@ -19,7 +19,7 @@ plugins=(zsh-autosuggestions)
 
 export PATH="/home/eirik/Bin:/home/eirik/perl5/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export EDITOR=/usr/bin/nvim
-export XDG_CONFIG=$HOME/.config
+export XDG_CONFIG_HOME=$HOME/.config
 
 source $ZSH/oh-my-zsh.sh
 
