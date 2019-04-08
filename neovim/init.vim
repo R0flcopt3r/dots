@@ -11,7 +11,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'iamcco/markdown-preview.vim'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
+	Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 	Plug 'SirVer/ultisnips'
+	Plug 'junegunn/goyo.vim'
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
 
@@ -19,12 +21,12 @@ call plug#end()
 	set relativenumber
 	set number
 	set showbreak=+++
-	set textwidth=80
 	set autoindent
 	set smarttab
 	set tabstop=4
 	set shiftwidth=4
 	set clipboard=unnamedplus
+	set textwidth=80
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
@@ -50,23 +52,19 @@ call plug#end()
 " LATEX
 	autocmd filetype tex set spelllang=nb,en
 	autocmd filetype tex set spell
-	autocmd filetype tex set conceallevel=2
 
 
 " C++
     autocmd FileType cpp inoremap { <Esc>a{<Enter>}<Esc><Up>$a<Enter>
     autocmd FileType cpp inoremap [ <Esc>a[]<++><Esc>T[i
     autocmd FileType cpp inoremap ( <Esc>a()<++><Esc>T(i
-    autocmd Filetype cpp set textwidth=80
 
 " R Markdown
     autocmd filetype rmd set spelllang=nn,en
     autocmd filetype rmd set spell
-	autocmd filetype rmd set conceallevel=2
 
 " Markdown
     autocmd filetype markdown set spelllang=nn,en
-	autocmd filetype markdown set conceallevel=2
 
 " ALE
 	let g:ale_lint_on_text_changed = 'never'
@@ -84,4 +82,30 @@ call plug#end()
 	let g:UltiSnipsExpandTrigger="<A-tab>"
 	let g:UltiSnipsJumpForwardTrigger="<A-tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-	let g:UltiSnipsSnippetDirectories=["~/Git/dots/neovim/UltiSnips"]
+	let g:UltiSnipsSnippetDirectories=["/home/eirik/Git/dots/neovim/UltiSnips/"]
+
+" Goyo
+
+	noremap <leader>g :Goyo<CR>
+	function! s:goyo_enter()
+	" Highlighting
+		match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
+		hi Todo ctermfg=black ctermbg=blue
+		call matchadd('ColorColumn', '\%82v', 100)
+		hi SpellBad ctermfg=111
+		hi SpellBad ctermbg=799
+		set conceallevel=2
+	endfunction
+
+	function! s:goyo_leave()
+	" Highlighting
+		match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
+		hi Todo ctermfg=black ctermbg=blue
+		call matchadd('ColorColumn', '\%82v', 100)
+		hi SpellBad ctermfg=111
+		hi SpellBad ctermbg=799
+		set conceallevel=0
+	endfunction
+
+	autocmd! User GoyoEnter nested call <SID>goyo_enter()
+	autocmd! User GoyoLeave nested call <SID>goyo_leave()
