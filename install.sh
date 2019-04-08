@@ -27,7 +27,7 @@ echo "Creating symlink for i3blocks..."
 ln -s $(pwd)/i3blocks/config $XDG_CONFIG_HOME/i3blocks/config
 
 echo "Creating symlink for Ranger..."
-ln -s $(pwd)/ranger/rc.config $XDG_CONFIG_HOME/ranger/rc.config
+ln -s $(pwd)/ranger/rc.conf $XDG_CONFIG_HOME/ranger/rc.conf
 ln -s $(pwd)/ranger/rifle.conf $XDG_CONFIG_HOME/ranger/rifle.conf
 ln -s $(pwd)/ranger/scope.sh $XDG_CONFIG_HOME/ranger/scope.sh
 ln -s $(pwd)/ranger/tagged $XDG_CONFIG_HOME/ranger/tagged
