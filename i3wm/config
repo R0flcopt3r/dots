@@ -11,7 +11,7 @@
 
 ## Variables
 set $mod Mod4
-set $term urxvt
+set $term urxvt256c-ml
 set $launcher rofi -show run
 
 ## I3wm Settings
@@ -209,7 +209,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
-	bindsym a	mode "$mode_gaps_all"
+		bindsym a	mode "$mode_gaps_all"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
