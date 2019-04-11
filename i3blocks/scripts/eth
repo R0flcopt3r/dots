@@ -1,0 +1,5 @@
+#!/bin/bash
+eth="$(curl https://api.nanopool.org/v1/eth/balance/0x31e65b4ed4d0141b4082a4d09484a4f6d503e0e3 | cut -d ":" -f 3)"
+
+echo ${eth::-9}
+
