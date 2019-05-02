@@ -46,6 +46,6 @@ snippet ref
 \ref{${1}} ${2}
 endsnippet
 
-snippet foot
-\footnote{${1} \url{${2}} Henta `date +%d.%m.%y`
+snippet footurl
+\footnote{\url{`xclip -sel clip -o`} Henta `date +%d.%m.%y`}
 endsnippet
