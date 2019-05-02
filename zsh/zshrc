@@ -45,12 +45,21 @@ alias dirs='dirs -v'
 alias chat='ssh kad_wee%r -t TERM=rxvt-unicode && tmux a -d -t twee'
 alias hv1='ssh kad_hv1%r'
 
+# Alias for Git
+alias g='git'
+alias gc='git commit'
+alias gs='git status'
+alias gp='git push'
+
+# General alias
+alias c='xclip -sel clip'
+
 # Custom cd
-c(){
+customCD(){
     cd $1;
     ls;
 }
-alias cd="c"
+alias cd="customCD"
 
 # keybinds
 # up
