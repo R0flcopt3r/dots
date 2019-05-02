@@ -8,9 +8,9 @@ URxvt.scrollBar: none
 URxvt.font: xft:iosevka:size=11
 URxvt.foreground:   #FFFFFF
 URxvt.cursorColor:  #C0C5CE
-URxvt.background:   #1b1b1b
+URxvt.background:   #2c2a2a
 URxvt.transparent: true
-URxvt.shading: 25
+URxvt.shading: 15
 
 !Black
 URxvt.color0:  #1B2B34
