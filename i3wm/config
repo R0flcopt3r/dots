@@ -266,6 +266,9 @@ for_window [title="Volume*"] resize set 800 500
 for_window [title="Bluetooth*"] floating enable
 for_window [title="Bluetooth*"] resize set 400 800 
 
+# PDFpc
+for_window [ title="^pdfpc - present" ] border none floating enable
+
 ## Startup programs
 #exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys caps:swapescape shift:both_capslock_cancel
 exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers-laptop/wallpaper-current.jpg

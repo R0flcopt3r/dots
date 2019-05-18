@@ -14,13 +14,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 	Plug 'SirVer/ultisnips'
 	Plug 'junegunn/goyo.vim'
+	Plug 'markonm/traces.vim'
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
 
 " GENERAL
 	set relativenumber
 	set number
-	set showbreak=+++
 	set autoindent
 	set smarttab
 	set tabstop=4
