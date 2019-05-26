@@ -11,7 +11,7 @@
 
 ## Variables
 set $mod Mod4
-set $term urxvt
+set $term urxvt256c-ml
 set $launcher rofi -show run
 
 ## I3wm Settings
@@ -26,6 +26,13 @@ for_window [instance="dropdown"] resize set 625 400
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
 exec --no-startup-id $term -name dropdown
+
+# Python window
+for_window [instance="python"] floating enable
+for_window [instance="python"] resize set 625 400
+for_window [instance="python"] move position center
+for_window [instance="python"] move scratchpad
+exec --no-startup-id $term -name python -e "ipython3"
 
 ## Bindings
 bindsym $mod+q		    exec gnome-screensaver-command -l
@@ -68,7 +75,7 @@ bindsym $mod+Control+l	    focus parent; focus right
 
 bindsym $mod+x		    move workspace to output right
 
-bindsym $mod+c		    exec qalculate-gtk
+bindsym $mod+c		    [instance="python"] scratchpad show; move position center
 
 bindsym $mod+v		    split v
 
@@ -147,18 +154,17 @@ mode "resize" {
 
 
 ## Function Keys
-bindsym XF86AudioLowerVolume 	exec amixer -q set Master 2dB- && amixer -q -D pulse sset Master unmute
-bindsym XF86AudioRaiseVolume	exec amixer -q set Master 2dB+ && amixer -q -D pulse sset Master unmute
-bindsym XF86AudioMute		exec amixer -q -D pulse sset Master toggle
-bindsym XF86AudioMicMute	exec amixer -q -D sset Capture toggle #Doesn't work xev reporting strange things
+bindsym XF86AudioRaiseVolume 	exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%
+bindsym XF86AudioLowerVolume 	exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%
+bindsym XF86AudioMute			exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
+bindsym XF86AudioMicMute		exec amixer -q -D sset Capture toggle #Doesn't work xev reporting strange things
 bindsym XF86MonBrightnessDown	exec /usr/share/i3blocks/brightness -dec 100
-bindsym XF86MonBrightnessUp	exec /usr/share/i3blocks/brightness -inc 100
-bindsym XF86WLAN		exec /home/eirik/Documents/Script/using/wifi-toggle
-bindsym XF86AudioPlay		exec playerctl play-pause
-bindsym XF86AudioNext		exec playerctl next
-bindsym XF86AudioPrev		exec playerctl previous
-bindsym XF86Calculator		exec qalculate-gtk
-#bindsym $mod+Print	    	exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
+bindsym XF86MonBrightnessUp		exec /usr/share/i3blocks/brightness -inc 100
+bindsym XF86AudioPlay			exec playerctl play-pause
+bindsym XF86AudioNext			exec playerctl next
+bindsym XF86AudioPrev			exec playerctl previous
+bindsym XF86Calculator			exec qalculate-gtk
+#bindsym $mod+Print	    		exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
 
 
 
@@ -191,7 +197,7 @@ bar {
 }
 
 # i3 gaps
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 gaps inner 10
 gaps outer 10
 smart_gaps on
@@ -271,14 +277,15 @@ for_window [ title="^pdfpc - present" ] border none floating enable
 
 ## Startup programs
 #exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys caps:swapescape shift:both_capslock_cancel
-exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers-laptop/wallpaper-current.jpg
-exec_always --no-startup-id $HOME/Documents/Script/using/dualmon.sh
-exec --no-startup-id nm-applet
+#exec_always --no-startup-id $HOME/Documents/Script/using/dualmon.sh
+exec_always --no-startup-id $HOME/.screenlayout/default.sh
+#exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 #exec --no-startup-id seafile-applet
 #exec --no-startup-id synclient TouchpadOff=1
 exec_always --no-startup-id synclient TapButton1=0 TapButton2=0 VertEdgeScroll=0 RightButtonAreaLeft=0 RightButtonAreaRight=1
-exec --no-startup-id compton --vsync opengl-swc --backend glx
+exec --no-startup-id compton --vsync opengl
 exec --no-startup-id syndaemon -i 0.1 -d -K 
-exec --no-startup-id nextcloud
+#exec --no-startup-id nextcloud
 exec --no-startup-id urxvtd -q
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers-laptop/wallpaper-current.jpg

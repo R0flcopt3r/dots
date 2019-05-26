@@ -4,6 +4,7 @@ artefakt
 artefaktnivå
 leselighetsnivå
 nettverkstilkobling
+<<<<<<< HEAD
 Inkrement
 inkrementer
 implementeringsfasen
@@ -26,3 +27,10 @@ Funksjonslitetskravene
 sikkerhetskritisk
 sanntidssystem
 kunnskapsmodell
+=======
+Objektdeteksjon
+Osland
+Traavik
+Kalvaag
+sjøfartøy
+>>>>>>> made laptop/desktop specific configs

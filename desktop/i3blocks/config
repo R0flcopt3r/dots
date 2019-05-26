@@ -1,6 +1,7 @@
 
 # Global properties
-command=/usr/share/i3blocks/$BLOCK_NAME
+#command=/usr/share/i3blocks/$BLOCK_NAME
+command=$HOME/.config/i3blocks/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
 color=#E0E0E0
@@ -13,7 +14,7 @@ signal=10
 [volume]
 label=VOL
 instance=Master
-command=/usr/share/i3blocks/volume
+#command=/usr/share/i3blocks/volume
 interval=1
 signal=10
 
@@ -29,6 +30,12 @@ interval=30
 [disk]
 label=ROOT
 instance=/
+interval=30
+separator=true
+
+[disk]
+label=HOME
+instance=/home
 interval=30
 separator=true
 
@@ -56,7 +63,7 @@ label=BAT
 interval=30
 
 [time]
-command=date '+%H:%M:%S %Y-%m-%d %V'
+command=date '+%H:%M:%S %d-%m-%y %V'
 interval=1
 
 [temperature]

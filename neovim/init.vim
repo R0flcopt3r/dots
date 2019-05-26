@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'junegunn/goyo.vim'
 	Plug 'markonm/traces.vim'
+	Plug 'srcery-colors/srcery-vim'
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
 
@@ -27,6 +28,7 @@ call plug#end()
 	set shiftwidth=4
 	set clipboard=unnamedplus
 	set textwidth=80
+	colorscheme srcery
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
