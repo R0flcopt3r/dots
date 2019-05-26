@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 #	This program uses playerctl to retrive metadata from your player of choice
 #	and display it to your i3blocks statusbar. It then allows you to go forward
@@ -18,8 +18,12 @@
 
 title=$(playerctl metadata title --player="$BLOCK_INSTANCE")
 artist=$(playerctl metadata artist --player="$BLOCK_INSTANCE")
+player=$(playerctl status --player="$BLOCK_INSTANCE")
 
-printf "%s - %s" "$title" "$artist"
+if [ "$player" != "No players found" ]
+then
+	echo "$title" - "$artist"
+fi
 
 case $BLOCK_BUTTON in
 	1) playerctl previous 	--player="$BLOCK_INSTANCE"
