@@ -1,4 +1,28 @@
 #!/bin/bash
+#
+#	Written by R0flcopt3r
+#
+#	This program installs all my dotfiles in their corresponding folders. It is
+#	not guaranteed to work, nor will I hold myself responsible if it breaks your
+#	system in any way.
+#
+#	Firstly the scripts sets the $chassis variable to determine if your computer is
+#	a laptop or a desktop. Then sets the $XDG_CONFIG_HOME variable if it isn't
+#	already set.
+#
+#	dot() checks if the config file you wish to link already exists as a symbolic
+#	link or as a regular file. If it's a symbolic links, it assumes all is well and
+#	skips it, if it's a regular file, it will delete it and link it in it's place.
+#
+#	folder() checks to see if a config folder doesn't exist, and if so, creates it.
+#
+#	To add a new config add the following in the code:
+#		`dot /path/to/config /path/to/system/config/location name_of_config`
+#
+#	If the configs has it's own folder, you want to check it first with:
+#		`folder /path/to/system/config/location`
+
+
 
 chassis=$(hostnamectl | grep "Chassis" | cut -d ':' -f2)
 
