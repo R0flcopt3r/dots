@@ -15,11 +15,13 @@ dot(){ # Path, name, hidden
 		printf "\t%s is symbolic, doing nothing\n" "$3"
 	elif [ -f "$2" ]
 	then
-		printf "\t%s a regular file, deleting...\n" "$3"
+		printf "\t%s a regular file, deleting and linking...\n" "$3"
 		rm "$2"
-		printf "\tLinking\n"
 		ln -s "$1" "$2"
-		printf "\t%s is done\n" "$3"
+	elif [ ! -e "$2" ]
+	then
+		printf "\t%s doesn't exist, linking\n" "$3"
+		ln -s "$1" "$2"
 	else
 		printf "\tERROR: Can't determine.\n"
 		file "$1"
@@ -59,6 +61,7 @@ dot "$(pwd)"/ranger/rifle.conf 	"$XDG_CONFIG_HOME"/ranger/rifle.conf 	rifle
 dot "$(pwd)"/ranger/scope.sh 	"$XDG_CONFIG_HOME"/ranger/scope.sh 		scope
 dot "$(pwd)"/ranger/tagged 		"$XDG_CONFIG_HOME"/ranger/tagged 		tagged
 dot "$(pwd)"/ranger/bookmarks 	"$XDG_CONFIG_HOME"/ranger/bookmarks 	bookmarks
+dot "$(pwd)"/i3scripts 			"$XDG_CONFIG_HOME"/i3blocks/scripts		i3script
 
 echo "Checking and copying chassis specific configs"
 if [ "$chassis" == " desktop" ]
@@ -73,6 +76,5 @@ then
 	dot "$(pwd)"/laptop/i3blocks/config "$XDG_CONFIG_HOME"/i3blocks/config i3blocks
 fi
 
-dot "$(pwd)"/i3blocks/scripts "$XDG_CONFIG_HOME"/i3blocks/scripts i3blocksscripts
 
 xrdb "$HOME"/.Xresources
