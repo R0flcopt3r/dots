@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+#	Written by R0flcopt3r
+#
 #	This program uses playerctl to retrive metadata from your player of choice
 #	and display it to your i3blocks statusbar. It then allows you to go forward
 #	and backwards with right and left respectively, as well as pause with middle
