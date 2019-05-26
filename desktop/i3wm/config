@@ -276,16 +276,8 @@ for_window [title="Bluetooth*"] resize set 400 800
 for_window [ title="^pdfpc - present" ] border none floating enable
 
 ## Startup programs
-#exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys caps:swapescape shift:both_capslock_cancel
-#exec_always --no-startup-id $HOME/Documents/Script/using/dualmon.sh
 exec_always --no-startup-id $HOME/.screenlayout/default.sh
-#exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-#exec --no-startup-id seafile-applet
-#exec --no-startup-id synclient TouchpadOff=1
-exec_always --no-startup-id synclient TapButton1=0 TapButton2=0 VertEdgeScroll=0 RightButtonAreaLeft=0 RightButtonAreaRight=1
 exec --no-startup-id compton --vsync opengl
-exec --no-startup-id syndaemon -i 0.1 -d -K 
-#exec --no-startup-id nextcloud
-exec --no-startup-id urxvtd -q
+exec --no-startup-id nextcloud
 exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers-laptop/wallpaper-current.jpg
