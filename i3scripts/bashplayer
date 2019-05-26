@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+#	This program uses playerctl to retrive metadata from your player of choice
+#	and display it to your i3blocks statusbar. It then allows you to go forward
+#	and backwards with right and left respectively, as well as pause with middle
+#	mouse button.
+#
+#	Example usage in i3blocks config:
+#
+#		[bashplayer]
+#		interval=5
+#		instance=spotify
+#		signal=10
+#
+#	Interval can be as high as you like, i3blocks updates whenever you hit one
+#	of the controls with `pkill`.
+
+
+title=$(playerctl metadata title --player="$BLOCK_INSTANCE")
+artist=$(playerctl metadata artist --player="$BLOCK_INSTANCE")
+
+printf "%s - %s" "$title" "$artist"
+
+case $BLOCK_BUTTON in
+	1) playerctl previous 	--player="$BLOCK_INSTANCE"
+		pkill -SIGRTMIN+10 i3blocks 
+		;;
+	2) playerctl play-pause --player="$BLOCK_INSTANCE"
+		pkill -SIGRTMIN+10 i3blocks
+		;;
+	3) playerctl next 		--player="$BLOCK_INSTANCE"
+		pkill -SIGRTMIN+10 i3blocks 
+		;;
+
+esac
