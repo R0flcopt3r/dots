@@ -1,0 +1,68 @@
+! PERL LOCATION
+! /usr/lib/urxvt/perl
+!
+!
+
+! special
+URxvt.scrollBar: none
+URxvt.font: xft:iosevka:size=11
+URxvt.foreground:   #FFFFFF
+URxvt.cursorColor:  #C0C5CE
+URxvt.background:   #2c2a2a
+URxvt.transparent: true
+URxvt.shading: 15
+
+!Black
+URxvt.color0:  #1B2B34
+URxvt.color8:  #65737E
+
+!Red
+URxvt.color1:  #EC5f67
+URxvt.color2:  #99C794
+
+!Green
+URxvt.color3:  #FAC863
+URxvt.color4:  #6699CC
+
+!Yellow
+URxvt.color5:   #C594C5
+URxvt.color6:  #5FB3B3
+
+!Blue
+URxvt.color7:   #C0C5CE
+URxvt.color9:   #EC5f67
+
+!Magenta
+URxvt.color10:  #99C794
+URxvt.color11:  #FAC863
+
+!Cyan
+URxvt.color12:  #6699CC
+URxvt.color13:  #C594C5
+
+!White
+URxvt.color14:  #5FB3B3
+URxvt.color15:  #D8DEE9
+
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+!URxvt.perl-ext-common: ...,keyboard-select
+!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+
+!!YANKABLE URL
+URxvt.perl-ext: default,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+
+!!CLICKABLE URL
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1

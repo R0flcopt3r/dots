@@ -5,7 +5,7 @@ chassis=$(hostnamectl | grep "Chassis" | cut -d ':' -f2)
 if [[ -z $XDG_CONFIG_HOME ]]
 then
 	echo "XDG_CONFIG_HOME no set, using $HOME/.config"
-	XDG_CONFIG_HOME=$HOME/.config
+	XDG_CONFIG_HOME="$HOME"/.config
 fi
 
 dot(){ # Path, name, hidden
@@ -44,7 +44,7 @@ fi
 printf "Checking and creating folders\n"
 folder "$XDG_CONFIG_HOME"/nvim
 folder "$XDG_CONFIG_HOME"/ranger
-folder "$XDG_CONFIG_HOME/"i3
+folder "$XDG_CONFIG_HOME"/i3
 folder "$XDG_CONFIG_HOME"/i3blocks
 
 printf "Checking and copying files\n"
@@ -63,10 +63,12 @@ dot "$(pwd)"/ranger/bookmarks 	"$XDG_CONFIG_HOME"/ranger/bookmarks 	bookmarks
 printf "Checking and copying chassis specific configs\n"
 if [ "$chassis" == " desktop" ]
 then
+	echo "doing desktop"
 	dot "$(pwd)"/desktop/i3wm/config 	"$XDG_CONFIG_HOME"/i3/config 	i3wm
 	dot "$(pwd)"/desktop/i3blocks/config "$XDG_CONFIG_HOME"/i3blocks/config i3blocks
 elif [ "$chassis" == " laptop" ]
 then
+	echo "doing laptop"
 	dot "$(pwd)"/laptop/i3wm/config 	"$XDG_CONFIG_HOME"/i3/config 	i3wm
 	dot "$(pwd)"/laptop/i3blocks/config "$XDG_CONFIG_HOME"/i3blocks/config i3blocks
 fi
