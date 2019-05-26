@@ -53,10 +53,6 @@ min_width=CPU: 100.00%
 [cpu_freq]
 interval=10
 
-[battery]
-label=BAT
-interval=30
-
 [time]
 command=date '+%H:%M:%S %d-%m-%y %V'
 interval=1
