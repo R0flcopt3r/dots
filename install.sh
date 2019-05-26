@@ -41,13 +41,13 @@ if [[ ! -e $HOME/.oh-my-zsh ]]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-printf "Checking and creating folders\n"
+echo "Checking and creating folders"
 folder "$XDG_CONFIG_HOME"/nvim
 folder "$XDG_CONFIG_HOME"/ranger
 folder "$XDG_CONFIG_HOME"/i3
 folder "$XDG_CONFIG_HOME"/i3blocks
 
-printf "Checking and copying files\n"
+ echo "Checking and copying files"
 dot "$(pwd)"/urxvt/Xresources 	"$HOME"/.Xresources						Xresources
 dot "$(pwd)"/zsh/zshrc 			"$HOME"/.zshrc							Zshrc
 dot "$(pwd)"/neovim/init.vim 	"$XDG_CONFIG_HOME"/nvim/init.vim		Init.vim
@@ -60,7 +60,7 @@ dot "$(pwd)"/ranger/scope.sh 	"$XDG_CONFIG_HOME"/ranger/scope.sh 		scope
 dot "$(pwd)"/ranger/tagged 		"$XDG_CONFIG_HOME"/ranger/tagged 		tagged
 dot "$(pwd)"/ranger/bookmarks 	"$XDG_CONFIG_HOME"/ranger/bookmarks 	bookmarks
 
-printf "Checking and copying chassis specific configs\n"
+echo "Checking and copying chassis specific configs"
 if [ "$chassis" == " desktop" ]
 then
 	echo "doing desktop"
