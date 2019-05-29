@@ -1,5 +1,0 @@
-#!/bin/bash
-
-freq="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)"
-
-echo ${freq} | awk '{freq = $0 / 10^3; if(freq / 10^3 >= 1) {print freq / 10^3 " GHz"} else {print freq " MHz"}}'
