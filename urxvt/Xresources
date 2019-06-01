@@ -6,7 +6,7 @@
 ! special
 URxvt.scrollBar: none
 URxvt.font: xft:iosevka:size=11
-URxvt.transparent: true
+URxvt.transparent: false
 URxvt.shading: 10
 
 ! srcery.xresources

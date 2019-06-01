@@ -17,7 +17,7 @@ plugins=(git)
 plugins=(zsh-autosuggestions)
 
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:/home/eirik/.cargo/bin"
 
 source $ZSH/oh-my-zsh.sh
 
