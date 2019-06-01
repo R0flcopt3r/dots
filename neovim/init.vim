@@ -29,6 +29,7 @@ call plug#end()
 	set clipboard=unnamedplus
 	set textwidth=80
 	colorscheme srcery
+	nnoremap <leader>t :below split<CR>:terminal<CR>
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
