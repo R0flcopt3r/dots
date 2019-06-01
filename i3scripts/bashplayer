@@ -17,17 +17,16 @@
 #	Interval can be as high as you like, i3blocks updates whenever you hit one
 #	of the controls with `pkill`.
 
-
 title=$(playerctl metadata title --player="$BLOCK_INSTANCE")
 artist=$(playerctl metadata artist --player="$BLOCK_INSTANCE")
 player=$(playerctl status --player="$BLOCK_INSTANCE")
 
-if [ "$player" != "No players found" ]
+if [ "$player" = "Playing" ] || [ "$player" = "Paused" ]
 then
 	echo "$title" - "$artist"
 fi
 
-case $BLOCK_BUTTON in
+case "$BLOCK_BUTTON" in
 	1) playerctl previous 	--player="$BLOCK_INSTANCE"
 		pkill -SIGRTMIN+10 i3blocks 
 		;;
