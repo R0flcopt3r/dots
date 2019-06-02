@@ -1,7 +1,3 @@
-    "set runtimepath^=~/.vim runtimepath+=~/.vim/after
-    "let &packpath = &runtimepath
-    "source ~/.vimrc
-
 " PLUGINS
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -14,7 +10,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 	Plug 'SirVer/ultisnips'
 	Plug 'junegunn/goyo.vim'
-	Plug 'markonm/traces.vim'
 	Plug 'srcery-colors/srcery-vim'
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
@@ -27,9 +22,41 @@ call plug#end()
 	set tabstop=4
 	set shiftwidth=4
 	set clipboard=unnamedplus
+	set undofile 				" Persisten undo
+	set inccommand=nosplit 		" Shows regex and replaces in real time
 	set textwidth=80
 	colorscheme srcery
-	nnoremap <leader>t :below split<CR>:terminal<CR>
+	set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %{wordcount()[\"words\"]}\ %P
+	set foldcolumn=2			" Shows two levels of folding
+	set lazyredraw 				" Wont redraw during macro
+
+
+" Keybinds
+	" Rerun last macro. Q was old Ex mode
+		nnoremap Q @@ 
+	" Navigation with splits
+		map <C-h> <C-w>h
+		map <C-j> <C-w>j
+		map <C-k> <C-w>k
+		map <C-l> <C-w>l
+	" FZF
+		noremap <leader>n :Files ../<CR>
+	" Make j and k work with both relativenumbers and softwrapped text
+		nnoremap <expr> j v:count ? 'j' : 'gj'
+		nnoremap <expr> k v:count ? 'k' : 'gk'
+	" Autocomplete to tab
+		"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+	" Navigating with guides
+		vnoremap <leader><Space> <Esc>/<++><Enter>"_c4l
+		noremap  <leader><Space> <Esc>/<++><Enter>"_c4l
+		noremap ;gui a<++><Esc>
+	" Run command on cursor line
+		nnoremap <leader>e :exe getline(line('.'))<cr>
+	" Open a terminal split below current split
+		nnoremap <leader>t :below split<CR>:terminal<CR>
+	" Folding
+		nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+		vnoremap <Space> zf
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
@@ -39,28 +66,18 @@ call plug#end()
 	hi SpellBad ctermbg=799
 
 
-" Make j and k work with both relativenumbers and softwrapped text
-	nnoremap <expr> j v:count ? 'j' : 'gj'
-	nnoremap <expr> k v:count ? 'k' : 'gk'
-
-" Navigation with splits
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
-
-" Autocomplete to tab
-	inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
 " LATEX
 	autocmd filetype tex set spelllang=nb,en
 	autocmd filetype tex set spell
 
-
 " C++
-    autocmd FileType cpp inoremap { <Esc>a{<Enter>}<Esc><Up>$a<Enter>
-    autocmd FileType cpp inoremap [ <Esc>a[]<++><Esc>T[i
-    autocmd FileType cpp inoremap ( <Esc>a()<++><Esc>T(i
+    autocmd FileType cpp set foldmethod=syntax
+
+" C++ 
+    autocmd FileType rust inoremap { <Esc>a{<Enter>}<Esc><Up>$a<Enter>
+    autocmd FileType rust inoremap [ <Esc>a[]<++><Esc>T[i
+    autocmd FileType rust inoremap ( <Esc>a()<++><Esc>T(i
+    autocmd FileType rust set foldmethod=syntax
 
 " R Markdown
     autocmd filetype rmd set spelllang=nn,en
@@ -73,18 +90,11 @@ call plug#end()
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_enter = 0
 
-" FZF
-	noremap <C-n> :Files ../<CR>
-
-" Navigating with guides
-	vnoremap <Space><Space> <Esc>/<++><Enter>"_c4l
-	noremap <Space><Space> <Esc>/<++><Enter>"_c4l
-	noremap ;gui a<++><Esc>
-
 " Ultisnips
-	let g:UltiSnipsExpandTrigger="<A-tab>"
-	let g:UltiSnipsJumpForwardTrigger="<A-tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+	let g:UltiSnipsJumpBackwardTrigger="<A-tab>"
+	let g:UltisnipsListSnippets="<C-tab>"
 	let g:UltiSnipsSnippetDirectories=["/home/eirik/Git/dots/neovim/UltiSnips/"]
 
 " Goyo
