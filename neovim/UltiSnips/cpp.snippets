@@ -1,24 +1,35 @@
-snippet func
-${1}(${2})
-{
+snippet func "function" b
+${1}(${2}) \{
 ${3}
 }
+${4}
 endsnippet
 
-snippet class
-class ${1} 
-{
+snippet class "class" b
+class ${1} \{
 private:
 	${2}
 public:
 	${3}
 };
+${4}
 endsnippet
 
-snippet hfunc
+snippet hfunc "function declaration with comment" b
 /*
  * ${1}
- * Beskrivelse: ${2}
+ * Description: ${2}
  */
 ${3} $1(${4});
+${5}
+endsnippet
+
+snippet { "Curly braces" A
+\{
+	${1}
+}
+endsnippet
+
+snippet printf
+	printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet

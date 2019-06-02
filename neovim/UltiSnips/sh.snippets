@@ -1,0 +1,24 @@
+snippet func "function" b
+${1}()\{
+	${2}
+\}
+endsnippet
+
+snippet if "if statement" b
+if [ ${1} ] 
+then
+	${2}
+fi
+${3}
+endsnippet
+
+snippet elif "else if" b
+elif [ ${1} ]
+then
+	${2}
+endsnippet
+
+snippet printf "printf"
+	printf "${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:\ "\$:)/}$2${1/([^%]|%%)*(%.)?.*/(?2:")/}
+endsnippet
+

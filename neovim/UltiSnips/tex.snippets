@@ -1,59 +1,60 @@
 snippet figure 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.95\linewidth]{${1}}
-	\caption{${2}}
-	\label{fig:${3}}
-\end{figure}
+\\\\begin\{figure}[H]
+	\\centering
+	\\includegraphics[width=0.95\\linewidth]\{${1}}
+	\\caption\{${2}}
+	\\label\{fig:${3}}
+\\end\figure}
 ${4}
 endsnippet
 
 snippet sec 
-\section{${1}}
+\\section\{${1}}
 ${2}
 endsnippet
 
 snippet ssec 
-\subsection{${1}}
+\\subsection\{${1}}
 ${2}
 endsnippet
 
 snippet sssec 
-\subsubsection{${1}}
+\\subsubsection\{${1}}
 ${2}
 endsnippet
 
 snippet it
-\textit{${1}} ${2}
+\\textit\{${1}} ${2}
 endsnippet
 
 snippet bf
-\textbf{${1}} ${2}
+\\textbf\{${1}} ${2}
 endsnippet
 
 snippet em
-\emph{${1}} ${2}
+\\emph\{${1}} ${2}
 endsnippet
 
 snippet ol
-\begin{itemize}
-	\item[] ${1}
-\end{itemize}
+\\begin\{itemize}
+	\\item[] ${1}
+\\end\{itemize}
 ${2}
 endsnippet
 
 snippet ref
-\ref{${1}} ${2}
+\\ref\{${1}} ${2}
 endsnippet
 
 snippet footurl
-\footnote{\url{`xclip -sel clip -o`} Henta `date +%d.%m.%y`}
+\\footnote\{\\url\{`xclip -sel clip -o`} Henta `date +%d.%m.%y`}
 endsnippet
 
 snippet frame
-\frame{
-	\frametitle{${1}}
+\\frame\{
+	\\frametitle\{${1}}
 	${2}
 }
 ${3}
 endsnippet
+
