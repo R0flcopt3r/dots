@@ -29,6 +29,7 @@ call plug#end()
 	set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %{wordcount()[\"words\"]}\ %P
 	set foldcolumn=2			" Shows two levels of folding
 	set lazyredraw 				" Wont redraw during macro
+	set smartcase		" Enable smart-case search
 
 
 " Keybinds

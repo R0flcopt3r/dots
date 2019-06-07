@@ -63,7 +63,7 @@ bindsym $mod+Control+h	    focus parent; focus left
 bindsym $mod+j		    focus down
 bindsym $mod+Shift+j	    move down
 bindsym $mod+Control+j	    focus parent; focus down
-bindsym $mod+Shift+Control+j	exec /home/eirik/.screenlayout/reotate-left.sh
+bindsym $mod+Shift+Control+j	exec /home/eirik/.screenlayout/rotate-left.sh
 
 bindsym $mod+k		    focus up
 bindsym $mod+Shift+k	    move up
