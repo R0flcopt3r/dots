@@ -31,7 +31,6 @@ call plug#end()
 	set lazyredraw 				" Wont redraw during macro
 	set smartcase		" Enable smart-case search
 
-
 " Keybinds
 	" Rerun last macro. Q was old Ex mode
 		nnoremap Q @@ 
@@ -58,6 +57,9 @@ call plug#end()
 	" Folding
 		nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 		vnoremap <Space> zf
+	" split and find
+		nnoremap <leader>sf :below split<CR>:Files ../<CR>
+		nnoremap <leader>vf :vsplit<CR>:Files ../<CR>
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
@@ -71,14 +73,10 @@ call plug#end()
 	autocmd filetype tex set spelllang=nb,en
 	autocmd filetype tex set spell
 
-" C++
-    autocmd FileType cpp set foldmethod=syntax
-
-" C++ 
-    autocmd FileType rust inoremap { <Esc>a{<Enter>}<Esc><Up>$a<Enter>
-    autocmd FileType rust inoremap [ <Esc>a[]<++><Esc>T[i
-    autocmd FileType rust inoremap ( <Esc>a()<++><Esc>T(i
-    autocmd FileType rust set foldmethod=syntax
+" Programming
+    autocmd FileType cpp,rust set foldmethod=syntax
+	autocmd FileType cpp,rust set foldminlines=7
+	autocmd FileType cpp,rust set foldnestmax=2
 
 " R Markdown
     autocmd filetype rmd set spelllang=nn,en
@@ -92,9 +90,9 @@ call plug#end()
 	let g:ale_lint_on_enter = 0
 
 " Ultisnips
-	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsExpandTrigger="<A-tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<A-tab>"
+	let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 	let g:UltisnipsListSnippets="<C-tab>"
 	let g:UltiSnipsSnippetDirectories=["/home/eirik/Git/dots/neovim/UltiSnips/"]
 

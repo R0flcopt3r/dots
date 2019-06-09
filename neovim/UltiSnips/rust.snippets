@@ -1,0 +1,11 @@
+snippet fn "Function" Ab
+fn ${1} (${2}) \{
+	${3}
+\}
+endsnippet
+
+snippet println "Printline" Ab
+
+println!("${1:\{\}}"${1/([^{}]|%{})*({.)?.*/(?2:, :\);)/}$2${1/([^{}]|%{})*({.)?.*/(?2:\);)/}
+
+endsnippet

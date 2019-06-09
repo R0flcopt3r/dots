@@ -7,7 +7,7 @@
 URxvt.scrollBar: none
 URxvt.font: xft:iosevka:size=11
 URxvt.transparent: false
-URxvt.shading: 10
+!URxvt.shading: 10
 
 ! srcery.xresources
 ! https://github.com/roosta/vim-srcery
