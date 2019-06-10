@@ -11,28 +11,34 @@ instance=spotify
 signal=10
 
 [volume]
-label=VOL
+label=VOL 
 instance=Master
 interval=1
 signal=10
 
 [brightness]
-label=BRIT
+label=BRIT 
 interval=1
 
 [memory]
-label=MEM
-separator=false
+label=MEM 
+separator=true
 interval=30
 
 [disk]
-label=ROOT
+label=/ 
 instance=/
+interval=30
+separator=false
+
+[disk]
+label=~/ 
+instance=/home
 interval=30
 separator=true
 
 [wifi]
-label=WiFi
+label=WiFi 
 instance=wlp3s0
 interval=10
 separator=false
@@ -43,15 +49,16 @@ interval=10
 separator=true
 
 [cpu_usage]
-label=CPU
+label=CPU 
 interval=10
 min_width=CPU: 100.00%
+separator=false
 
 [cpu_freq]
 interval=10
 
 [battery]
-label=BAT
+label=BAT 
 interval=30
 
 [time]
