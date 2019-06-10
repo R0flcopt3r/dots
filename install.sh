@@ -25,6 +25,8 @@
 
 
 chassis=$(hostnamectl | grep "Chassis" | cut -d ':' -f2)
+distro=$(hostnamectl | grep "Operating System" | cut -d ':' -f2 | cut -d ' ' -f2)
+
 
 if [[ -z $XDG_CONFIG_HOME ]]
 then
@@ -32,11 +34,15 @@ then
 	XDG_CONFIG_HOME="$HOME"/.config
 fi
 
+
 dot(){ # Path, name, hidden
 
 	if [ -h "$2" ]
 	then
-		printf "\t%s is symbolic, doing nothing\n" "$3"
+		printf "\t%s is symbolic, deleting and linking\n" "$3"
+		rm "$2"
+		ln -s "$1" "$2"
+		printf "\t%s: DONE\n" "$3"
 	elif [ -f "$2" ]
 	then
 		printf "\t%s a regular file, deleting and linking...\n" "$3"
@@ -60,6 +66,36 @@ folder(){
 		mkdir "$1"
 	fi
 }
+
+if [ "$distro"  == "Fedora" ] 
+then
+	echo "Setting up RPM Fusion" 
+	sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+	echo "Installing software"
+	sudo dnf copr -y enable atim/i3blocks
+	sudo dnf copr -y enable gregw/i3desktop
+	sudo dnf install -y --allowerasing i3-gaps
+	sudo dnf install -y zsh i3blocks arandr rofi neovim nodejs lxappearance \
+		nextcloud-client keepassx blueman NetworkManager network-manager-applet\
+			ShellCheck rxvt-unicode-256color-ml
+
+	echo "Installing media codecs" 
+	sudo dnf groupupdate -y multimedia
+fi
+
+echo "Installing dependencies for neovim" 
+sudo pip install pynvim
+sudo pip3 install pynvim
+
+echo "Setting keyboard"
+sudo localectl set-x11-keymap us pc105 altgr-intl caps:swapescape
+
+echo "Installing vim-plug"
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo ""
 
 # Initial checks for various config folders.
 echo "Installing oh-my-zsh"
