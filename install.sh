@@ -78,7 +78,7 @@ then
 	sudo dnf install -y --allowerasing i3-gaps
 	sudo dnf install -y zsh i3blocks arandr rofi neovim nodejs lxappearance \
 		nextcloud-client keepassx blueman NetworkManager network-manager-applet\
-			ShellCheck rxvt-unicode-256color-ml
+			ShellCheck rxvt-unicode-256color-ml htop
 
 	echo "Installing media codecs" 
 	sudo dnf groupupdate -y multimedia
