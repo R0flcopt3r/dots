@@ -150,7 +150,7 @@ mode "resize" {
 bindsym XF86AudioLowerVolume 	exec amixer -q set Master 2dB- && amixer -q -D pulse sset Master unmute
 bindsym XF86AudioRaiseVolume	exec amixer -q set Master 2dB+ && amixer -q -D pulse sset Master unmute
 bindsym XF86AudioMute			exec amixer -q -D pulse sset Master toggle
-bindsym XF86AudioMicMute		exec amixer -q -D sset Capture toggle #Doesn't work xev reporting strange things
+bindsym XF86AudioMicMute		exec amixer -q -D sset Capture toggle 
 bindsym XF86MonBrightnessDown	exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
 bindsym XF86MonBrightnessUp		exec xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
 bindsym XF86WLAN			exec /home/eirik/Documents/Script/using/wifi-toggle
