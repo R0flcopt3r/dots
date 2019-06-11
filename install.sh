@@ -67,6 +67,9 @@ folder(){
 	fi
 }
 
+echo "Setting keyboard" 
+sudo localectl set-x11-keymap us pc105 altgr-intl caps:swapescape
+
 if [ "$distro"  == "Fedora" ] 
 then
 	echo "Setting up RPM Fusion" 
@@ -78,11 +81,12 @@ then
 	sudo dnf install -y --allowerasing i3-gaps
 	sudo dnf install -y zsh i3blocks arandr rofi neovim nodejs lxappearance \
 		nextcloud-client keepassx blueman NetworkManager network-manager-applet\
-			ShellCheck rxvt-unicode-256color-ml htop
+			ShellCheck rxvt-unicode-256color-ml htop pavucontrol feh scrot
 
 	echo "Installing media codecs" 
 	sudo dnf groupupdate -y multimedia
 fi
+
 
 echo "Installing dependencies for neovim" 
 sudo pip install pynvim
