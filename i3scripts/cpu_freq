@@ -1,5 +1,23 @@
 #!/bin/bash
+#	Written by R0flcopt3r
+#
+#	This script reads the cpu frequency and displays it as GHz suffix and
+#	three decimals if the speed is over 1GHz or MHz with no decimals if it's
+#	less.
+#
+#	Example usage in i3blocks config:
+#
+#		[cpu_freq]
+#		interval=10
+#
 
 freq="$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq)"
 
-echo ${freq} | awk '{freq = $0 / 10^3; if(freq / 10^3 >= 1) {print freq / 10^3 " GHz"} else {print freq " MHz"}}'
+if [ "$freq" -gt 1000000 ]
+then
+	ghz=$(echo "$freq" / 1000000 | bc -l | sed -r 's/(.{4}).*/\1/')
+	echo "$ghz" GHz
+else
+	mhz=$(echo "$freq" / 1000 | bc -l | sed -r 's/(.{3}).*/\1/')
+	echo "$mhz" mHz
+fi
