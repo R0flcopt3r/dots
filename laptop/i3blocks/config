@@ -16,9 +16,10 @@ instance=Master
 interval=1
 signal=10
 
-[brightness]
+[brit]
 label=BRIT 
-interval=1
+instance=60
+signal=11
 
 [memory]
 label=MEM 
