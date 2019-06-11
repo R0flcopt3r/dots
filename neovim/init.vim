@@ -14,6 +14,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
 
+" Srcery
+	let g:srcery_transparent_background = 1
+	let g:srcery_underline=1
+	let g:srcery_undercurl=1
+	let g:srcery_italic=1
+	let g:srcery_bold=1
+	colorscheme srcery
+
 " GENERAL
 	set relativenumber
 	set number
@@ -25,7 +33,6 @@ call plug#end()
 	set undofile 				" Persisten undo
 	set inccommand=nosplit 		" Shows regex and replaces in real time
 	set textwidth=80
-	colorscheme srcery
 	set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %{wordcount()[\"words\"]}\ %P
 	set foldcolumn=2			" Shows two levels of folding
 	set lazyredraw 				" Wont redraw during macro
@@ -96,8 +103,8 @@ call plug#end()
 	let g:UltisnipsListSnippets="<C-tab>"
 	let g:UltiSnipsSnippetDirectories=["/home/eirik/Git/dots/neovim/UltiSnips/"]
 
-" Goyo
 
+" Goyo
 	noremap <leader>g :Goyo<CR>
 	function! s:goyo_enter()
 	" Highlighting
