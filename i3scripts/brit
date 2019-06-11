@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+#	Written by R0flcopt3r
+#
+#	this program uses xbacklight to adjust the screen brightness and display on
+#	your i3blocks statusbar. It allows you to increase with scrollwheel up and
+#	decreasing with scrollwheel down. There is also a setting for a "preset"
+#	enabled with the middle mouse button, this can be specified with the
+#	"interval" option in the i3blocks config.
+#
+#	Example usage in i3blocks config:
+#
+#		[brightness-ng]
+#		label=BRIT
+#		signal=11
+#		instance=50
+#	
+#	On Fedora 30 I had to add this to `/etc/X11/xorg.conf.d/20-intel.conf`:
+#		 Section "Device"
+#			 Identifier  "Intel Graphics" 
+#			 Driver      "intel"
+#			 Option      "Backlight"  "intel_backlight"
+#		 EndSection
+#
+
+preset(){
+	backlight=$(xbacklight -get | cut -d '.' -f1)
+	if [ "$backlight" -gt "$BLOCK_INSTANCE"  ] 
+		then xbacklight -set "$BLOCK_INSTANCE"
+		else xbacklight -set 100
+	fi
+}
+case "$BLOCK_BUTTON" in
+	2) preset
+		pkill -SIGRTMIN+11 i3blocks
+		;;
+	4) xbacklight -inc 10
+		pkill -SIGRTMIN+11 i3blocks 
+		;;
+	5) xbacklight -dec 10
+		pkill -SIGRTMIN+11 i3blocks 
+		;;
+esac
+
+xbacklight -get | cut -d '.' -f1
