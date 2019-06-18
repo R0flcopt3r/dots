@@ -31,7 +31,7 @@ usage(){
 	printf "\n -v <dec|inc|toggle>	volume control, required"
 	printf "\n		dec	decrease volume"
 	printf "\n		inc	increase volume"
-	printf "\n		toggle	toggle mute"
+	printf "\n		toggle	toggle mute\n"
 	printf "\n -c [scontrols]	scontrols selector, i.e 'Master'"
 	printf "\n -m [mixer] 	mixer selector, i.e 'pulse'" 
 	printf "\n -s [step] 	step amount, i.e 10%% or 3dB" 
