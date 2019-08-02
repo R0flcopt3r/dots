@@ -42,4 +42,4 @@ case "$BLOCK_BUTTON" in
 		;;
 esac
 
-xbacklight -get | cut -d '.' -f1
+echo "$(xbacklight -get | cut -d '.' -f1)"%

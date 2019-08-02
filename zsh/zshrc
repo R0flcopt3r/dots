@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/eirik/.oh-my-zsh
+export ZSH=/home/eirik/.oh-my-zsh
 
 # Theme, one for remote
 if [[ -n $SSH_CLIENT ]]
@@ -15,9 +15,7 @@ COMPLETION_WAITING_DOTS="true"
 # Plugins
 plugins=(git)
 
-
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin"
-
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,26 +52,6 @@ customCD(){
     ls;
 }
 alias cd="customCD"
-
-# keybinds
-# up
-function up_widget() {
-	BUFFER="cd .."
-	zle accept-line
-}
-zle -N up_widget
-bindkey "^k" up_widget
-
-# home
-function goto_home() {
-	BUFFER="cd ~/"$BUFFER
-	zle end-of-line
-	zle accept-line
-}
-zle -N goto_home
-bindkey "^h" goto_home
-
-
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh

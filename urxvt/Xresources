@@ -14,46 +14,45 @@ URxvt.shading: 10
 
 ! special colors {{{
 
-*.foreground:   #fce8c3
-*.background:   #1c1b19
-*.cursorColor:  #fce8c3
-
+URxvt.foreground:   #fce8c3
+URxvt.background:   #1c1b19
+URxvt.cursorColor:  #fce8c3
 ! }}}
 
 
 ! main colors {{{
 
 ! black
-*.color0:       #1c1b19
-*.color8:       #2D2C29
+URxvt.color0:       #1c1b19
+URxvt.color8:       #2D2C29
 
 ! red
-*.color1:       #ef2f27
-*.color9:       #f75341
+URxvt.color1:       #ef2f27
+URxvt.color9:       #f75341
 
 ! green
-*.color2:       #519f50
-*.color10:      #98bc37
+URxvt.color2:       #519f50
+URxvt.color10:      #98bc37
 
 ! yellow
-*.color3:       #fbb829
-*.color11:      #fed06e
+URxvt.color3:       #fbb829
+URxvt.color11:      #fed06e
 
 ! blue
-*.color4:       #2c78bf
-*.color12:      #68A8E4
+URxvt.color4:       #2c78bf
+URxvt.color12:      #68A8E4
 
 ! magenta
-*.color5:       #e02c6d
-*.color13:      #ff5c8f
+URxvt.color5:       #e02c6d
+URxvt.color13:      #ff5c8f
 
 ! cyan
-*.color6:       #0aaeb3
-*.color14:      #53fde9
+URxvt.color6:       #0aaeb3
+URxvt.color14:      #53fde9
 
 ! white
-*.color7:       #918175
-*.color15:      #fce8c3
+URxvt.color7:       #918175
+URxvt.color15:      #fce8c3
 
 ! }}}
 
@@ -65,17 +64,15 @@ Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
-!URxvt.perl-ext-common: ...,keyboard-select
-!URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.perl-ext: default,url-select,matcher,resize-font,keyboard-select
 
-
-!!YANKABLE URL
-URxvt.perl-ext: default,url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.launcher: /usr/bin/xdg-open
-URxvt.url-select.underline: true
+! Disable printing the terminal contents when pressing PrintScreen.
+URxvt.print-pipe: "cat > /dev/null"
 
 !!CLICKABLE URL
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/firefox
+URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
+
+!! Keyboard maps for links
+URxvt.keysym.M-o:    matcher:last
+URxvt.keysym.M-u:    matcher:list

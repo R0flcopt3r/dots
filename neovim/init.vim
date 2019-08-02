@@ -11,8 +11,23 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'junegunn/goyo.vim'
 	Plug 'srcery-colors/srcery-vim'
+	Plug 'autozimu/LanguageClient-neovim', {
+		\ 'branch': 'next',
+		\ 'do': 'bash install.sh',
+		\ }
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
+
+" LanguageClient 
+	set hidden
+	let g:LanguageClient_serverCommands = {
+		\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+		\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+		\ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+		\ 'python': ['/usr/local/bin/pyls'],
+		\ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+		\ }
+
 
 " Srcery
 	let g:srcery_transparent_background = 1
@@ -29,6 +44,7 @@ call plug#end()
 	set smarttab
 	set tabstop=4
 	set shiftwidth=4
+	set noexpandtab 
 	set clipboard=unnamedplus
 	set undofile 				" Persisten undo
 	set inccommand=nosplit 		" Shows regex and replaces in real time
@@ -36,7 +52,7 @@ call plug#end()
 	set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %{wordcount()[\"words\"]}\ %P
 	set foldcolumn=2			" Shows two levels of folding
 	set lazyredraw 				" Wont redraw during macro
-	set smartcase		" Enable smart-case search
+	set smartcase				" Enable smart-case search
 
 " Keybinds
 	" Rerun last macro. Q was old Ex mode
@@ -52,7 +68,7 @@ call plug#end()
 		nnoremap <expr> j v:count ? 'j' : 'gj'
 		nnoremap <expr> k v:count ? 'k' : 'gk'
 	" Autocomplete to tab
-		"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+		"inoremap <expr><tab> pumvisible() ? '\<c-n>' : '\<tab>'
 	" Navigating with guides
 		vnoremap <leader><Space> <Esc>/<++><Enter>"_c4l
 		noremap  <leader><Space> <Esc>/<++><Enter>"_c4l
@@ -67,6 +83,10 @@ call plug#end()
 	" split and find
 		nnoremap <leader>sf :below split<CR>:Files ../<CR>
 		nnoremap <leader>vf :vsplit<CR>:Files ../<CR>
+	" LanguageClient
+		nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Highlighting
 	match Todo /\vXXX|TODO\(([^)]+)\)|FIXME\(([^)]+)\)|FIXME/
@@ -76,32 +96,45 @@ call plug#end()
 	hi SpellBad ctermbg=799
 
 
-" LATEX
-	autocmd filetype tex set spelllang=nb,en
-	autocmd filetype tex set spell
+" Writing
+	augroup writing
+		autocmd!
+		autocmd filetype tex,markdown,rmd set spelllang=nb,en
+		autocmd filetype tex,markdown,rmd set spell
+	augroup end
 
 " Programming
-    autocmd FileType cpp,rust set foldmethod=syntax
-	autocmd FileType cpp,rust set foldminlines=7
-	autocmd FileType cpp,rust set foldnestmax=2
+	augroup programming
+		autocmd!
+		autocmd FileType cpp,rust set foldmethod=syntax
+		autocmd FileType cpp,rust set foldminlines=7
+		autocmd FileType cpp,rust set foldnestmax=2
+	augroup end
 
-" R Markdown
-    autocmd filetype rmd set spelllang=nn,en
-    autocmd filetype rmd set spell
+	augroup cpp
+		autocmd!
+		autocmd FileType cpp nnoremap <leader>c :w<CR> :! make<CR>
+	augroup end
 
-" Markdown
-    autocmd filetype markdown set spelllang=nn,en
+	augroup rust
+		autocmd!
+		autocmd FileType rust nnoremap <leader>c :w<CR> :! cargo run<CR>
+		autocmd FileType rust nmap gd <Plug>(rust-def)
+		autocmd FileType rust nmap gs <Plug>(rust-def-split)
+		autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
+		autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+	augroup end
 
 " ALE
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_enter = 0
 
 " Ultisnips
-	let g:UltiSnipsExpandTrigger="<A-tab>"
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-	let g:UltisnipsListSnippets="<C-tab>"
-	let g:UltiSnipsSnippetDirectories=["/home/eirik/Git/dots/neovim/UltiSnips/"]
+	let g:UltiSnipsExpandTrigger='<A-tab>'
+	let g:UltiSnipsJumpForwardTrigger='<tab>'
+	let g:UltiSnipsJumpBackwardTrigger='<S-tab>'
+	let g:UltisnipsListSnippets='<C-tab>'
+	let g:UltiSnipsSnippetDirectories=['/home/eirik/Git/dots/neovim/UltiSnips/']
 
 
 " Goyo

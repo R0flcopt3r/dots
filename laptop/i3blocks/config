@@ -13,7 +13,6 @@ signal=10
 [volume]
 label=VOL 
 instance=Master
-interval=1
 signal=10
 
 [brit]
