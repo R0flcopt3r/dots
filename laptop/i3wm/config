@@ -27,18 +27,21 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 625 400
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -name dropdown
+exec --no-startup-id $term --class dropdown
 
 # Python window
 for_window [instance="python"] floating enable
 for_window [instance="python"] resize set 625 400
 for_window [instance="python"] move position center
 for_window [instance="python"] move scratchpad
-exec --no-startup-id $term -name python -e "ipython3"
+exec --no-startup-id $term --class python -e "ipython3"
 
 # Qutebrowser
 for_window [class="qutebrowser"] layout tabbed
 assign [class="qutebrowser"] 1:browser
+
+# Surf
+assign [class="Surf"] 1:browser
 
 # Steam
 no_focus [class="Steam"]
@@ -52,7 +55,6 @@ assign [instance="discord"] 2:COM
 no_focus [instance="spotify"]
 assign [instance="spotify"] 2:COM
 
-
 ## Bindings
 bindsym $mod+q		    exec xautolock -locknow
 bindsym $mod+Shift+q	    kill
@@ -61,12 +63,20 @@ bindsym $mod+w		    layout tabbed
 
 bindsym $mod+e		    layout toggle split
 bindsym $mod+Shift+e\
-	exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+        exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+r		    mode "resize"
-bindsym $mod+Shift+r	    restart
+bindsym $mod+r          mode "resize"
+bindsym $mod+Shift+r    restart
 
-bindsym $mod+o		    split h
+bindsym $mod+t          exec surf
+
+bindsym $mod+y          move workspace to output up
+
+bindsym $mod+u          exec surf my.1password.com
+
+bindsym $mod+o          split h
+
+bindsym $mod+p			exec /home/eirik/.config/scripts/setmon
 
 bindsym $mod+a		    focus parent
 
@@ -93,7 +103,7 @@ bindsym $mod+l		    focus right
 bindsym $mod+Shift+l	    move right
 bindsym $mod+Control+l	    focus parent; focus right
 
-bindsym $mod+x		    move workspace to output up
+bindsym $mod+x		    move workspace to output left
 
 bindsym $mod+c		    [instance="python"] scratchpad show;\
 						move position center
@@ -113,7 +123,6 @@ bindsym $mod+Shift+space    floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Mouse buttons
-bindsym --release --border button2 kill
 
 # Arrow keys
 bindsym $mod+Left focus left
@@ -178,18 +187,22 @@ mode "resize" {
 
 
 ## Function Keys
-bindsym XF86AudioRaiseVolume 	exec $HOME/Git/dots/scripts/vol.sh -v inc
-bindsym XF86AudioLowerVolume 	exec $HOME/Git/dots/scripts/vol.sh -v dec
-bindsym XF86AudioMute			exec $HOME/Git/dots/scripts/vol.sh -v toggle
-bindsym XF86AudioMicMute		exec amixer -q -D sset Capture toggle 
-bindsym XF86MonBrightnessDown	exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86MonBrightnessUp		exec xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86WLAN				exec /home/eirik/Documents/Script/using/wifi-toggle
-bindsym XF86AudioPlay			exec playerctl play-pause
-bindsym XF86AudioNext			exec playerctl next
-bindsym XF86AudioPrev			exec playerctl previous
-bindsym XF86Calculator			exec qalculate-gtk
-bindsym Print	    			exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
+bindsym XF86AudioRaiseVolume 		exec $HOME/Git/dots/scripts/vol.sh -v inc
+bindsym XF86AudioLowerVolume 		exec $HOME/Git/dots/scripts/vol.sh -v dec
+bindsym Shift+XF86AudioRaiseVolume 	exec $HOME/Git/dots/scripts/vol.sh -v inc
+bindsym Shift+XF86AudioLowerVolume 	exec $HOME/Git/dots/scripts/vol.sh -v dec
+bindsym XF86AudioMute				exec $HOME/Git/dots/scripts/vol.sh -v toggle
+bindsym XF86AudioMicMute			exec amixer -q -D sset Capture toggle 
+bindsym XF86MonBrightnessDown		exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86MonBrightnessUp			exec xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
+bindsym Shift+XF86MonBrightnessDown	exec xbacklight -dec 1 && pkill -SIGRTMIN+11 i3blocks
+bindsym Shift+XF86MonBrightnessUp	exec xbacklight -inc 1 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86WLAN					exec /home/eirik/Documents/Script/using/wifi-toggle
+bindsym XF86AudioPlay				exec playerctl play-pause
+bindsym XF86AudioNext				exec playerctl next
+bindsym XF86AudioPrev				exec playerctl previous
+bindsym XF86Calculator				exec qalculate-gtk
+bindsym Print	    				exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
 
 set_from_resource $foreground URxvt.foreground
 set_from_resource $background URxvt.background
@@ -310,7 +323,7 @@ exec_always --no-startup-id $HOME/Documents/Script/using/dualmon.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec_always --no-startup-id synclient TapButton1=0 TapButton2=0 VertEdgeScroll=0 RightButtonAreaLeft=0 RightButtonAreaRight=1
-exec --no-startup-id compton --vsync opengl-swc --backend glx
+#exec --no-startup-id compton --vsync opengl-swc --backend glx
 exec --no-startup-id syndaemon -i 0.1 -d -K 
 exec --no-startup-id nextcloud
 exec --no-startup-id urxvtd -q

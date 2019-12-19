@@ -1,6 +1,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/eirik/.oh-my-zsh
 
+# Setting fd as the default source for fzf to respect .gitignore
+FZF_DEFAULT_COMMAND="fd --type f"
+FZF_CTRL_T_COMMAND="fd --type f"
+FZF_ALT_C_COMMAND="fd --type d"
+
 # Theme, one for remote
 if [[ -n $SSH_CLIENT ]]
 then
@@ -15,7 +20,10 @@ COMPLETION_WAITING_DOTS="true"
 # Plugins
 plugins=(git)
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin:$HOME/.config/scripts:/opt/blender-current"
+export GOPATH="$HOME/.local/go"
+export PATH="$PATH:$GOPATH/bin"
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -27,7 +35,12 @@ rr() {
 	else		     
 	    exit	     
     fi			     
-}			     
+}
+
+
+# Hunter
+source ~/.config/hunter/hunter_cd.sh
+alias h='hunter'
 
 #Alias for the LS comand    
 alias ll='ls -hAl --group-directories-first'	
@@ -45,13 +58,13 @@ alias gp='git push'
 
 # General alias
 alias c='xclip -sel clip'
+alias p='xclip -sel clip -o'
 
-# Custom cd
-customCD(){
-    cd $1;
-    ls;
+# Open file
+open_file(){
+	xdg-open $1 &
 }
-alias cd="customCD"
+alias open="open_file"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
@@ -61,3 +74,4 @@ alias vim=nvim
 alias :q=exit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
