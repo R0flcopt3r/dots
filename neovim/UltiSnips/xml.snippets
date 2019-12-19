@@ -1,0 +1,27 @@
+snippet <xs "xs" Ab
+<xs:${1} ${2}>
+	${3}
+</xs:$1>
+endsnippet
+
+snippet </xs "xs/" Ab
+<xs:${1}/>${2}
+endsnippet
+
+snippet <sim "simpletype"
+<xs:complexType name="${1}">
+	<xs:simpleContent>
+		<xs:extension base="${2}">
+			<xs:attribute name="${3}" type="${4}"/>
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+endsnippet
+
+snippet <com "complexType"
+<xs:complexType name="${1}">
+	<xs:sequence>
+		<xs:element name="${2}" type="${3}"/>
+	</xs:sequence>
+</xs:complexType>
+endsnippet
