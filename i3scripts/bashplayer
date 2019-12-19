@@ -36,5 +36,4 @@ case "$BLOCK_BUTTON" in
 	3) playerctl next 		--player="$BLOCK_INSTANCE"
 		pkill -SIGRTMIN+10 i3blocks 
 		;;
-
 esac
