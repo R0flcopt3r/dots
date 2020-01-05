@@ -16,7 +16,6 @@
     - 'nvim'
     - 'i3blocks'
     - 'i3'
-    - 'alacritty'
 
 - name: symlink configs
   file:
@@ -31,7 +30,8 @@
   - {src: 'neovim/init.vim', dest: 'nvim/init.vim'}
   - {src: 'neovim/UltiSnips', dest: 'nvim/UltiSnips'}
   - {src: 'neovim/ftdetect', dest: 'nvim/ftdetect'}
-  - { src: 'alacritty/alacritty.yml', dest: 'alacritty/alacritty.yml' }
+  - { src: 'alacritty', dest: 'alacritty' }
+  - {src: 'emacs_doom', dest: '../doom.d'}
 
 - name: laptop specific
   file:
