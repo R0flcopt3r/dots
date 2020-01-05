@@ -1,16 +1,16 @@
 - name: get install script
   get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    dest: $HOME/oh-my-zsh-install.sh
+    dest: /home/{{user}}/oh-my-zsh-install.sh
     mode: '0777'
 
 
 - name: Oh-my-zsh
   command:
-    cmd: $HOME/oh-my-zsh-install.sh
+    cmd: /home/{{ user }}/oh-my-zsh-install.sh
     creates: /home/{{ user }}/.oh-my-zsh
 
 - name: cleanup
   file:
-    path: $HOME/oh-my-zsh-install.sh
+    path: /home/{{ user }}/oh-my-zsh-install.sh
     state: absent
