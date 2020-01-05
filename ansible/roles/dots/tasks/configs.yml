@@ -16,6 +16,7 @@
     - 'nvim'
     - 'i3blocks'
     - 'i3'
+    - 'alacritty'
 
 - name: symlink configs
   file:
