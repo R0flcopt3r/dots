@@ -30,6 +30,7 @@
   - {src: 'neovim/init.vim', dest: 'nvim/init.vim'}
   - {src: 'neovim/UltiSnips', dest: 'nvim/UltiSnips'}
   - {src: 'neovim/ftdetect', dest: 'nvim/ftdetect'}
+  - { src: 'alacritty/alacritty.yml', dest: 'alacritty/alacritty.yml' }
 
 - name: laptop specific
   file:
