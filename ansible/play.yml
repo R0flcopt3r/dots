@@ -1,5 +1,5 @@
 - name: Initialize fedora netinstall
-  hosts: test
+  hosts: localhost
   vars:
     user: eirik
   gather_facts: yes
@@ -14,7 +14,7 @@
     - software
 
 - name: configs
-  hosts: test
+  hosts: localhost
   vars:
     user: eirik
     XDG_CONFIG_HOME: /home/{{ user }}/.config/
@@ -25,7 +25,7 @@
     - dots
 
 - name: system configs
-  hosts: test
+  hosts: localhost
   vars:
     user: eirik
   remote_user: root
