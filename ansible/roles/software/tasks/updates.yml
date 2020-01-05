@@ -1,0 +1,4 @@
+- name: Install updates
+  dnf:
+    name: "*"
+    state: latest

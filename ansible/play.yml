@@ -1,0 +1,33 @@
+- name: Initialize fedora netinstall
+  hosts: test
+  vars:
+    user: eirik
+  gather_facts: yes
+  remote_user: root
+  tasks:
+    - package:
+        name:
+          - git
+          - zsh
+        state: present
+  roles:
+    - software
+
+- name: configs
+  hosts: test
+  vars:
+    user: eirik
+    XDG_CONFIG_HOME: /home/{{ user }}/.config/
+    type: desktop
+  gather_facts: yes
+  remote_user: '{{ user }}'
+  roles:
+    - dots
+
+- name: system configs
+  hosts: test
+  vars:
+    user: eirik
+  remote_user: root
+  roles:
+    - system

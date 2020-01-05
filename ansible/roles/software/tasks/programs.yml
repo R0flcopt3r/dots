@@ -1,0 +1,26 @@
+- name: Install software
+  package:
+    name:
+      - xorg-x11-server-Xorg
+      - lightdm
+      - i3-gaps
+      - zsh
+      - i3blocks
+      - arandr
+      - rofi
+      - neovim
+      - nodejs
+      - lxappearance
+      - nextcloud-client
+      - keepassx
+      - blueman
+      - NetworkManager
+      - network-manager-applet
+      - ShellCheck
+      - alacritty
+      - htop
+      - pavucontrol
+      - feh
+      - xclip
+      - sxiv
+    state: present

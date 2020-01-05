@@ -1,0 +1,8 @@
+- name: home dir
+  import_tasks: homedir.yml
+
+- name: dots
+  import_tasks: configs.yml
+
+- name: oh-my-zsh
+  import_tasks: oh-my-zsh.yml

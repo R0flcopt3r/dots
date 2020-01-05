@@ -1,0 +1,72 @@
+- name: get repo
+  git:
+    repo: git@github.com:R0flcopt3r/dots.git
+    dest: /home/{{ user }}/Git/dots
+    accept_hostkey: yes
+    update: no
+
+- name: Create folders
+  file:
+    path: /{{ XDG_CONFIG_HOME }}/{{ item }}
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: u+rwx,g+rx,o-rwxt
+  loop:
+    - 'nvim'
+    - 'i3blocks'
+    - 'i3'
+
+- name: symlink configs
+  file:
+    src: /home/{{ user }}/Git/dots/{{ item.src }}
+    dest: /{{ XDG_CONFIG_HOME }}/{{ item.dest }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
+    mode: '1660'
+    force: yes
+  loop: #/home/eirik/Git/dots/neovim
+  - {src: 'neovim/init.vim', dest: 'nvim/init.vim'}
+  - {src: 'neovim/UltiSnips', dest: 'nvim/UltiSnips'}
+  - {src: 'neovim/ftdetect', dest: 'nvim/ftdetect'}
+
+- name: laptop specific
+  file:
+    src: /home/{{ user }}/Git/dots/laptop/{{ item.src }}
+    dest: /{{ XDG_CONFIG_HOME }}/{{ item.dest }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
+    mode: '1660'
+    force: yes
+  loop:
+    - { src: 'i3wm/config', dest: 'i3/config' }
+    - { src: 'i3blocks/config', dest: 'i3blocks/config' }
+  when: type|lower == 'laptop'
+
+- name: desktop specific
+  file:
+    src: /home/{{ user }}/Git/dots/desktop/{{ item.src }}
+    dest: /{{ XDG_CONFIG_HOME }}/{{ item.dest }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
+    mode: '1660'
+    force: yes
+  loop:
+    - { src: 'i3wm/config', dest: 'i3/config' }
+    - { src: 'i3blocks/config', dest: 'i3blocks/config' }
+  when: type|lower == 'desktop'
+
+- name: configs not in xdg_config_home
+  file:
+    src: /home/{{ user }}/Git/dots/{{ item.src }}
+    dest: /home/{{ user}}/{{ item.dest }}
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    state: link
+    mode: '1660'
+    force: yes
+  loop:
+  - { src: zsh/zshrc, dest: .zshrc}

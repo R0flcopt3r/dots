@@ -1,0 +1,8 @@
+- name: enable copr repos
+  command: # ansible does not support copr
+    cmd: dnf copr -y enable {{item.owner}}/{{item.repo}}
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:{{item.owner}}:{{item.repo}}.repo
+  loop:
+    - {owner: 'pschyska', repo: 'alacritty'}
+    - {owner: 'gregw', repo: 'i3desktop'}
+    - {owner: 'atim', repo: 'i3blocks'}

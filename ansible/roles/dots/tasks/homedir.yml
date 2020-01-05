@@ -1,0 +1,14 @@
+- name: homedir setup
+  file:
+    path: /home/{{ user }}/{{ item }}
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '0770'
+  loop:
+    - Docs
+    - Pics
+    - Vids
+    - Git
+    - Dl
+    - .config

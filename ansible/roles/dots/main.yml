@@ -1,0 +1,2 @@
+- name: dot files
+  import_tasks: tasks/main.yml

@@ -1,0 +1,11 @@
+- name: repositories
+  import_tasks: repositories.yml
+
+- name: copr
+  import_tasks: copr.yml
+
+- name: updates
+  import_tasks: updates.yml
+
+- name: programs
+  import_tasks: programs.yml
