@@ -9,15 +9,17 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-## Variables
+# Variables
 set $mod Mod4
-set $term urxvt256c-ml
+set $TERMINAL /usr/bin/alacritty
 set $launcher rofi -show run
 
 ## I3wm Settings
 font pango:DejaVu Sans Mono 8
-floating_modifier $mod 
+floating_modifier $mod
 workspace_auto_back_and_forth yes
+focus_follows_mouse no
+force_display_urgency_hint 500 ms
 
 # Dropdown/Scratchpad Windows
 #I'll later bind this to mod+u.
@@ -25,28 +27,56 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 625 400
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -name dropdown
+exec --no-startup-id $TERMINAL --class dropdown
 
 # Python window
 for_window [instance="python"] floating enable
 for_window [instance="python"] resize set 625 400
 for_window [instance="python"] move position center
 for_window [instance="python"] move scratchpad
-exec --no-startup-id $term -name python -e "ipython3"
+exec --no-startup-id $TERMINAL --class python -e "ipython3"
+
+# Qutebrowser
+for_window [class="qutebrowser"] layout tabbed
+assign [class="qutebrowser"] 1:browser
+
+# Surf
+assign [class="Surf"] 1:browser
+
+# Steam
+no_focus [class="Steam"]
+assign [class="Steam"] 8
+
+# Discord
+no_focus [instance="discord"]
+assign [instance="discord"] 2:COM
+
+# Spotify
+no_focus [instance="spotify"]
+assign [instance="spotify"] 2:COM
 
 ## Bindings
-bindsym $mod+q		    exec gnome-screensaver-command -l
+bindsym $mod+q		    exec xautolock -locknow
 bindsym $mod+Shift+q	    kill
 
 bindsym $mod+w		    layout tabbed
 
 bindsym $mod+e		    layout toggle split
-bindsym $mod+Shift+e	    exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e\
+        exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-bindsym $mod+r		    mode "resize"
-bindsym $mod+Shift+r	    restart
+bindsym $mod+r          mode "resize"
+bindsym $mod+Shift+r    restart
 
-bindsym $mod+o		    split h
+bindsym $mod+t          exec surf
+
+bindsym $mod+y          move workspace to output up
+
+bindsym $mod+u          exec surf my.1password.com
+
+bindsym $mod+o          split h
+
+bindsym $mod+p			exec /home/eirik/.config/scripts/setmon
 
 bindsym $mod+a		    focus parent
 
@@ -63,7 +93,7 @@ bindsym $mod+Control+h	    focus parent; focus left
 bindsym $mod+j		    focus down
 bindsym $mod+Shift+j	    move down
 bindsym $mod+Control+j	    focus parent; focus down
-bindsym $mod+Shift+Control+j	exec /home/eirik/.screenlayout/rotate-left.sh
+bindsym $mod+Shift+Control+j	exec /home/eirik/.screenlayout/reotate-left.sh
 
 bindsym $mod+k		    focus up
 bindsym $mod+Shift+k	    move up
@@ -73,23 +103,26 @@ bindsym $mod+l		    focus right
 bindsym $mod+Shift+l	    move right
 bindsym $mod+Control+l	    focus parent; focus right
 
-bindsym $mod+x		    move workspace to output right
+bindsym $mod+x		    move workspace to output left
 
-bindsym $mod+c		    [instance="python"] scratchpad show; move position center
+bindsym $mod+c		    [instance="python"] scratchpad show;\
+						move position center
 
 bindsym $mod+v		    split v
 
 bindsym $mod+b		    sticky toggle
 
-bindsym $mod+m		    [instance="dropdown"] scratchpad show; move position center
+bindsym $mod+m		    [instance="dropdown"] scratchpad show;\
+						move position center
 
-bindsym $mod+Return	    exec $term
+bindsym $mod+Return	    exec $TERMINAL
 bindsym $mod+Shift+Return exec $HOME/Documents/Script/using/newShell_WD.sh
-#bindsym Shift+$mod+Return   exec  [instance="dropdown"]; scratchpad show; move position center
 
 bindsym $mod+Shift+space    floating toggle
 
 bindsym $mod+space focus mode_toggle
+
+# Mouse buttons
 
 # Arrow keys
 bindsym $mod+Left focus left
@@ -139,7 +172,7 @@ mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt 
+        bindsym l resize grow width 10 px or 10 ppt
         bindsym Left resize shrink width 1 px or 1 ppt
         bindsym Down resize grow height 1 px or 1 ppt
         bindsym Up resize shrink height 1 px or 1 ppt
@@ -150,54 +183,60 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-
-
-
 ## Function Keys
-bindsym XF86AudioRaiseVolume 	exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%
-bindsym XF86AudioLowerVolume 	exec pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%
-bindsym XF86AudioMute			exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
-bindsym XF86AudioMicMute		exec amixer -q -D sset Capture toggle #Doesn't work xev reporting strange things
-bindsym XF86MonBrightnessDown	exec /usr/share/i3blocks/brightness -dec 100
-bindsym XF86MonBrightnessUp		exec /usr/share/i3blocks/brightness -inc 100
-bindsym XF86AudioPlay			exec playerctl play-pause
-bindsym XF86AudioNext			exec playerctl next
-bindsym XF86AudioPrev			exec playerctl previous
-bindsym XF86Calculator			exec qalculate-gtk
-#bindsym $mod+Print	    		exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
+bindsym XF86AudioRaiseVolume        exec $HOME/Git/dots/scripts/vol.sh -v inc
+bindsym XF86AudioLowerVolume        exec $HOME/Git/dots/scripts/vol.sh -v dec
+bindsym Shift+XF86AudioRaiseVolume      exec $HOME/Git/dots/scripts/vol.sh -v inc
+bindsym Shift+XF86AudioLowerVolume      exec $HOME/Git/dots/scripts/vol.sh -v dec
+bindsym XF86AudioMute               exec $HOME/Git/dots/scripts/vol.sh -v toggle
+bindsym XF86AudioMicMute            exec amixer -q -D sset Capture toggle
+bindsym XF86MonBrightnessDown       exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86MonBrightnessUp             exec xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
+bindsym Shift+XF86MonBrightnessDown     exec xbacklight -dec 1 && pkill -SIGRTMIN+11 i3blocks
+bindsym Shift+XF86MonBrightnessUp   exec xbacklight -inc 1 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86WLAN                    exec /home/eirik/Documents/Script/using/wifi-toggle
+bindsym XF86AudioPlay               exec playerctl play-pause
+bindsym XF86AudioNext               exec playerctl next
+bindsym XF86AudioPrev               exec playerctl previous
+bindsym XF86Calculator              exec qalculate-gtk
+bindsym Print                       exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
 
+set_from_resource $foreground URxvt.foreground
+set_from_resource $background URxvt.background
+set_from_resource $cursorColor URxvt.cursorColor
+set_from_resource $black       URxvt.color0 #000000
+set_from_resource $red         URxvt.color1 #ff0000
+set_from_resource $green       URxvt.color2 #00ff00
+set_from_resource $yellow      URxvt.color3 #ffff00
+set_from_resource $blue        URxvt.color4 #0000ff
+set_from_resource $magenta     URxvt.color5 #ff00ff
+set_from_resource $cyan        URxvt.color6 #00ffff
+set_from_resource $white       URxvt.color7 #ffffff
 
+## window colors
+##                       border                 background          text            indicator
+client.focused           $cursorColor        $cursorColor        $background         $cyan
+client.unfocused         $background         $white              $foreground         $white
+client.focused_inactive  $background         $white              $foreground         $white
+client.urgent            $red                $red                $foreground         $cyan
 
-set $bg-color		 #676E7D
-set $text-color          #f3f4f5
-set $inactive-text-color #f3f4f5
-set $inactive-bg-color	 #2F343F
-set $urgent-bg-color     #E53935
-set $indicator-color	 #f3f4f5
-
-# window colors
-#                       border              background          text			indicator
-client.focused          $bg-color	    $bg-color		$text-color	 	$indicator-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color	$inactive-text-color	$indicator-color
-client.focused_inactive $inactive-bg-color  $inactive-bg-color	$inactive-text-color	$indicator-color
-client.urgent           $urgent-bg-color    $urgent-bg-color	$text-color		$indicator-color
 
 # bar
 bar {
-    tray_output primary
-  	status_command i3blocks 
+	tray_output primary
+	status_command i3blocks
 	colors {
-		background $inactive-bg-color
-	    	separator #757575
-		#                  border		background	    text
-		focused_workspace  $bg-color		$bg-color	    $text-color
-		inactive_workspace $inactive-bg-color	$inactive-bg-color  $inactive-text-color
-		urgent_workspace   $urgent-bg-color	$urgent-bg-color    $text-color
+		background $background
+			separator #757575
+		#                  border       background      text
+		focused_workspace  $cursorColor     $cursorColor    $background
+		inactive_workspace $background  $background     $foreground
+		urgent_workspace   $red             $red            $foreground
 	}
 }
 
-# i3 gaps
-for_window [class="^.*"] border pixel 3
+# I3 gaps
+for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 smart_gaps on
@@ -245,32 +284,32 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 mode "$mode_gaps_all" {
-	bindsym plus gaps outer current plus 5; gaps inner current plus 5
-	bindsym minus gaps outer current minus 5; gaps inner current minus 5
-	bindsym Shift+minus gaps outer all minus 5; gaps inner current minus 5
-	bindsym Shift+plus gaps outer all plus 5; gaps inner current plus 5
-	bindsym 0 gaps outer current set 0; gaps inner current set 0
-	bindsym Shift+0 gaps outer all set 0; gaps inner current set 0
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
+     bindsym plus gaps outer current plus 5; gaps inner current plus 5
+     bindsym minus gaps outer current minus 5; gaps inner current minus 5
+     bindsym Shift+minus gaps outer all minus 5; gaps inner current minus 5
+     bindsym Shift+plus gaps outer all plus 5; gaps inner current plus 5
+     bindsym 0 gaps outer current set 0; gaps inner current set 0
+     bindsym Shift+0 gaps outer all set 0; gaps inner current set 0
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
 }
 
 
 # floating
-# qalculator 
+# qalculator
 for_window [title="Qalculate!"] floating enable
 for_window [title="Qalculate!"] resize set 300 425
 
-# xauth 
+# xauth
 for_window [title="OpenSSH*"] floating enable
 
-# PavuControl 
+# PavuControl
 for_window [title="Volume*"] floating enable
 for_window [title="Volume*"] resize set 800 500
 
-# Blueman-manager 
+# Blueman-manager
 for_window [title="Bluetooth*"] floating enable
-for_window [title="Bluetooth*"] resize set 400 800 
+for_window [title="Bluetooth*"] resize set 400 800
 
 # PDFpc
 for_window [ title="^pdfpc - present" ] border none floating enable
