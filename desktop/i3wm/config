@@ -56,12 +56,12 @@ no_focus [instance="spotify"]
 assign [instance="spotify"] 2:COM
 
 ## Bindings
-bindsym $mod+q		    exec xautolock -locknow
-bindsym $mod+Shift+q	    kill
+bindsym $mod+q          exec xautolock -locknow
+bindsym $mod+Shift+q    kill
 
-bindsym $mod+w		    layout tabbed
+bindsym $mod+w          layout tabbed
 
-bindsym $mod+e		    layout toggle split
+bindsym $mod+e          layout toggle split
 bindsym $mod+Shift+e\
         exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -76,49 +76,49 @@ bindsym $mod+u          exec surf my.1password.com
 
 bindsym $mod+o          split h
 
-bindsym $mod+p			exec /home/eirik/.config/scripts/setmon
+bindsym $mod+p          exec /home/eirik/.config/scripts/setmon
 
-bindsym $mod+a		    focus parent
+bindsym $mod+a          focus parent
 
-bindsym $mod+s		    layout stacking
+bindsym $mod+s          layout stacking
 
-bindsym $mod+d		    exec $launcher
+bindsym $mod+d          exec $launcher
 
-bindsym $mod+f		    fullscreen
+bindsym $mod+f          fullscreen
 
-bindsym $mod+h		    focus left
-bindsym $mod+Shift+h	    move left
-bindsym $mod+Control+h	    focus parent; focus left
+bindsym $mod+h          focus left
+bindsym $mod+Shift+h    move left
+bindsym $mod+Control+h  focus parent; focus left
 
-bindsym $mod+j		    focus down
-bindsym $mod+Shift+j	    move down
-bindsym $mod+Control+j	    focus parent; focus down
-bindsym $mod+Shift+Control+j	exec /home/eirik/.screenlayout/reotate-left.sh
+bindsym $mod+j                focus down
+bindsym $mod+Shift+j          move down
+bindsym $mod+Control+j        focus parent; focus down
+bindsym $mod+Shift+Control+j  exec /home/eirik/.screenlayout/reotate-left.sh
 
-bindsym $mod+k		    focus up
-bindsym $mod+Shift+k	    move up
-bindsym $mod+Control+k	    focus parent; focus up
+bindsym $mod+k          focus up
+bindsym $mod+Shift+k    move up
+bindsym $mod+Control+k  focus parent; focus up
 
-bindsym $mod+l		    focus right
-bindsym $mod+Shift+l	    move right
-bindsym $mod+Control+l	    focus parent; focus right
+bindsym $mod+l          focus right
+bindsym $mod+Shift+l    move right
+bindsym $mod+Control+l  focus parent; focus right
 
-bindsym $mod+x		    move workspace to output left
+bindsym $mod+x          move workspace to output left
 
-bindsym $mod+c		    [instance="python"] scratchpad show;\
-						move position center
+bindsym $mod+c          [instance="python"] scratchpad show;\
+                        move position center
 
-bindsym $mod+v		    split v
+bindsym $mod+v          split v
 
-bindsym $mod+b		    sticky toggle
+bindsym $mod+b          sticky toggle
 
-bindsym $mod+m		    [instance="dropdown"] scratchpad show;\
-						move position center
+bindsym $mod+m          [instance="dropdown"] scratchpad show;\
+                        move position center
 
-bindsym $mod+Return	    exec $TERMINAL
+bindsym $mod+Return            exec $TERMINAL
 bindsym $mod+Shift+Return exec $HOME/Documents/Script/using/newShell_WD.sh
 
-bindsym $mod+Shift+space    floating toggle
+bindsym $mod+Shift+space       floating toggle
 
 bindsym $mod+space focus mode_toggle
 
@@ -184,22 +184,22 @@ mode "resize" {
 }
 
 ## Function Keys
-bindsym XF86AudioRaiseVolume        exec $HOME/Git/dots/scripts/vol.sh -v inc
-bindsym XF86AudioLowerVolume        exec $HOME/Git/dots/scripts/vol.sh -v dec
+bindsym XF86AudioRaiseVolume            exec $HOME/Git/dots/scripts/vol.sh -v inc
+bindsym XF86AudioLowerVolume            exec $HOME/Git/dots/scripts/vol.sh -v dec
 bindsym Shift+XF86AudioRaiseVolume      exec $HOME/Git/dots/scripts/vol.sh -v inc
 bindsym Shift+XF86AudioLowerVolume      exec $HOME/Git/dots/scripts/vol.sh -v dec
-bindsym XF86AudioMute               exec $HOME/Git/dots/scripts/vol.sh -v toggle
-bindsym XF86AudioMicMute            exec amixer -q -D sset Capture toggle
-bindsym XF86MonBrightnessDown       exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86AudioMute                   exec $HOME/Git/dots/scripts/vol.sh -v toggle
+bindsym XF86AudioMicMute                exec amixer -q -D sset Capture toggle
+bindsym XF86MonBrightnessDown           exec xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
 bindsym XF86MonBrightnessUp             exec xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
 bindsym Shift+XF86MonBrightnessDown     exec xbacklight -dec 1 && pkill -SIGRTMIN+11 i3blocks
-bindsym Shift+XF86MonBrightnessUp   exec xbacklight -inc 1 && pkill -SIGRTMIN+11 i3blocks
-bindsym XF86WLAN                    exec /home/eirik/Documents/Script/using/wifi-toggle
-bindsym XF86AudioPlay               exec playerctl play-pause
-bindsym XF86AudioNext               exec playerctl next
-bindsym XF86AudioPrev               exec playerctl previous
-bindsym XF86Calculator              exec qalculate-gtk
-bindsym Print                       exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
+bindsym Shift+XF86MonBrightnessUp       exec xbacklight -inc 1 && pkill -SIGRTMIN+11 i3blocks
+bindsym XF86WLAN                        exec /home/eirik/Documents/Script/using/wifi-toggle
+bindsym XF86AudioPlay                   exec playerctl play-pause
+bindsym XF86AudioNext                   exec playerctl next
+bindsym XF86AudioPrev                   exec playerctl previous
+bindsym XF86Calculator                  exec qalculate-gtk
+bindsym Print                           exec scrot '%Y-%m-%d_$wx$h.png' -s -e 'mv $f ~/Pictures/'
 
 set_from_resource $foreground URxvt.foreground
 set_from_resource $background URxvt.background
@@ -223,16 +223,16 @@ client.urgent            $red                $red                $foreground    
 
 # bar
 bar {
-	tray_output primary
-	status_command i3blocks
-	colors {
-		background $background
-			separator #757575
-		#                  border       background      text
-		focused_workspace  $cursorColor     $cursorColor    $background
-		inactive_workspace $background  $background     $foreground
-		urgent_workspace   $red             $red            $foreground
-	}
+    tray_output primary
+    status_command i3blocks
+    colors {
+        background $background
+            separator #757575
+        #                  border       background      text
+        focused_workspace  $cursorColor     $cursorColor    $background
+        inactive_workspace $background      $background     $foreground
+        urgent_workspace   $red             $red            $foreground
+    }
 }
 
 # I3 gaps
@@ -254,7 +254,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
-		bindsym a	mode "$mode_gaps_all"
+        bindsym a      mode "$mode_gaps_all"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -319,4 +319,4 @@ exec_always --no-startup-id $HOME/.screenlayout/default.sh
 exec --no-startup-id blueman-applet
 exec --no-startup-id compton --vsync opengl
 exec --no-startup-id nextcloud
-exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers-laptop/wallpaper-current.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/Pics/Wallpapers-laptop/wallpaper-current.jpg

@@ -18,18 +18,18 @@ interval=1
 signal=10
 
 [memory]
-label=MEM
+label=MEM:
 separator=false
 interval=30
 
 [disk]
-label=ROOT
+label=ROOT:
 instance=/
 interval=30
 separator=true
 
 [disk]
-label=HOME
+label=HOME:
 instance=/home
 interval=30
 separator=true
@@ -54,10 +54,9 @@ min_width=CPU: 100.00%
 interval=10
 
 [time]
-command=date '+%H:%M:%S %d-%m-%y %V'
+command=date '+%H:%M:%S %y-%m-%d %V'
 interval=1
 
 [temperature]
 label=TEMP
 interval=10
-

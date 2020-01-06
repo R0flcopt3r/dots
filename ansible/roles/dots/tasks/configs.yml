@@ -33,6 +33,7 @@
   - {src: 'alacritty/alacritty.yml', dest: 'alacritty/alacritty.yml' }
   - {src: 'emacs_doom', dest: '../.doom.d'}
   - {src: 'scripts', dest: 'scripts'}
+  - {src: 'i3scripts', dest: 'i3blocks/scripts'}
 
 - name: laptop specific
   file:
