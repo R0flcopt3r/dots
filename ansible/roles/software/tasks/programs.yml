@@ -1,6 +1,8 @@
 - name: Install software
   package:
     name:
+      - make
+      - util-linux-user
       - xorg-x11-server-Xorg
       - lightdm
       - i3-gaps
