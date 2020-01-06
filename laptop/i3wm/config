@@ -326,5 +326,4 @@ exec_always --no-startup-id synclient TapButton1=0 TapButton2=0 VertEdgeScroll=0
 #exec --no-startup-id compton --vsync opengl-swc --backend glx
 exec --no-startup-id syndaemon -i 0.1 -d -K 
 exec --no-startup-id nextcloud
-exec --no-startup-id urxvtd -q
 exec --no-startup-id /usr/libexec/notification-daemon
