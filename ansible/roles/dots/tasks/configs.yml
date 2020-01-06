@@ -25,7 +25,6 @@
     group: "{{ user }}"
     state: link
     force: yes
-    mode: '644'
   loop: #/home/eirik/Git/dots/neovim
   - {src: 'neovim/init.vim', dest: 'nvim/init.vim'}
   - {src: 'neovim/UltiSnips', dest: 'nvim/UltiSnips'}
@@ -40,7 +39,6 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     state: link
-    mode: '1660'
     force: yes
   loop:
     - { src: 'i3wm/config', dest: 'i3/config' }
@@ -54,7 +52,6 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     state: link
-    mode: '1660'
     force: yes
   loop:
     - { src: 'i3wm/config', dest: 'i3/config' }
@@ -68,7 +65,6 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     state: link
-    mode: '1660'
     force: yes
   loop:
   - { src: zsh/zshrc, dest: .zshrc}
