@@ -24,8 +24,8 @@
     owner: "{{ user }}"
     group: "{{ user }}"
     state: link
-    mode: '1660'
     force: yes
+    mode: '644'
   loop: #/home/eirik/Git/dots/neovim
   - {src: 'neovim/init.vim', dest: 'nvim/init.vim'}
   - {src: 'neovim/UltiSnips', dest: 'nvim/UltiSnips'}
