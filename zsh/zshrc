@@ -37,11 +37,6 @@ rr() {
     fi			     
 }
 
-
-# Hunter
-source ~/.config/hunter/hunter_cd.sh
-alias h='hunter'
-
 #Alias for the LS comand    
 alias ll='ls -hAl --group-directories-first'	
 alias l='ls -GghB --group-directories-first'	
