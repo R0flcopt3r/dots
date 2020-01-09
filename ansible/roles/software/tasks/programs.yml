@@ -1,8 +1,10 @@
 - name: Install software
   package:
     name:
+      - alsa-utils
       - make
       - util-linux-user
+      - xorg-x11-utils
       - xorg-x11-server-Xorg
       - lightdm
       - i3-gaps
@@ -25,4 +27,10 @@
       - feh
       - xclip
       - sxiv
+      - playerctl
+      - emacs
+      - fd-find
+      - fzf
+      - bat
+      - ripgrep
     state: present
