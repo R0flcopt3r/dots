@@ -28,21 +28,21 @@ export EDITOR=emacsclient
 
 source $ZSH/oh-my-zsh.sh
 
-# Ranger levels check	     
-rr() {			     
-    if [ -z "$RANGER_LEVEL" ]
-	then		     
-	    ranger	     
-	else		     
-	    exit	     
-    fi			     
+# Ranger levels check
+rr() {
+	if [ -z "$RANGER_LEVEL" ]
+	then
+		ranger
+	else
+		exit
+	fi
 }
 
-#Alias for the LS comand    
-alias ll='ls -hAl --group-directories-first'	
-alias l='ls -GghB --group-directories-first'	
-alias lc='ls -gGht'				
-alias llc='ls -hAlt'  		
+#Alias for the LS comand
+alias ll='ls -hAl --group-directories-first'
+alias l='ls -GghB --group-directories-first'
+alias lc='ls -gGht'
+alias llc='ls -hAlt'
 
 alias dirs='dirs -v'
 
@@ -63,7 +63,7 @@ open_file(){
 alias open="open_file"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
+	source /etc/profile.d/vte.sh
 fi
 
 alias vim=nvim
