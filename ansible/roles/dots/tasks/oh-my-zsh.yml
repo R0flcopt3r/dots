@@ -10,7 +10,7 @@
     cmd: /home/{{ user }}/oh-my-zsh-install.sh
     creates: /home/{{ user }}/.oh-my-zsh
 
-    - name: cleanup
-      file:
-        path: /home/{{ user }}/oh-my-zsh-install.sh
-        state: absent
+- name: cleanup
+  file:
+    path: /home/{{ user }}/oh-my-zsh-install.sh
+    state: absent
