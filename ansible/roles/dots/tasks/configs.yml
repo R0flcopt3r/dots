@@ -34,6 +34,7 @@
   - {src: 'emacs_doom', dest: '../.doom.d'}
   - {src: 'scripts', dest: 'scripts'}
   - {src: 'i3scripts', dest: 'i3blocks/scripts'}
+  - {src: 'mimetypes/mimeapps.list', dest: 'mimeapps.list'}
 
 - name: laptop specific
   file:
