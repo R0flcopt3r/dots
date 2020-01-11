@@ -3,6 +3,7 @@
 ;; Place your private configuration here
 
 (setq display-line-numbers-type 'relative)
+(setq-default tab-width 4)
 
 (setq doom-theme 'srcery)
 
@@ -21,5 +22,7 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 
+;;(add-to-list 'load-path "~/.emacs.d/emacs-application-framework")
+;;(require 'eaf)
 
 (atomic-chrome-start-server)
