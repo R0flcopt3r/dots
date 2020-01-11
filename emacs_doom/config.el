@@ -1,17 +1,29 @@
 ;;; .doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+
 (setq display-line-numbers-type 'relative)
-(load-theme 'srcery t)
 
-(map! :map elpy-mode-map
-      :n "g d" 'anaconda-mode-find-definitions
-      )
-(map! :map evil-normal-state-map
-      :n "c" 'evil-substitute
-      )
+(setq doom-theme 'srcery)
+
+(add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
+(setq-hook!
+    (
+     'rust-mode-hook
+     'c-mode-hook
+     'c++-mode-hook
+     'sh-mode-hook
+     'go-mode-hook
+     )
+  indent-tabs-mode t
+  )
+
+(setq-hook!
+    (
+     'python-mode-hook
+     )
+  indent-tabs-mode nil
+  )
 
 
-(require 'company)
-(setq company-idle-delay 0.2
-      company-minimum-prefix-length 3)
+(atomic-chrome-start-server)

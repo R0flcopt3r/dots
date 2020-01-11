@@ -7,3 +7,5 @@
 ;; (package! builtin-package :disable t)
 ;;
 (package! srcery-theme)
+(package! atomic-chrome)
+(package! ein)
