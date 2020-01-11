@@ -17,5 +17,9 @@
   indent-tabs-mode nil
   )
 
+;; Makes `s` and `S` work like in Vi
+(after! evil-snipe
+  (evil-snipe-mode -1))
+
 
 (atomic-chrome-start-server)
