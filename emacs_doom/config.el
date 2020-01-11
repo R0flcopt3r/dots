@@ -7,16 +7,8 @@
 (setq doom-theme 'srcery)
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
-(setq-hook!
-    (
-     'rust-mode-hook
-     'c-mode-hook
-     'c++-mode-hook
-     'sh-mode-hook
-     'go-mode-hook
-     )
-  indent-tabs-mode t
-  )
+
+(setq-default indent-tabs-mode t)
 
 (setq-hook!
     (
