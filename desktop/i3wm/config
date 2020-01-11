@@ -314,6 +314,9 @@ for_window [title="Bluetooth*"] resize set 400 800
 # PDFpc
 for_window [ title="^pdfpc - present" ] border none floating enable
 
+# Origin
+for_window [instance="origin.exe"] floating enable
+
 ## Startup programs
 exec_always --no-startup-id $HOME/.screenlayout/default.sh
 exec --no-startup-id blueman-applet
