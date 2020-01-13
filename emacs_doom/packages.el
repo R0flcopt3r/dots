@@ -8,4 +8,3 @@
 ;;
 (package! srcery-theme)
 (package! atomic-chrome)
-(package! ein)
