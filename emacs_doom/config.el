@@ -4,13 +4,31 @@
 
 (setq display-line-numbers-type 'relative)
 (setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
 
-(setq doom-theme 'srcery)
+(setq
+      display-line-numbers-type 'relative
+      doom-theme 'srcery
+      company-idle-delay -.2
+      company-minimum-prefix-length 10
+			projectile-project-search-path '("~/Git")
+			org-agenda-files (apply 'append
+												(mapcar
+												(lambda (directory)
+											(directory-files-recursively
+												directory org-agenda-file-regexp))
+												'("~/org")))
+      )
+
+
+(map! :map rust-mode-map
+			:n "g d" 'racer-find-definition
+			)
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
 
-(setq-default indent-tabs-mode t)
 
+;; Use space as indent for certain languages
 (setq-hook!
     (
      'python-mode-hook
