@@ -10,13 +10,21 @@
       company-idle-delay -.2
       company-minimum-prefix-length 10
 			projectile-project-search-path '("~/Git")
+			org-agenda-files (apply 'append
+												(mapcar
+												(lambda (directory)
+											(directory-files-recursively
+												directory org-agenda-file-regexp))
+												'("~/org")))
       )
+
 
 (map! :map rust-mode-map
 			:n "g d" 'racer-find-definition
 			)
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
+
 
 ;; Use space as indent for certain languages
 (setq-hook!
