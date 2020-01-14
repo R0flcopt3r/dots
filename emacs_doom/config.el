@@ -2,30 +2,27 @@
 
 ;; Place your private configuration here
 
-(setq display-line-numbers-type 'relative)
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode t)
+(setq-default tab-width 4
+							indent-tabs-mode t)
+
+(+global-word-wrap-mode '(1))
 
 (setq
-      display-line-numbers-type 'relative
-      doom-theme 'srcery
-      company-idle-delay -.2
-      company-minimum-prefix-length 10
-			projectile-project-search-path '("~/Git")
-			org-agenda-files (apply 'append
-												(mapcar
-												(lambda (directory)
-											(directory-files-recursively
-												directory org-agenda-file-regexp))
-												'("~/org")))
-      )
-
+	display-line-numbers-type 'relative
+	doom-theme 'srcery
+	company-idle-delay -.2
+	company-minimum-prefix-length 10
+	projectile-project-search-path '("~/Git")
+			)
 
 (map! :map rust-mode-map
 			:n "g d" 'racer-find-definition
 			)
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
+(add-hook! 'latex-mode-hook (magic-latex-buffer '(1)))
+
+
 
 
 ;; Use space as indent for certain languages

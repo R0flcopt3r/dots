@@ -8,3 +8,5 @@
 ;;
 (package! srcery-theme)
 (package! atomic-chrome)
+(package! ein)
+(package! magic-latex-buffer)
