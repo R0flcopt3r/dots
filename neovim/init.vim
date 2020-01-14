@@ -21,6 +21,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'leafgarland/typescript-vim' 
 	Plug 'actionshrimp/vim-xpath' 
 	Plug 'altercation/vim-colors-solarized'
+	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 	let g:deoplete#enable_at_startup = 1
 call plug#end()
 
