@@ -71,3 +71,5 @@ alias :q=exit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+
+source /home/eirik/.config/broot/launcher/bash/br
