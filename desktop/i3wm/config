@@ -40,9 +40,6 @@ exec --no-startup-id $TERMINAL --class python -e "ipython3"
 for_window [class="qutebrowser"] layout tabbed
 assign [class="qutebrowser"] 1:browser
 
-# Surf
-assign [class="Surf"] 1:browser
-
 # Steam
 no_focus [class="Steam"]
 assign [class="Steam"] 8
@@ -318,8 +315,7 @@ for_window [ title="^pdfpc - present" ] border none floating enable
 for_window [instance="origin.exe"] floating enable
 
 ## Startup programs
-exec_always --no-startup-id $HOME/.screenlayout/default.sh
 exec --no-startup-id blueman-applet
-exec --no-startup-id compton --vsync opengl
 exec --no-startup-id nextcloud
+exec --no-startup-id /usr/libexec/notification-daemon
 exec_always --no-startup-id feh --bg-fill $HOME/Pics/Wallpapers-laptop/wallpaper-current.jpg
