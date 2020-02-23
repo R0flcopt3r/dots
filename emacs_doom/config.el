@@ -1,9 +1,12 @@
 ;;; .doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-
+;;
 (setq-default tab-width 4
-							indent-tabs-mode t)
+              indent-tabs-mode t)
+
+(setq-hook! 'c-mode
+  indent-tabs-mode f)
 
 (+global-word-wrap-mode '(1))
 
@@ -20,24 +23,5 @@
 			)
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
-(add-hook! 'latex-mode-hook (magic-latex-buffer '(1)))
-
-
-
-
-;; Use space as indent for certain languages
-(setq-hook!
-    (
-     'python-mode-hook
-     )
-  indent-tabs-mode nil
-  )
-
-;; Makes `s` and `S` work like in Vi
-(after! evil-snipe
-  (evil-snipe-mode -1))
-
-;;(add-to-list 'load-path "~/.emacs.d/emacs-application-framework")
-;;(require 'eaf)
 
 (atomic-chrome-start-server)
