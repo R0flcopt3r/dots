@@ -318,4 +318,5 @@ for_window [instance="origin.exe"] floating enable
 exec --no-startup-id blueman-applet
 exec --no-startup-id nextcloud
 exec --no-startup-id /usr/libexec/notification-daemon
+exec --no-startup-id flameshot
 exec_always --no-startup-id feh --bg-fill $HOME/Pics/Wallpapers-laptop/wallpaper-current.jpg
