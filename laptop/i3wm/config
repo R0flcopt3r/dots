@@ -40,9 +40,6 @@ exec --no-startup-id $term --class python -e "ipython3"
 for_window [class="qutebrowser"] layout tabbed
 assign [class="qutebrowser"] 1:browser
 
-# Surf
-assign [class="Surf"] 1:browser
-
 # Steam
 no_focus [class="Steam"]
 assign [class="Steam"] 8
