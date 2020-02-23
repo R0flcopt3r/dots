@@ -11,3 +11,5 @@
 (package! ein)
 (package! magic-latex-buffer)
 (package! gnuplot)
+(package! writeroom-mode)
+(package! openwith)
