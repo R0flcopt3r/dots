@@ -8,15 +8,12 @@
 (setq-hook! 'c-mode
   indent-tabs-mode f)
 
+;; (add-hook 'after-init-hook 'global-company-mode)
+
 (+global-word-wrap-mode '(1))
 
-(setq
-	display-line-numbers-type 'relative
-	doom-theme 'srcery
-	company-idle-delay -.2
-	company-minimum-prefix-length 10
-	projectile-project-search-path '("~/Git")
-			)
+(setq display-line-numbers-type 'relative
+				doom-theme 'srcery)
 
 (map! :map rust-mode-map
 			:n "g d" 'racer-find-definition
@@ -24,4 +21,42 @@
 
 (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
 
-(atomic-chrome-start-server)
+(add-to-list 'auto-mode-alist '("\\.service\\'" . conf-toml-mode))
+
+
+(use-package! company
+  :commands (company-mode global-company-mode company-complete
+             company-complete-common company-manual-begin company-grab-line)
+  :config
+	(setq company-idle-delay 0)
+	(setq company-minimum-prefix-length 3)
+	(company-tng-configure-default))
+
+(use-package! mu4e
+	:config
+	;; mbsync, IMAP ingoing
+	(setq mu4e-maildir "~/Mail"
+				mu4e-sent-folder   "/NTNUSent"
+				mu4e-drafts-folder "/NTNUDrafts"
+				mu4e-trash-folder  "/NTNUDeleted\ Items"
+				mu4e-refile-folder "/NTNUArchive")
+
+	;; MSMTP, SMTP outgoing
+	(setq mu4e-compose-reply-to-address "eiriklav@stud.ntnu.no"
+				user-mail-address "eiriklav@stud.ntnu.no"
+				user-full-name  "Eirik Osland Lavik"
+				mu4e-compose-signature "Med vennleg helsing,\nEirik Osland Lavik"
+				message-send-mail-function   'message-send-mail-with-sendmail
+				user-mail-address "eiriklav@stud.ntnu.no"
+				sendmail-program             "msmtp")
+
+  ;; General
+	(setq message-kill-buffer-on-exit t))
+
+(use-package! atomic-chrome
+	:config
+	(atomic-chrome-start-server))
+
+(use-package! projectile
+	:config
+	(setq projectile-project-search-path '("~/Git")))

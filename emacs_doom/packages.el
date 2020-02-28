@@ -13,3 +13,4 @@
 (package! gnuplot)
 (package! writeroom-mode)
 (package! openwith)
+(package! systemd)
