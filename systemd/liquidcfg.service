@@ -1,5 +1,3 @@
-#sudo liquidctl --match kraken set fan speed  30 20 50 30 60 35 70 45 80 60 100 70
-
 [Unit]
 Description=Fan speed kurve for NZXT kraken
 
