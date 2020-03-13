@@ -7,6 +7,7 @@ if [ "$mic" = "[on]" ]
 then
 	echo microphone is on
 	echo MIC on
+	echo '#00FF00'
 else
 	echo microphone is on
 	echo MIC off
