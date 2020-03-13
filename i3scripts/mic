@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+
+mic=$(amixer get Capture | grep "Front Left: Capture" | awk '{print $6}')
+
+if [ "$mic" = "[on]" ]
+then
+	echo microphone is on
+	echo MIC on
+else
+	echo microphone is on
+	echo MIC off
+	echo '#FFFFFF'
+	echo '#FF0000'
+fi
+
+exit 0
