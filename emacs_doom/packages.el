@@ -14,3 +14,4 @@
 (package! writeroom-mode)
 (package! openwith)
 (package! systemd)
+(package! async)

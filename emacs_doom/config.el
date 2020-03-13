@@ -23,14 +23,20 @@
 
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-toml-mode))
 
+(use-package! rustic
+	:config
+	(setq rustic-lsp-server 'rls))
+
 
 (use-package! company
   :commands (company-mode global-company-mode company-complete
              company-complete-common company-manual-begin company-grab-line)
   :config
-	(setq company-idle-delay 0)
-	(setq company-minimum-prefix-length 3)
-	(company-tng-configure-default))
+	(setq company-idle-delay 0
+				company-minimum-prefix-length 3)
+	(add-to-list 'company-backends #'company-files)
+	(company-tng-configure-default)
+	(unbind-key "ESC ESC ESC" company-active-map))
 
 (use-package! mu4e
 	:config
@@ -55,8 +61,34 @@
 
 (use-package! atomic-chrome
 	:config
-	(atomic-chrome-start-server))
+	(atomic-chrome-start-server)
+  (setq atomic-chrome-buffer-open-style 'frame))
+
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
 
 (use-package! projectile
 	:config
 	(setq projectile-project-search-path '("~/Git")))
+
+(use-package! circe
+	:config
+	(setq circe-network-options '(("ZNC"
+																 :host "irc.rflcptr.me"
+																 :port 5003))
+				circe-realname "Roflcopter"
+				circe-nick "R0flcopt3r"
+				circe-default-nick "R0flcopt3r"
+				circe-default-realname "Roflcopter"
+				tracking-ignored-buffers '((("#gnulag$" circe-highlight-nick-face)
+																	("#linuxmasterrace$" circe-highlight-nick-face)))))
+
+(eval-after-load 'circe
+  '(progn
+     (defadvice circe-command-SAY (after jjf-circe-unignore-target)
+       (let ((ignored (tracking-ignored-p (current-buffer) nil)))
+         (when ignored
+           (setq tracking-ignored-buffers
+                 (remove ignored tracking-ignored-buffers))
+           (message "This buffer will now be tracked."))))
+     (ad-activate 'circe-command-SAY)))
