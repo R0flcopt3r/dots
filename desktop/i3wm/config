@@ -52,6 +52,9 @@ assign [instance="discord"] 2:COM
 no_focus [instance="spotify"]
 assign [instance="spotify"] 2:COM
 
+no_focus [class="zoom"]
+assign [class="zoom"] 6
+
 ## Bindings
 bindsym $mod+q          exec xautolock -locknow
 bindsym $mod+Shift+q    kill
@@ -99,6 +102,9 @@ bindsym $mod+Control+k  focus parent; focus up
 bindsym $mod+l          focus right
 bindsym $mod+Shift+l    move right
 bindsym $mod+Control+l  focus parent; focus right
+
+bindsym $mod+z			exec amixer sset Capture toggle && \
+							 pkill -SIGRTMIN+10 i3blocks
 
 bindsym $mod+x          move workspace to output left
 

@@ -5,15 +5,20 @@ separator_block_width=15
 markup=none
 color=#E0E0E0
 
+
 [bashplayer]
 interval=5
 instance=spotify
 signal=10
 
+[mic]
+interval=5
+signal=10
+
+
 [volume]
 label=VOL
 instance=Master
-#command=/usr/share/i3blocks/volume
 interval=1
 signal=10
 
