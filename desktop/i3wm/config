@@ -55,6 +55,13 @@ assign [instance="spotify"] 2:COM
 no_focus [class="zoom"]
 assign [class="zoom"] 6
 
+no_focus [class="microsoft teams - preview"]
+assign [class="microsoft teams - preview"] 6
+for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="Microsoft Teams Notification"] resize set 300 200
+
+
+
 ## Bindings
 bindsym $mod+q          exec xautolock -locknow
 bindsym $mod+Shift+q    kill
