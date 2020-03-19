@@ -15,17 +15,18 @@
 (setq display-line-numbers-type 'relative
 				doom-theme 'srcery)
 
-(map! :map rust-mode-map
-			:n "g d" 'racer-find-definition
-			)
+;; (map! :map rust-mode-map
+;; 			:n "g d" 'racer-find-definition
+;; 			)
 
-(add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
+;; (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
 
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-toml-mode))
 
 (use-package! rustic
 	:config
-	(setq rustic-lsp-server 'rls))
+	(setq rustic-lsp-server 'rls
+				lsp-rust-clippy-preference "on"))
 
 
 (use-package! company

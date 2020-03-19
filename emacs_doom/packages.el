@@ -15,3 +15,4 @@
 (package! openwith)
 (package! systemd)
 (package! async)
+(package! powershell)
