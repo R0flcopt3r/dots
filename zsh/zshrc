@@ -47,13 +47,16 @@ preexec() {
 COMPLETION_WAITING_DOTS="true"
 
 # Plugins
-plugins=(git)
+plugins=(git zsh-completions zsh-syntax-highlighting)
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin:$HOME/.config/scripts:/opt/blender-current:$HOME/.local/bin"
 export GOPATH="$HOME/.local/go"
 export PATH="$PATH:$GOPATH/bin"
-export EDITOR=emacsclient
+export EDITOR="emacsclient -n --alternate-editor=emacs"
 
+edit(){
+	eval $EDITOR $2 $1
+}
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +100,7 @@ fi
 
 alias vim=nvim
 alias :q=exit
+alias e=edit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
