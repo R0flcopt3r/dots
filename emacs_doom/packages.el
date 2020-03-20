@@ -16,3 +16,5 @@
 (package! systemd)
 (package! async)
 (package! powershell)
+(package! ob-ipython)
+(package! ob-async)
