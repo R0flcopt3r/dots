@@ -60,6 +60,8 @@ assign [class="microsoft teams - preview"] 6
 for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="Microsoft Teams Notification"] resize set 300 200
 
+for_window [class="Zathura"] floating enable
+for_window [class="Zathura"] resize set 900 1273
 
 
 ## Bindings
