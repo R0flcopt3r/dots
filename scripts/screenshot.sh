@@ -29,6 +29,13 @@ done
 
 url="${url:-$LINXURL}"
 
-DISPLAY=$DISPLAY scrot -e 'curl -s -H "Linx-Randomize: yes" -T $f "'"$url"'" && rm $f' $sel | xclip -sel clip
+link=$(DISPLAY=$DISPLAY scrot -e \
+	'(
+		curl -s -H "Linx-Randomize: yes" -T $f "'"$url"'" && rm $f
+	) || echo "Curl failed"; exit 1 '\
+		$sel || echo "Scrot failed"; exit 1)
+
+(echo "$link" | xclip -sel clip)\
+	&& notify-send "Screenshot url copied to clipboard" "$link"
 
 exit 0
