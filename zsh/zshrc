@@ -25,6 +25,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 export GOPATH="$HOME/.local/go"
 export PATH="$PATH:$GOPATH/bin"
 export EDITOR="emacsclient -n --alternate-editor=emacs"
+export LINXURL="https://linx.rflcptr.me/upload/"
 
 edit(){
 	eval $EDITOR $2 $1
