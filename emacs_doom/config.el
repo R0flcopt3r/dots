@@ -84,6 +84,10 @@
 				tracking-ignored-buffers '((("#gnulag$" circe-highlight-nick-face)
 																	("#linuxmasterrace$" circe-highlight-nick-face)))))
 
+(use-package! eshell
+	:config
+	(setq eshell-cmpl-cycle-completions nil))
+
 (eval-after-load 'circe
   '(progn
      (defadvice circe-command-SAY (after jjf-circe-unignore-target)
