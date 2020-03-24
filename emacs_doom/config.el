@@ -72,18 +72,6 @@
 	:config
 	(setq projectile-project-search-path '("~/Git")))
 
-(use-package! circe
-	:config
-	(setq circe-network-options '(("ZNC"
-																 :host "irc.rflcptr.me"
-																 :port 5003))
-				circe-realname "Roflcopter"
-				circe-nick "R0flcopt3r"
-				circe-default-nick "R0flcopt3r"
-				circe-default-realname "Roflcopter"
-				tracking-ignored-buffers '((("#gnulag$" circe-highlight-nick-face)
-																	("#linuxmasterrace$" circe-highlight-nick-face)))))
-
 (use-package! eshell
 	:config
 	(setq eshell-cmpl-cycle-completions nil))
