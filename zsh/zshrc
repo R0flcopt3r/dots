@@ -28,8 +28,13 @@ export EDITOR="emacsclient -n --alternate-editor=emacs"
 export LINXURL="https://linx.rflcptr.me/upload/"
 
 edit(){
+	# usage: edit /path/to/file
+	# $1: path to a file
+	# $2: one optional argument,
+	#   for instance `-c` for a new frame
 	eval $EDITOR $2 $1
 }
+alias e=edit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,7 +78,6 @@ fi
 
 alias vim=nvim
 alias :q=exit
-alias e=edit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
