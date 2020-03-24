@@ -76,12 +76,3 @@
 	:config
 	(setq eshell-cmpl-cycle-completions nil))
 
-(eval-after-load 'circe
-  '(progn
-     (defadvice circe-command-SAY (after jjf-circe-unignore-target)
-       (let ((ignored (tracking-ignored-p (current-buffer) nil)))
-         (when ignored
-           (setq tracking-ignored-buffers
-                 (remove ignored tracking-ignored-buffers))
-           (message "This buffer will now be tracked."))))
-     (ad-activate 'circe-command-SAY)))
