@@ -1,12 +1,17 @@
 #!/usr/bin/env sh
 
 usage() {
+
+	cat <<'EOF'
+Takes a screenshot using `scrot` and uploads it to a linx host using `curl` and puts the link into the clipboard.
+
+EOF
+
 	printf "%s [options]\n" "$0"
 	printf "\t-h\t\tdisplays usage\n"
-	printf "\t-u <url>\tsets the linx url\n"
+	printf "\t-u <url>\toverwrites \$LINXURL variable with url\n"
 	printf "\t-s\t\tscreenshot a selection\n"
 	printf "\t-d <display>\tX display to use"
-	printf '\nUses `$LINXURL` if set\n'
 }
 
 
