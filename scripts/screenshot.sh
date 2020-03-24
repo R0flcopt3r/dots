@@ -11,7 +11,7 @@ EOF
 	printf "\t-h\t\tdisplays usage\n"
 	printf "\t-u <url>\toverwrites \$LINXURL variable with url\n"
 	printf "\t-s\t\tscreenshot a selection\n"
-	printf "\t-d <display>\tX display to use"
+	printf "\t-d <display>\tX display to use\n"
 }
 
 
