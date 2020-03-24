@@ -8,6 +8,7 @@
       - xorg-x11-server-Xorg
       - lightdm
       - i3-gaps
+      - i3lock
       - zsh
       - i3blocks
       - arandr
@@ -33,4 +34,22 @@
       - fzf
       - bat
       - ripgrep
+      - liquidctl
+      - weechat
+      - discord
+      - lm_sensors
+      - mpv
+      - maildir-utils
+      - cmake
+      - pandoc
+      - make
+      - libvterm-tools
+      - editorconfig
+      - clang
+      - black
+      - golang-docs
+      - golang-bin
+      - golang-src
+      - golang-shared
+      - golang-tests
     state: present
