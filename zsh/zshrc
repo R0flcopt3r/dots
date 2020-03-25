@@ -66,6 +66,9 @@ alias gp='git push'
 alias c='xclip -sel clip'
 alias p='xclip -sel clip -o'
 
+#Alias for sudo
+alias dnf='sudo dnf'
+
 # Open file
 open_file(){
 	xdg-open $1 &
