@@ -39,6 +39,14 @@
 	(company-tng-configure-default)
 	(unbind-key "ESC ESC ESC" company-active-map))
 
+(use-package! evil
+	:config
+	(map! :nvi
+				"C-h" 'evil-window-left
+				"C-l" 'evil-window-right
+				"C-k" 'evil-window-up
+				"C-j" 'evil-window-down))
+
 (use-package! mu4e
 	:config
 	;; mbsync, IMAP ingoing
