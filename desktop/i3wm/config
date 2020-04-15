@@ -69,7 +69,7 @@ for_window [class="Matplotlib"] move position center
 
 
 ## Bindings
-bindsym $mod+q          exec xautolock -locknow
+bindsym $mod+q          exec i3lock -i ~/Pics/Wallpapers-laptop/lockscreen-current.png -c 000000
 bindsym $mod+Shift+q    kill
 
 bindsym $mod+w          layout tabbed
