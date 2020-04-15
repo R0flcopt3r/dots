@@ -41,11 +41,22 @@
 
 (use-package! evil
 	:config
+	;; Movement
 	(map! :nvi
 				"C-h" 'evil-window-left
 				"C-l" 'evil-window-right
 				"C-k" 'evil-window-up
-				"C-j" 'evil-window-down))
+				"C-j" 'evil-window-down)
+	;; Resizing
+	(map! :nvi
+				"C-S-h" 'evil-window-decrease-width
+				"C-S-l" 'evil-window-increase-width
+				"C-S-j" 'evil-window-decrease-height
+				"C-S-k" 'evil-window-decrease-height)
+	(map! (:map evil-org-mode-map
+				 :i
+				 "RET" 'nil)))
+
 
 (use-package! mu4e
 	:config
