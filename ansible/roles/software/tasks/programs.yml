@@ -52,4 +52,6 @@
       - golang-src
       - golang-shared
       - golang-tests
+      - libvirt
+      - virt-manager
     state: present
