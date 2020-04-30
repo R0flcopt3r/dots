@@ -20,7 +20,7 @@ EOF
 }
 
 clean(){
-	rm tmpaud-clean.wav tmpvid.mp4 tmpaud.wav
+	rm tmpaud-clean.wav tmpvid.mp4 tmpaud.wav noiseaud.wav noise.prof
 }
 
 output="out.mp4"
