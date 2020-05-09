@@ -18,3 +18,5 @@
 (package! powershell)
 (package! ob-ipython)
 (package! ob-async)
+(package! pyvenv)
+(package! elcord)
