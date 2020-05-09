@@ -5,29 +5,23 @@
 (setq-default tab-width 4
               indent-tabs-mode t)
 
-(setq-hook! 'c-mode
-  indent-tabs-mode f)
+(setq
+ +format-on-save-enabled-modes '(python-mode)
+	python-shell-completion-native-enable nil
+			)
 
 ;; (add-hook 'after-init-hook 'global-company-mode)
 
 (+global-word-wrap-mode '(1))
 
-(setq display-line-numbers-type 'relative
+(setq display-line-numbers-type 'visual
 				doom-theme 'srcery)
-
-;; (map! :map rust-mode-map
-;; 			:n "g d" 'racer-find-definition
-;; 			)
-
-;; (add-hook! 'rust-mode (modify-syntax-entry ?_ "w"))
 
 (add-to-list 'auto-mode-alist '("\\.service\\'" . conf-toml-mode))
 
-(use-package! rustic
-	:config
+(after! rustic
 	(setq rustic-lsp-server 'rls
 				lsp-rust-clippy-preference "on"))
-
 
 (use-package! company
   :commands (company-mode global-company-mode company-complete
@@ -39,9 +33,7 @@
 	(company-tng-configure-default)
 	(unbind-key "ESC ESC ESC" company-active-map))
 
-(use-package! evil
-	:config
-	;; Movement
+(after! evil
 	(map! :nvi
 				"C-h" 'evil-window-left
 				"C-l" 'evil-window-right
@@ -55,11 +47,10 @@
 				"C-S-k" 'evil-window-decrease-height)
 	(map! (:map evil-org-mode-map
 				 :i
-				 "RET" 'nil)))
+				 "RET" 'evil-ret)))
 
 
-(use-package! mu4e
-	:config
+(after! mu4e
 	;; mbsync, IMAP ingoing
 	(setq mu4e-maildir "~/Mail"
 				mu4e-sent-folder   "/NTNUSent"
@@ -79,19 +70,18 @@
   ;; General
 	(setq message-kill-buffer-on-exit t))
 
-(use-package! atomic-chrome
-	:config
+(after! atomic-chrome
 	(atomic-chrome-start-server)
   (setq atomic-chrome-buffer-open-style 'frame))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
 
-(use-package! projectile
-	:config
+(after! projectile
 	(setq projectile-project-search-path '("~/Git")))
 
-(use-package! eshell
-	:config
+(after! eshell
 	(setq eshell-cmpl-cycle-completions nil))
 
+(use-package! elcord
+  :hook (after-init . elcord-mode))
