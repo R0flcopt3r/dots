@@ -57,6 +57,10 @@
 				"C-S-k" 'evil-window-decrease-height)
 	(map! (:map evil-org-mode-map
 				 :i
+				 "RET" 'evil-ret))
+	(map! (:map ein:notebook-mode-map
+				 :ni
+				 "C-RET" 'ein:worksheet-insert-cell-below)))
 
 (after! atomic-chrome
 	(atomic-chrome-start-server)
