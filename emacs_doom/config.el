@@ -33,6 +33,10 @@
 	(company-tng-configure-default)
 	(unbind-key "ESC ESC ESC" company-active-map))
 
+(after! which-key
+  :config
+  (setq which-key-idle-delay 0.5))
+
 (after! evil
 	(map! :nvi
 				"C-h" 'evil-window-left
