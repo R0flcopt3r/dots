@@ -69,6 +69,14 @@ alias p='xclip -sel clip -o'
 #Alias for sudo
 alias dnf='sudo dnf'
 
+alias -s {pdf,png,jpg,jpeg,mp4}=open_file
+
+# text files
+alias -s {md,txt,org}=edit
+
+# Programming
+alias -s {rs,go,toml,json,cpp,c,h,hpp}=edit
+
 # Open file
 open_file(){
 	xdg-open $1 &
