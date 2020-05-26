@@ -64,7 +64,6 @@ for_window [class="Zathura"] floating enable
 for_window [class="Zathura"] resize set 817 1080
 
 for_window [class="Matplotlib"] floating enable
-#for_window [class="Matplotlib"] resize set 1920 700
 for_window [class="Matplotlib"] move position center
 
 
