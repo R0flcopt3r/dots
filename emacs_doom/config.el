@@ -1,7 +1,13 @@
 ;;; .doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-;;
+
+
+(setq doom-font
+			(font-spec
+			 :family "JetBrains Mono"
+			 :size 13))
+
 (setq-default tab-width 4
               indent-tabs-mode t)
 
