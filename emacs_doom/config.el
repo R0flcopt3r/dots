@@ -47,28 +47,6 @@
 				"C-S-k" 'evil-window-decrease-height)
 	(map! (:map evil-org-mode-map
 				 :i
-				 "RET" 'evil-ret)))
-
-
-(after! mu4e
-	;; mbsync, IMAP ingoing
-	(setq mu4e-maildir "~/Mail"
-				mu4e-sent-folder   "/NTNUSent"
-				mu4e-drafts-folder "/NTNUDrafts"
-				mu4e-trash-folder  "/NTNUDeleted\ Items"
-				mu4e-refile-folder "/NTNUArchive")
-
-	;; MSMTP, SMTP outgoing
-	(setq mu4e-compose-reply-to-address "eiriklav@stud.ntnu.no"
-				user-mail-address "eiriklav@stud.ntnu.no"
-				user-full-name  "Eirik Osland Lavik"
-				mu4e-compose-signature "Med vennleg helsing,\nEirik Osland Lavik"
-				message-send-mail-function   'message-send-mail-with-sendmail
-				user-mail-address "eiriklav@stud.ntnu.no"
-				sendmail-program             "msmtp")
-
-  ;; General
-	(setq message-kill-buffer-on-exit t))
 
 (after! atomic-chrome
 	(atomic-chrome-start-server)
