@@ -118,3 +118,10 @@ ex ()
 } 
 
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+
+linx(){
+	link=$(curl --silent --upload-file $1 "$LINXURL" || echo "error"; exit 1)
+
+	(echo "$link" | xclip -sel clip)\
+		&& notify-send "File url copied to clipboard" "$link"
+}
