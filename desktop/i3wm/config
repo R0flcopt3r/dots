@@ -88,7 +88,7 @@ bindsym $mod+u          exec surf my.1password.com
 
 bindsym $mod+o          split h
 
-bindsym $mod+p          exec /home/eirik/.config/scripts/setmon
+bindsym $mod+p			exec /home/eirik/.config/scripts/setmon
 
 bindsym $mod+a          focus parent
 
