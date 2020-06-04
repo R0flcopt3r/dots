@@ -1,0 +1,39 @@
+#+TITLE: Readme
+
+My i3wm configuration is split into multiple files and built using the provided
+Makefile.
+
+Desktop is the default option and is built simply by calling ~make~:
+#+BEGIN_SRC shell :export both :results output
+make
+#+END_SRC
+
+#+RESULTS:
+: touch .make.desktop_config
+: touch .make.chassis
+: cat base.conf ./config.d/*.conf > config
+: touch .make.config
+: cat desktop.conf >> config
+: touch .make.desktop_config
+
+Laptop configuration is built using the following:
+#+BEGIN_SRC shell :export both :results output
+make laptop
+#+END_SRC
+
+#+RESULTS:
+: touch .make.desktop_config
+: touch .make.chassis
+: cat base.conf ./config.d/*.conf > config
+: touch .make.config
+: cat laptop.conf >> config
+: touch .make.laptop_config
+
+The following will remove the old configuration and all the files created by make
+#+BEGIN_SRC shell :export both :results output
+make clean
+#+END_SRC
+
+#+RESULTS:
+: rm .make.*
+: rm config
