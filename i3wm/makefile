@@ -7,9 +7,9 @@
 config_dir := ./config.d/
 configs := $(foreach dir, $(config_dir), $(wildcard $(dir)/*))
 
-desktop: .make.desktop_config
+desktop: .make.desktop_config .make.desktop
 
-laptop: .make.laptop_config
+laptop: .make.laptop_config .make.laptop
 
 .make.desktop_config: .make.config .make.chassis desktop.conf
 	cat desktop.conf >> config
@@ -24,7 +24,7 @@ laptop: .make.laptop_config
 	touch $@
 
 .make.chassis:
-	touch .make.$(lastword $(shell hostnamectl status | grep Chassis))_config
+	touch .make.$(lastword $(shell hostnamectl status | grep Chassis))
 	touch $@
 
 
