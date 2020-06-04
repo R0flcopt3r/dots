@@ -294,6 +294,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 10
 smart_gaps on
+smart_borders on
 
 # Disable gaps for certain workspace
 workspace 1 gaps inner 0
