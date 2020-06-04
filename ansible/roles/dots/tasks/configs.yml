@@ -18,6 +18,16 @@
     - 'i3'
     - 'alacritty'
 
+- name: build configs
+  become: yes
+  become_user: "{{ user }}"
+  command:
+    chdir: /home/{{ user }}/Git/dots/{{ item.folder }}
+    cmd: make "{{ type|lower }}"
+    creates: /home/{{ user }}/Git/dots/{{ item.folder }}/config
+  loop:
+    - { folder: "i3wm" }
+
 - name: symlink configs
   file:
     src: /home/{{ user }}/Git/dots/{{ item.src }}
@@ -35,6 +45,7 @@
   - {src: 'scripts', dest: 'scripts'}
   - {src: 'i3scripts', dest: 'i3blocks/scripts'}
   - {src: 'mimetypes/mimeapps.list', dest: 'mimeapps.list'}
+  - {src: 'i3wm/config', dest: 'i3/config'}
 
 - name: laptop specific
   file:
@@ -46,8 +57,8 @@
     force: yes
   loop:
     - { src: 'i3wm/config', dest: 'i3/config' }
-    - { src: 'i3blocks/config', dest: 'i3blocks/config' }
   when: type|lower == 'laptop'
+
 
 - name: desktop specific
   file:
@@ -58,7 +69,6 @@
     state: link
     force: yes
   loop:
-    - { src: 'i3wm/config', dest: 'i3/config' }
     - { src: 'i3blocks/config', dest: 'i3blocks/config' }
   when: type|lower == 'desktop'
 
