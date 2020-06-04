@@ -43,6 +43,8 @@ assign [class="qutebrowser"] 1:browser
 # Steam
 no_focus [class="Steam"]
 assign [class="Steam"] 8:Game
+no_focus [class="Zenity"]
+assign [class="Zenity"] 8:Game
 
 # Discord
 no_focus [instance="discord"]
