@@ -272,6 +272,7 @@ client.urgent           $red         $xgrey1 $red         $red      $red
 client.placeholder      $xgrey1      $xgrey1 $brightblack $xgrey1   $xgrey1
 client.background       $black
 
+
 bar {
 	tray_output primary
     status_command i3blocks
@@ -286,7 +287,7 @@ bar {
 		inactive_workspace $xgrey3       $xgrey1      $brightblack
 		urgent_workspace   $red          $red         $black
 		binding_mode       $magenta      $magenta     $brightwhite
-	}
+    }
 }
 
 # I3 gaps
