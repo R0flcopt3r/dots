@@ -24,7 +24,7 @@ include-file = $HOME/.config/polybar/srcery
 [bar/all]
 inherit = bar/colors
 monitor = ${env:MONITOR}
-width = 50%
+width = 100%
 height = 20
 offset-y = 0
 radius = 0
