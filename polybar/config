@@ -1,0 +1,133 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+include-file = $HOME/.config/polybar/srcery
+
+[bar/all]
+inherit = bar/colors
+monitor = ${env:MONITOR}
+width = 50%
+height = 20
+offset-y = 0
+radius = 0
+fixed-center = true
+line-size = 1
+border-size = 0
+padding-left = 2
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 1
+modules-left = bspwm
+modules-center = title
+modules-right = root home cpu mem date
+cursor-click = pointer
+cursor-scroll = ns-resize
+bottom=true
+font-0 = 3270Medium Nerd Font:style=Medium:size=10
+font-1 = JetBrains Mono:style=Regular:size=10
+tray-position = right
+tray-transparent = false
+dpi-x = 0
+dpi-y = 0
+
+
+[module/bspwm]
+inherit=module/bspwm-colors
+ws-icon-0 = 1-www; %{T2}1%{T-}
+ws-icon-1 = 2-com; %{T2}2%{T-}
+ws-icon-2 = 3-cli; %{T2}3%{T-}
+ws-icon-3 = 4-cli; %{T2}4%{T-}
+ws-icon-4 = 5;%{T2}5%{T-}
+ws-icon-5 = 6;%{T2}6%{T-}
+ws-icon-6 = 7-daw; %{T2}7%{T-}
+ws-icon-7 = 8-game; %{T2}8%{T-}
+ws-icon-8 = 9;%{T2}9%{T-}
+ws-icon-9 = 0;%{T2}0%{T-}
+
+label-focused = %icon%
+label-empty = %icon%
+label-occupied = %icon%
+type = internal/bspwm
+pin-workspaces = true
+fuzzy-match = true
+label-focused-padding = 1
+label-occupied-padding = 1
+label-nrgent-padding = 1
+label-empty-padding = 1
+
+[module/home]
+inherit=module/colors
+type=internal/fs
+intervall=25
+mount-0=/home
+label-mounted =  %{T2}%percentage_used%%%{T-}
+
+[module/root]
+inherit=module/colors
+type=internal/fs
+intervall=25
+mount-0=/
+label-mounted =  %{T2}%percentage_used%%%{T-}
+
+[module/title]
+inherit=module/colors
+type = internal/xwindow
+; Available tags:
+;   <label> (default)
+format = <label>
+format-padding = 0
+label = "%{T2}%title%%{T-}"
+label-maxlen = 40
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+
+[module/cpu]
+inherit=module/colors
+type = internal/cpu
+interval = 2
+format-prefix = " "
+label = %{T2}%percentage:2%%%{T-}
+format = <label>
+
+
+[module/mem]
+inherit=module/colors
+type = internal/memory
+interval = 2
+format-prefix = " "
+label = %{T2}%percentage_used%%%{T-}
+format = <label>
+
+[module/date]
+inherit=module/colors
+type = internal/date
+interval = 5
+date = "%Y-%m-%d"
+date-alt = "%d/%m/%Y"
+time = %H:%M
+time-alt = [%H:%M:%S]
+label = %{T2}%date% %time%%{T-}
+
+
+[settings]
+screenchange-reload = true
+
