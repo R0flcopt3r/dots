@@ -112,15 +112,10 @@ label-mounted =  %{T2}%percentage_used%%%{T-}
 [module/title]
 inherit=module/colors
 type = internal/xwindow
-; Available tags:
-;   <label> (default)
 format = <label>
 format-padding = 0
 label = "%{T2}%title%%{T-}"
 label-maxlen = 40
-; Used instead of label when there is no window title
-; Available tokens:
-;   None
 
 [module/cpu]
 inherit=module/colors
