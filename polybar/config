@@ -63,6 +63,7 @@ ws-icon-8 = 9;%{T2}9%{T-}
 ws-icon-9 = 0;%{T2}0%{T-}
 
 label-focused = %icon%
+label-urgent = %icon%
 label-empty = %icon%
 label-occupied = %icon%
 type = internal/bspwm
