@@ -3,7 +3,7 @@ Description=Fan speed kurve for NZXT kraken
 
 [Service]
 Type=oneshot
-ExecStart=liquidctl --match kraken set fan speed  30 20 50 30 60 35 70 45 80 60 100 70
+ExecStart=liquidctl --match kraken set fan speed  30 20 50 30 60 35 70 45 80 65 100 80
 Restart=on-faliure
 RestartSec=5
 RuntimeMaxSec=10
