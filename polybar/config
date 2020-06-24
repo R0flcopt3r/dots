@@ -44,7 +44,6 @@ bottom=true
 font-0 = 3270Medium Nerd Font:style=Medium:size=10
 font-1 = JetBrains Mono:style=Regular:size=10
 tray-position = right
-tray-transparent = false
 dpi-x = 0
 dpi-y = 0
 enable-ipc = true
