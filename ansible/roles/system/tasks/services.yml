@@ -1,0 +1,8 @@
+- name: system services
+  file:
+    src: /home/{{ user }}/Git/dots/systemd/{{ item }}
+    dest: /etc/systemd/system/{{ item }}
+    state: link
+    force: yes
+  loop:
+    - { liquidcfg.service }

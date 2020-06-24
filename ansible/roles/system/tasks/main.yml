@@ -16,3 +16,6 @@
 - name: set-default graphical.target
   command:
     cmd: systemctl set-default graphical.target
+
+- name: tasks
+  import_tasks: services.yml
