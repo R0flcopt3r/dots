@@ -87,7 +87,7 @@ alias -s {rs,go,toml,json,cpp,c,h,hpp}=edit
 
 # Open file
 open_file(){
-	xdg-open $1 &
+	devour xdg-open $1 &
 }
 alias open="open_file"
 
