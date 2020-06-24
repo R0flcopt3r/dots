@@ -7,6 +7,9 @@ super + Escape
 super + d
 	rofi -show drun
 
+super + ctrl + l
+	i3lock -i ~/Pics/Wallpapers-laptop/lockscreen-current.png
+
 ## BSPWM ##
 
 # Change focus
