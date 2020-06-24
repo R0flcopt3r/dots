@@ -37,7 +37,7 @@ module-margin-left = 1
 module-margin-right = 1
 modules-left = bspwm
 modules-center = title
-modules-right = root home cpu mem date
+modules-right = mic pulseaudio root home cpu mem date
 cursor-click = pointer
 cursor-scroll = ns-resize
 bottom=true
@@ -47,6 +47,7 @@ tray-position = right
 tray-transparent = false
 dpi-x = 0
 dpi-y = 0
+enable-ipc = true
 
 
 [module/bspwm]
@@ -72,6 +73,27 @@ label-focused-padding = 1
 label-occupied-padding = 1
 label-nrgent-padding = 1
 label-empty-padding = 1
+
+[module/mic]
+inherit=module/colors
+type = custom/ipc
+hook-0 = $HOME/Git/dots/scripts/mic.sh
+initial = 1
+click-left = amixer sset Capture toggle && polybar-msg -p %pid% hook mic 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+interval = 5
+format-muted = <label-muted>
+label-volume = %{T2}%percentage%%%{T-}
+label-muted = 婢 muted
+label-muted-foreground = ${srcery-colors.magenta}
+ramp-volume-0 = 奄
+ramp-volume-1 = 墳
+ramp-volume-2 = 
+format-volume = <ramp-volume> <label-volume>
+click-right = pavucontrol &
 
 [module/home]
 inherit=module/colors
