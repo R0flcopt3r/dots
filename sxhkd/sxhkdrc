@@ -97,6 +97,9 @@ super + alt + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+super + z
+	  amixer sset Capture toggle && polybar-msg hook mic 1
+
 
 XF86AudioRaiseVolume
 	$HOME/Git/dots/scripts/vol.sh -v inc
