@@ -5,7 +5,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + d
-	rofi -show drun
+	rofi -show combi
 
 super + ctrl + l
 	i3lock -i ~/Pics/Wallpapers-laptop/lockscreen-current.png
