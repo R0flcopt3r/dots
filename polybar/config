@@ -125,7 +125,6 @@ format-prefix = " "
 label = %{T2}%percentage:2%%%{T-}
 format = <label>
 
-
 [module/mem]
 inherit=module/colors
 type = internal/memory
@@ -143,7 +142,6 @@ date-alt = "%d/%m/%Y"
 time = %H:%M
 time-alt = [%H:%M:%S]
 label = %{T2}%date% %time%%{T-}
-
 
 [settings]
 screenchange-reload = true
