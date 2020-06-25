@@ -37,7 +37,7 @@ module-margin-left = 1
 module-margin-right = 1
 modules-left = bspwm
 modules-center = title
-modules-right = mic pulseaudio root home cpu mem date
+modules-right = mic pulseaudio root home wifi cpu mem date
 cursor-click = pointer
 cursor-scroll = ns-resize
 bottom=true
@@ -47,6 +47,15 @@ tray-position = right
 dpi-x = 0
 dpi-y = 0
 enable-ipc = true
+
+[module/wifi]
+type = internal/network
+interface = wlp4s0
+ramp-signal-0 = 睊
+ramp-signal-1 = 直
+ramp-signal-2 = 
+label-connected = %{T2}%essid%%{T-}
+format-connected = <ramp-signal> <label-connected>
 
 
 [module/bspwm]
