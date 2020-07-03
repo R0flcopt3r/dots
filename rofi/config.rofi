@@ -1,5 +1,5 @@
 rofi.theme:							 ~/.config/rofi/srcery.rasi
-rofi.modi:							 combi,run
+rofi.modi:							 combi,calc,run
 rofi.sidebar-mode:                   true
 rofi.matching:                       normal
 rofi.combi-modi:                     window,drun
@@ -27,8 +27,8 @@ rofi.kb-mode-next:				     Shift+Right,Control+Tab,Control+l
 rofi.kb-mode-previous:				 Shift+Left,Control+Shift+Tab,Control+h
 rofi.kb-row-left:					 Control+Left
 rofi.kb-row-right:					 Control+Right
-rofi.kb-row-up:						 Control+n
-rofi.kb-row-down:					 Control+p
+rofi.kb-row-up:						 Control+p
+rofi.kb-row-down:					 Control+n
 rofi.kb-row-tab:					 Tab
 rofi.kb-page-prev:					 Page_Down
 rofi.kb-page-next:					 Page_Up
@@ -39,4 +39,4 @@ rofi.kb-screenshot:					 Alt+s
 rofi.kb-ellipsize:					 Alt+period
 rofi.kb-toggle-case-sensitivity:	 grave,dead_grave
 rofi.kb-toggle-sort:				 Alt+grave
-rofi.kb-cancel:						 Escape
+rofi.kb-cancel:						 Escape,Control+g
