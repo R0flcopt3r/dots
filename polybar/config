@@ -37,7 +37,7 @@ module-margin-left = 1
 module-margin-right = 1
 modules-left = bspwm
 modules-center = title
-modules-right = mic pulseaudio root home wifi cpu mem date
+modules-right = spotify mic pulseaudio root home wifi cpu mem date
 cursor-click = pointer
 cursor-scroll = ns-resize
 bottom=true
@@ -82,6 +82,16 @@ label-focused-padding = 1
 label-occupied-padding = 1
 label-nrgent-padding = 1
 label-empty-padding = 1
+
+[module/spotify]
+inherit=module/colors
+type = custom/script
+exec = ~/Git/dots/scripts/playerctl.sh
+click-right = ~/Git/dots/scripts/playerctl.sh next
+click-left = ~/Git/dots/scripts/playerctl.sh prev
+click-middle = ~/Git/dots/scripts/playerctl.sh play-pause
+format =   %{T2}<label>%{T-}
+interval = 1
 
 [module/mic]
 inherit=module/colors
