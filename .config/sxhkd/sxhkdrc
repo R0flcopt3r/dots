@@ -1,0 +1,133 @@
+super + Return
+	  alacritty
+
+super + Escape
+	pkill -USR1 -x sxhkd
+
+super + d
+	rofi -show combi
+
+super + ctrl + l
+	i3lock -i ~/Pics/Wallpapers-laptop/lockscreen-current.png
+
+## BSPWM ##
+
+# Change focus
+super + {h,j,k,l}
+	d={west,south,north,east}; bspc node -f $d || bspc monitor -f $d
+
+# move a window. Using Audron's windowmover thing
+# super + shift + {h,j,k,l}
+# 	d={west,south,north,east}; windowmover $d
+
+# focus the node in the given direction
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
+
+# quit or restart bspwm
+super + shift {alt + e,r}
+	  bspc {quit, wm -r}
+
+# close or kill a program
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# t: tiling
+# shift+t: pseudo_tiled, sorta floating but also tiled? could it be gaps?
+# s: floating
+# f: fullscreen
+# nothing here toggles, gotta fix that
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+super + shift + {o,i}
+	bspc desktop -f {older, newer}
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + {1,2,3,4,5,6,7,8,9,0}
+	D={"1-www","2-com","3-cli","4-cli",5,6,"7-daw","8-game",9,10}; bspc desktop -f "$D"
+
+# send to the given desktop
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+	D={"1-www","2-com","3-cli","4-cli",5,6,"7-daw","8-game",9,10}; bspc node -d "$D"
+
+# Move desktop to {next, previous} monitor
+super + {p,n}
+	D={"prev","next"}; bspc desktop -m next --follow
+
+# grave = `, "alt-tabs" between windows/nodes
+# tab, "alt-tabs" between workspaces/desktops
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# preselect the direction
+super + alt + shift + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + alt + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + alt + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+super + z
+	  amixer sset Capture toggle && polybar-msg hook mic 1
+
+
+XF86AudioRaiseVolume
+	$HOME/Git/dots/scripts/vol.sh -v inc
+XF86AudioLowerVolume
+	$HOME/Git/dots/scripts/vol.sh -v dec
+shift+XF86AudioRaiseVolume
+	$HOME/Git/dots/scripts/vol.sh -v inc
+shift+XF86AudioLowerVolume
+	$HOME/Git/dots/scripts/vol.sh -v dec
+XF86AudioMute
+	$HOME/Git/dots/scripts/vol.sh -v toggle
+XF86AudioMicMute
+	amixer -q -D sset Capture toggle
+XF86MonBrightnessDown
+	xbacklight -dec 10 && pkill -SIGRTMIN+11 i3blocks
+XF86MonBrightnessUp
+	xbacklight -inc 10 && pkill -SIGRTMIN+11 i3blocks
+shift+XF86MonBrightnessDown
+	xbacklight -dec 1 && pkill -SIGRTMIN+11 i3blocks
+shift+XF86MonBrightnessUp
+	xbacklight -inc 1 && pkill -SIGRTMIN+11 i3blocks
+XF86WLAN
+	/home/eirik/Documents/Script/using/wifi-toggle
+XF86AudioPlay
+	playerctl play-pause
+XF86AudioNext
+	playerctl next
+XF86AudioPrev
+	playerctl previous
+XF86Calculator
+	qalculate-gtk

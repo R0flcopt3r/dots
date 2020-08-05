@@ -1,0 +1,135 @@
+# Path to your oh-my-zsh installation.
+export ZSH=/home/eirik/.oh-my-zsh
+
+# Setting fd as the default source for fzf to respect .gitignore
+FZF_DEFAULT_COMMAND="fd --type f"
+FZF_CTRL_T_COMMAND="fd --type f"
+FZF_ALT_C_COMMAND="fd --type d"
+
+# Theme, one for remote
+if [[ -n $SSH_CLIENT ]]
+then
+	ZSH_THEME="gentoo"
+else
+	ZSH_THEME="sunaku"
+fi
+
+COMPLETION_WAITING_DOTS="true"
+
+# Plugins
+plugins=(git zsh-completions zsh-syntax-highlighting)
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin:$HOME/.config/scripts:/opt/blender-current:$HOME/.local/bin:/var/lib/snapd/snap/bin"
+
+
+export GOPATH="$HOME/.local/go"
+export PATH="$PATH:$GOPATH/bin"
+export EDITOR="emacsclient -n --alternate-editor=emacs"
+export LINXURL="https://linx.rflcptr.me/upload/"
+export LV2_PATH="/usr/lib64/lv2"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+edit(){
+	# usage: edit /path/to/file
+	# $1: path to a file
+	# $2: one optional argument,
+	#   for instance `-c` for a new frame
+	eval $EDITOR $2 $1
+}
+alias e=edit
+
+source $ZSH/oh-my-zsh.sh
+
+# Ranger levels check
+rr() {
+	if [ -z "$RANGER_LEVEL" ]
+	then
+		ranger
+	else
+		exit
+	fi
+}
+
+#Alias for the LS comand
+alias ll='ls -hAl --group-directories-first'
+alias l='ls -GghB --group-directories-first'
+alias lc='ls -gGht'
+alias llc='ls -hAlt'
+
+alias dirs='dirs -v'
+
+# Alias for Git
+alias gc='git_clone'
+git_clone (){
+	clip=$(xclip -sel clip -o)
+	[ ! -z $1 ] && (
+		git clone "$1"
+		exit
+	)
+	[[ "$clip" =~ "^git@.*\.git$" ]] && git clone "$clip" || echo "clipboard does not contain git repo"
+}
+
+# General alias
+alias c='xclip -sel clip'
+alias p='xclip -sel clip -o'
+
+#Alias for sudo
+alias dnf='sudo dnf'
+
+alias -s {pdf,png,jpg,jpeg,mp4}=open_file
+
+# text files
+alias -s {md,txt,org}=edit
+
+# Programming
+alias -s {rs,go,toml,json,cpp,c,h,hpp}=edit
+
+# Open file
+open_file(){
+	devour xdg-open $1 &
+}
+alias open="open_file"
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+	source /etc/profile.d/vte.sh
+fi
+
+alias vim=nvim
+alias :q=exit
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+			*.tar.xz)		 tar xf $1		;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+} 
+
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+
+linx(){
+	link=$(curl --silent --upload-file $1 "$LINXURL" || echo "error"; exit 1)
+
+	(echo "$link" | xclip -sel clip)\
+		&& notify-send "File url copied to clipboard" "$link"
+}
