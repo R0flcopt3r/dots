@@ -133,3 +133,7 @@ linx(){
 	(echo "$link" | xclip -sel clip)\
 		&& notify-send "File url copied to clipboard" "$link"
 }
+
+comp(){
+	g++ -g -o ./run $@ && ./run
+}
