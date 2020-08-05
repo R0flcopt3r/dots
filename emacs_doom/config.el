@@ -77,3 +77,43 @@
 
 (use-package! elcord
   :hook (after-init . elcord-mode))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fci-rule-color "#767676")
+ '(jdee-db-active-breakpoint-face-colors (cons "#0F1019" "#D85F00"))
+ '(jdee-db-requested-breakpoint-face-colors (cons "#0F1019" "#79D836"))
+ '(jdee-db-spec-breakpoint-face-colors (cons "#0F1019" "#767676"))
+ '(objed-cursor-color "#D83441")
+ '(package-selected-packages (quote (exwm)))
+ '(pdf-view-midnight-colors (cons "#0D0E16" "#CEDBE5"))
+ '(vc-annotate-background "#0D0E16")
+ '(vc-annotate-color-map
+	 (list
+		(cons 20 "#79D836")
+		(cons 40 "#98cd39")
+		(cons 60 "#b8c33d")
+		(cons 80 "#D8B941")
+		(cons 100 "#d89b2b")
+		(cons 120 "#d87d15")
+		(cons 140 "#D85F00")
+		(cons 160 "#ba5548")
+		(cons 180 "#9d4b90")
+		(cons 200 "#8041D8")
+		(cons 220 "#9d3ca5")
+		(cons 240 "#ba3873")
+		(cons 260 "#D83441")
+		(cons 280 "#bf444e")
+		(cons 300 "#a7555b")
+		(cons 320 "#8e6568")
+		(cons 340 "#767676")
+		(cons 360 "#767676")))
+ '(vc-annotate-very-old-color nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(highlight-indentation-face ((t (:background "gray15")))))
