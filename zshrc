@@ -1,27 +1,22 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/home/eirik/.oh-my-zsh
+# The following lines were added by compinstall
 
-# Setting fd as the default source for fzf to respect .gitignore
-FZF_DEFAULT_COMMAND="fd --type f"
-FZF_CTRL_T_COMMAND="fd --type f"
-FZF_ALT_C_COMMAND="fd --type d"
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' max-errors 1
+zstyle :compinstall filename '/home/eirik/.zshrc'
 
-# Theme, one for remote
-if [[ -n $SSH_CLIENT ]]
-then
-	ZSH_THEME="gentoo"
-else
-	ZSH_THEME="sunaku"
-fi
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=1000000
+setopt autocd extendedglob
+bindkey -e
+# End of lines configured by zsh-newuser-install
 
-COMPLETION_WAITING_DOTS="true"
-
-# Plugins
-plugins=(git zsh-completions zsh-syntax-highlighting)
-
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin:$HOME/.config/scripts:/opt/blender-current:$HOME/.local/bin:/var/lib/snapd/snap/bin"
-
-
+export PATH="/home/eirik/.pyenv/bin:$PATH:$HOME/.local/bin"
 export GOPATH="$HOME/.local/go"
 export PATH="$PATH:$GOPATH/bin"
 export EDITOR="emacsclient -n --alternate-editor=emacs"
@@ -31,26 +26,26 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+FZF_DEFAULT_COMMAND="fd --type f"
+FZF_CTRL_T_COMMAND="fd --type f"
+FZF_ALT_C_COMMAND="fd --type d"
+
+# https://github.com/sindresorhus/pure
+if [ -e "$HOME/.zsh/pure" ]; then
+	fpath+=$HOME/.zsh/pure
+	autoload -U promptinit; promptinit
+	prompt pure
+else
+	mkdir -p "$HOME/.zsh"
+	git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+fi
+
+
 edit(){
-	# usage: edit /path/to/file
-	# $1: path to a file
-	# $2: one optional argument,
-	#   for instance `-c` for a new frame
-	eval $EDITOR $2 $1
+	# usage: edit [OPTION] /path/to/file
+	eval $EDITOR $@
 }
 alias e=edit
-
-source $ZSH/oh-my-zsh.sh
-
-# Ranger levels check
-rr() {
-	if [ -z "$RANGER_LEVEL" ]
-	then
-		ranger
-	else
-		exit
-	fi
-}
 
 #Alias for the LS comand
 alias ll='ls -hAl --group-directories-first'
@@ -75,8 +70,6 @@ git_clone (){
 alias c='xclip -sel clip'
 alias p='xclip -sel clip -o'
 
-#Alias for sudo
-alias dnf='sudo dnf'
 
 alias -s {pdf,png,jpg,jpeg,mp4}=open_file
 
@@ -86,29 +79,21 @@ alias -s {md,txt,org}=edit
 # Programming
 alias -s {rs,go,toml,json,cpp,c,h,hpp}=edit
 
+alias -g ls='ls --color'
+
 # Open file
 open_file(){
 	devour xdg-open $1 &
 }
 alias open="open_file"
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-	source /etc/profile.d/vte.sh
-fi
-
-alias vim=nvim
 alias :q=exit
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
-
 ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
-			*.tar.xz)		 tar xf $1		;;
+	  *.tar.xz)		 tar xf $1	;;
       *.bz2)       bunzip2 $1   ;;
       *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
@@ -123,9 +108,7 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
-} 
-
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+}
 
 linx(){
 	link=$(curl --silent --upload-file $1 "$LINXURL" || echo "error"; exit 1)
