@@ -8,7 +8,7 @@ super + d
 	rofi -show combi
 
 super + ctrl + l
-	i3lock -i ~/Pics/Wallpapers-laptop/lockscreen-current.png
+	i3lock -i /home/eirik/.cache/current_lock.png
 
 ## BSPWM ##
 
