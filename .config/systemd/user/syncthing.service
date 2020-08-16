@@ -1,0 +1,11 @@
+[unit]
+Description=Peer to Peer syncronizing
+
+[Service]
+type=oneshot
+ExecStart=syncthing -no-browser
+restart=on-faliure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
