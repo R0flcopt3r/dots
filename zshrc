@@ -25,6 +25,7 @@ export LV2_PATH="/usr/lib64/lv2"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
+export TERM="alacritty"
 
 FZF_DEFAULT_COMMAND="fd --type f"
 FZF_CTRL_T_COMMAND="fd --type f"
