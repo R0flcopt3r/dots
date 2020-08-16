@@ -100,7 +100,7 @@ label-charging = %{T2}%percentage%%%{T-}
 ;   %percentage_raw%
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
-label-discharging = %{T2}%percentage%%%{T-}
+label-discharging = %{T2}%percentage%% %time% %consumption%W %{T-}
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
