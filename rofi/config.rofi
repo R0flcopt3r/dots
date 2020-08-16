@@ -2,7 +2,7 @@ rofi.theme:							 ~/.config/rofi/srcery.rasi
 rofi.modi:							 combi,calc,run
 rofi.sidebar-mode:                   true
 rofi.matching:                       normal
-rofi.combi-modi:                     window,drun
+rofi.combi-modi:                     window,drun, calc
 
 rofi.kb-primary-paste:				 Control+Shift+v,Shift+Insert
 rofi.kb-secondary-paste:		   	 Control+v,Insert
