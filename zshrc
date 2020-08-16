@@ -40,6 +40,7 @@ else
 	git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
+[ -e /etc/zsh_completion.d/fzf-key-bindings ] && source /etc/zsh_completion.d/fzf-key-bindings
 
 edit(){
 	# usage: edit [OPTION] /path/to/file
