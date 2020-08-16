@@ -11,6 +11,7 @@ env:
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
+  WINIT_HIDPI_FACTOR: "1"
 
 window:
   # Window dimensions (changes require restart)
@@ -93,17 +94,17 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Iosevka
+    family: JetBrainsMonoNL
     style: Regular
   bold:
-    family: Iosevka
+    family: JetBrainsMonoNL
     style: Bold
   italic:
-    family: Iosevka
+    family: JetBrainsMonoNL
     style: Italic
 
   # Point size
-  size: 11.0
+  size: 6.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
