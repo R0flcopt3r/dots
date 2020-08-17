@@ -28,3 +28,5 @@ alias -s {rs,go,toml,json,cpp,c,h,hpp}=edit
 alias -g ls='ls --color'
 alias open="open_file"
 alias :q=exit
+
+alias zypper='sudo zypper'
