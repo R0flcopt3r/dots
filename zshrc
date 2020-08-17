@@ -16,8 +16,8 @@ setopt autocd extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-. $HOME/.zsh/path.zsh
 . $HOME/.zsh/env.zsh
+. $HOME/.zsh/path.zsh
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
 

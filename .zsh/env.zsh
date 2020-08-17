@@ -7,3 +7,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export TERM="alacritty"
+export JAVA_HOME=/usr/local/jdk-11.0.2
