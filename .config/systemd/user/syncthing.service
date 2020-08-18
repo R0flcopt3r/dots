@@ -1,10 +1,9 @@
-[unit]
+[Unit]
 Description=Peer to Peer syncronizing
 
 [Service]
-type=oneshot
 ExecStart=syncthing -no-browser
-restart=on-faliure
+Restart=on-failure
 RestartSec=5
 
 [Install]
