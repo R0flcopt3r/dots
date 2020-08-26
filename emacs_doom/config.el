@@ -77,6 +77,10 @@
 
 (use-package! elcord
   :hook (after-init . elcord-mode))
+
+
+(setq gdscript-godot-executable "/opt/Godot/godot_current")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
