@@ -20,3 +20,6 @@
 (package! ob-async)
 (package! pyvenv)
 (package! elcord)
+(package! gdscript-mode
+          :recipe (:host github
+                   :repo "GDQuest/emacs-gdscript-mode"))
