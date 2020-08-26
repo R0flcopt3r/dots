@@ -69,7 +69,7 @@ git_clone (){
 		git clone "$1"
 		exit
 	)
-	[[ "$clip" =~ "^git@.*\.git$" ]] && git clone "$clip" || echo "clipboard does not contain git repo"
+	[[ "$clip" =~ "^.*\.git$" ]] && git clone "$clip" || echo "clipboard does not contain git repo"
 }
 
 # General alias
