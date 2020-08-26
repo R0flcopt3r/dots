@@ -30,7 +30,8 @@ export LV2_PATH="/usr/lib64/lv2"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
-
+export JAVA_HOME=/usr/local/jdk-11.0.2
+export PATH=$PATH:$JAVA_HOME/bin
 edit(){
 	# usage: edit /path/to/file
 	# $1: path to a file
