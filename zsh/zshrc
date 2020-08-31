@@ -138,3 +138,16 @@ linx(){
 comp(){
 	g++ -g -o ./run $@ && ./run
 }
+
+vpn_ntnu() {
+
+  IP="\
+128.0.0.0/8 hostname skyhigh=skyhigh.iik.ntnu.no=128.38.45.127
+"
+    op get item feide |
+        jq --raw-output '.details.fields[] | select(.designation=="'"password"'").value' |
+        sudo openconnect vpn.ntnu.no -u eiriklav \
+            -s 'vpn-slice 128.0.0.0/8 skyhigh.iik.ntnu.no=128.38.45.127' \
+            --passwd-on-stdin
+}
+
