@@ -21,7 +21,7 @@ plugins=(git zsh-completions zsh-syntax-highlighting)
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt:$HOME/.cargo/bin:/opt/anaconda3/bin:$HOME/.config/scripts:/opt/blender-current:$HOME/.local/bin:/var/lib/snapd/snap/bin"
 
-
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export GOPATH="$HOME/.local/go"
 export PATH="$PATH:$GOPATH/bin"
 export EDITOR="emacsclient -n --alternate-editor=emacs"
