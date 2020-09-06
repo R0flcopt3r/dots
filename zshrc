@@ -27,13 +27,9 @@ FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
 
 # https://github.com/sindresorhus/pure
-if [ -e "$HOME/.zsh/pure" ]; then
+if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
 	fpath+=$HOME/.zsh/pure
 	autoload -U promptinit; promptinit
 	prompt pure
-else
-	mkdir -p "$HOME/.zsh"
-	git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
-[ -e /etc/zsh_completion.d/fzf-key-bindings ] && source /etc/zsh_completion.d/fzf-key-bindings
