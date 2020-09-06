@@ -21,11 +21,6 @@ bindkey -e
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
 
-
-FZF_DEFAULT_COMMAND="fd --type f"
-FZF_CTRL_T_COMMAND="fd --type f"
-FZF_ALT_C_COMMAND="fd --type d"
-
 # https://github.com/sindresorhus/pure
 if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
 	fpath+=$HOME/.zsh/pure
@@ -33,3 +28,13 @@ if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
 	prompt pure
 fi
 
+#### FZF ####
+# Tumbleweed
+[ -e /etc/zsh_completion.d/fzf-key-bindings ] &&
+  source /etc/zsh_completion.d/fzf-key-bindings
+# Fedora
+[ -e ~/.fzf.zsh ] &&
+  source ~/.fzf.zsh
+FZF_DEFAULT_COMMAND="fd --type f"
+FZF_CTRL_T_COMMAND="fd --type f"
+FZF_ALT_C_COMMAND="fd --type d"
