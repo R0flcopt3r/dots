@@ -30,13 +30,17 @@ if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
 	prompt pure
 fi
 
+if [ -e "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  . $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 #### FZF ####
 # Tumbleweed
 [ -e /etc/zsh_completion.d/fzf-key-bindings ] &&
-  source /etc/zsh_completion.d/fzf-key-bindings
+  . /etc/zsh_completion.d/fzf-key-bindings
 # Fedora
 [ -e ~/.fzf.zsh ] &&
-  source ~/.fzf.zsh
+  . ~/.fzf.zsh
 FZF_DEFAULT_COMMAND="fd --type f"
 FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
