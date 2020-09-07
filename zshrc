@@ -1,9 +1,7 @@
 # The following lines were added by compinstall
 
-zstyle ':completion:*' completer _expand _complete _ignored
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}'
-zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/eirik/.zshrc'
+
 
 autoload -Uz compinit
 compinit
@@ -16,6 +14,7 @@ setopt autocd extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+. $HOME/.zsh/completion.zsh
 . $HOME/.zsh/env.zsh
 . $HOME/.zsh/path.zsh
 . $HOME/.zsh/alias.zsh
