@@ -9,4 +9,5 @@ $HOME/.local/go:\
 $HOME/.pyenv/bin:\
 $HOME/.local/bin:\
 $JAVA_HOME/bin:\
+/var/snap:\
 "
