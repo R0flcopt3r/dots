@@ -1,3 +1,7 @@
-[submodule "DbConnector"]
+[submodule "Pure"]
 	path = .zsh/pure
 	url = git@github.com:sindresorhus/pure.git
+
+[submodule "zsh-syntax-highlighting"]
+	path = .zsh/zsh-syntax-highlighting
+	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
