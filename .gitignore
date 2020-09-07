@@ -4,3 +4,17 @@
 tmp/
 
 .make.*
+
+# Configs
+.config/*
+!.config/bspwm
+!.config/alacritty
+!.config/nvim
+!.config/rofi
+!.config/sxhkd
+!.config/systemd
+!.config/user-dirs.conf
+
+# Locals
+.local/*
+!.local/share/applications
