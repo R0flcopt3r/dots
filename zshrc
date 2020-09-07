@@ -11,6 +11,7 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=1000000
 setopt autocd extendedglob
+setopt HIST_SAVE_NO_DUPS
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -19,6 +20,8 @@ bindkey -e
 . $HOME/.zsh/path.zsh
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
+
+WORDCHAR='*?~=^!%^'
 
 # https://github.com/sindresorhus/pure
 if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
