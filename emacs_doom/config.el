@@ -3,6 +3,9 @@
 ;; Place your private configuration here
 
 
+;; Fixes error in tumbleweed for emacs 27.1
+;; (assq-delete-all 'mouse-wheel-down-event load-history)
+
 (setq doom-font
       (font-spec
        :family "JetBrains Mono"
