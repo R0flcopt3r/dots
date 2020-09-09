@@ -21,7 +21,7 @@ bindkey -e
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
 
-WORDCHAR='*?~=^!%^'
+WORDCHARS='*?~=^!%^'
 
 # https://github.com/sindresorhus/pure
 if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
