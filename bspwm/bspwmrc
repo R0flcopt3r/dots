@@ -1,7 +1,16 @@
 #!/bin/sh
-
-bspc monitor HDMI-1 -d "1-www" "3-cli" "4-cli" 5 6 "7-daw" "8-game" 9 10
-bspc monitor HDMI-2 -d "2-com"
+chassis=$(cat /sys/devices/virtual/dmi/id/chassis_type)
+case $chassis in
+      8 | 9 | 10 | 14 )
+            #laptop
+            bspc monitor eDP-1 -d "1-www" "2-com" "3-cli" "4-cli" 5 6 "7-daw" "8-game" 9 10
+            ;;
+      3 | 4 | 6 | 7 )
+            # desktop
+            bspc monitor HDMI-1 -d "1-www" "3-cli" "4-cli" 5 6 "7-daw" "8-game" 9 10
+            bspc monitor HDMI-2 -d "2-com"
+            ;;
+esac
 
 CONF_DIR="$HOME/.config/bspwm"
 
