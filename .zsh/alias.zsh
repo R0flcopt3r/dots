@@ -30,3 +30,4 @@ alias open="open_file"
 alias :q=exit
 
 alias zypper='sudo zypper'
+alias dnf='sudo dnf'
