@@ -52,3 +52,8 @@ linx(){
 	(echo "$link" | xclip -sel clip)\
 		&& notify-send "File url copied to clipboard" "$link"
 }
+
+# Checks if a port ($2) is reachable on a host ($1)
+port_open(){
+  (echo >/dev/tcp/"$1"/"$2") &>/dev/null && echo "open" || echo "closed"
+}
