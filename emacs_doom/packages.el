@@ -7,19 +7,14 @@
 ;; (package! builtin-package :disable t)
 ;;
 (package! srcery-theme)
-(package! atomic-chrome)
-(package! ein)
 (package! magic-latex-buffer)
 (package! gnuplot)
-(package! writeroom-mode)
 (package! openwith)
 (package! systemd)
 (package! async)
 (package! powershell)
-(package! ob-ipython)
-(package! ob-async)
 (package! pyvenv)
 (package! elcord)
-(package! gdscript-mode
-          :recipe (:host github
-                   :repo "GDQuest/emacs-gdscript-mode"))
+(package! edit-server)
+(package! helm-ctest)
+(package! puppet-mode)

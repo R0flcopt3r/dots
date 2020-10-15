@@ -13,10 +13,13 @@
        ;;japanese
 
        :completion
-       company           ; the ultimate code completion backend
+       (company           ; the ultimate code completion backend
+        +tng)
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       (ivy               ; a search engine for love and life
+        +icons
+        +prescident)
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -36,7 +39,7 @@
         +defaults)       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
        ;;tabs              ; an tab bar for Emacs
-       ;;treemacs          ; a project drawer, like neotree but cooler
+       treemacs          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -47,8 +50,7 @@
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
-       format
-       ;;(format +onsave)  ; automated prettiness
+       (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -60,9 +62,11 @@
        (debugger +lsp)
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired             ; making dired pretty [functional]
+        +icons)
        electric          ; smarter, keyword-based electric-indent
-       ibuffer           ; interactive buffer management
+       (ibuffer           ; interactive buffer management
+        +icons)
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -78,36 +82,39 @@
 
        :tools
        ansible
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;;direnv
-       docker
+       debugger          ; FIXME stepping through code, to help you add bugs
+       direnv
+       (docker
+        +lsp)
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       lsp
+       (lsp
+        +peek)
        ;;macos             ; MacOS-specific commands
-       magit             ; a git porcelain for Emacs
+       (magit             ; a git porcelain for Emacs
+        +forge)
        make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
-       ;;pdf               ; pdf enhancements
+       pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
-       ;;rgb               ; creating color strings
+       rgb               ; creating color strings
        terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :lang
        ;;agda              ; types of types of types of types...
-       cc                ; C/C++/Obj-C madness
+       (cc                ; C/C++/Obj-C madness
+        +lsp)
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       (csharp            ; unity, .NET, and mono shenanigans
-        +unity)
+       ;;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
@@ -141,6 +148,7 @@
         +ipython         ; ipython/jupyter support for babel
         +pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
+        +pretty
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
@@ -158,7 +166,8 @@
         +lsp)
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       sh                ; she sells {ba,z,fi}sh shells on the C xor
+       (sh                ; she sells {ba,z,fi}sh shells on the C xor
+        +lsp)
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
@@ -179,42 +188,3 @@
        :config
        ;;literate
        (default +bindings +smartparens))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fci-rule-color "#767676")
- '(jdee-db-active-breakpoint-face-colors (cons "#0F1019" "#D85F00"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#0F1019" "#79D836"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#0F1019" "#767676"))
- '(objed-cursor-color "#D83441")
- '(pdf-view-midnight-colors (cons "#0D0E16" "#CEDBE5"))
- '(vc-annotate-background "#0D0E16")
- '(vc-annotate-color-map
-   (list
-    (cons 20 "#79D836")
-    (cons 40 "#98cd39")
-    (cons 60 "#b8c33d")
-    (cons 80 "#D8B941")
-    (cons 100 "#d89b2b")
-    (cons 120 "#d87d15")
-    (cons 140 "#D85F00")
-    (cons 160 "#ba5548")
-    (cons 180 "#9d4b90")
-    (cons 200 "#8041D8")
-    (cons 220 "#9d3ca5")
-    (cons 240 "#ba3873")
-    (cons 260 "#D83441")
-    (cons 280 "#bf444e")
-    (cons 300 "#a7555b")
-    (cons 320 "#8e6568")
-    (cons 340 "#767676")
-    (cons 360 "#767676")))
- '(vc-annotate-very-old-color nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(highlight-indentation-face ((t (:background "gray15")))))
