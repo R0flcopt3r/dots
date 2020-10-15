@@ -10,4 +10,6 @@ $HOME/.pyenv/bin:\
 $HOME/.local/bin:\
 $JAVA_HOME/bin:\
 /var/snap:\
+/opt/gradle/gradle-6.6.1/bin:\
+/opt/puppetlabs/pdk/bin:\
 "
