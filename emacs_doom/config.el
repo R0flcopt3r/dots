@@ -24,7 +24,8 @@
   (setq company-idle-delay 0
         company-tooltip-idle-delay 0
         company-minimum-prefix-length 1
-        company-auto-complete nil))
+        company-auto-commit t))
+
 
 (after! projectile
   (setq projectile-project-search-path '("~/Git")))
@@ -63,19 +64,5 @@
 (use-package! elcord
   :hook (after-init . elcord-mode))
 
-(set-email-account! "NTNU"
-                    '((mu4e-sent-folder   . "/NTNUSent Items")
-                      (mu4e-drafts-folder . "/NTNUDrafts")
-                      (mu4e-trash-folder  . "/NTNUTrash")
-                      (smtpmail-smtp-user . "eiriklav@ntnu.no")
-                      (user-mail-address  . "eiriklav@stud.ntnu.no"))
-                    t)
 
-(setq mu4e-compose-reply-to-address "eiriklav@stud.ntnu.no"
-      user-mail-address "eiriklav@stud.ntnu.no"
-      user-full-name  "Eirik Osland Lavik"
-      mu4e-compose-signature "---\nEirik Osland Lavik"
-      message-send-mail-function   'message-send-mail-with-sendmail
-      user-mail-address "eiriklav@stud.ntnu.no"
-      sendmail-program             "msmtp")
-
+(load! "~/.doom.d/mail.el")
