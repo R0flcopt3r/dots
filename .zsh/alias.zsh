@@ -31,3 +31,4 @@ alias :q=exit
 
 alias zypper='sudo zypper'
 alias dnf='sudo dnf'
+alias zy='sudo zypper'
