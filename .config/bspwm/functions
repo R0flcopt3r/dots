@@ -9,3 +9,6 @@ launch() {
   kill_running "$1"
   $@
 }
+bspwmrc_logger(){
+  echo "$(date '+%d-%m-%Y : %H:%M:%S') $1" >> "$BSPWM_LOG_FILE"
+}

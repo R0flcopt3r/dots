@@ -13,6 +13,7 @@ case $chassis in
 esac
 
 CONF_DIR="$HOME/.config/bspwm"
+BSPWM_LOG_FILE="$CONF_DIR/logfile"
 
 # Load utility functions and config vars
 . "$CONF_DIR/functions"
@@ -20,6 +21,7 @@ CONF_DIR="$HOME/.config/bspwm"
 . "$CONF_DIR/colors"
 . "$CONF_DIR/rules"
 
+bspwmrc_logger "starting bspwm"
 
 kill_running polybar
 for m in $(polybar --list-monitors | cut -d":" -f1); do
