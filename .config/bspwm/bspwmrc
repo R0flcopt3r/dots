@@ -18,6 +18,8 @@ CONF_DIR="$HOME/.config/bspwm"
 . "$CONF_DIR/functions"
 . "$CONF_DIR/variables"
 . "$CONF_DIR/colors"
+. "$CONF_DIR/rules"
+
 
 kill_running polybar
 for m in $(polybar --list-monitors | cut -d":" -f1); do
