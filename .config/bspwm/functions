@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 kill_running() {
   pkill "$1" || true
 }
@@ -9,6 +8,39 @@ launch() {
   kill_running "$1"
   $@
 }
+
+check_monitor(){
+  xrandr | grep "$1" | cut -d' ' -f2
+}
+
 bspwmrc_logger(){
   echo "$(date '+%d-%m-%Y : %H:%M:%S') $1" >> "$BSPWM_LOG_FILE"
+}
+
+bspwmrc_set_monitor_laptop(){
+  bspwmrc_logger "::bpswmrc_set_monitor_laptop::"
+  bspwmrc_logger "checking renderer"
+
+  if [ "$(glxinfo | grep 'OpenGL renderer string' | grep 'Intel' -o)" ]; then
+    bspwmrc_logger "using intel"
+      if [ "$(check_monitor "DP-3-2")" = "connected" ]; then
+            bspwmrc_logger "setting 1440p_single"
+            "$CONF_DIR"/screenlayout/laptop/intel/1440p_single.sh
+      else
+            bspwmrc_logger "setting default"
+            "$CONF_DIR"/screenlayout/laptop/intel/default.sh
+      fi
+  fi
+
+
+  if [ "$(glxinfo | grep 'OpenGL renderer string' | grep 'GeForce' -o)" ]; then
+      bspwmrc_logger "using nvidia"
+      if [ "$(check_monitor "DP-1-3-2")" = "connected" ]; then
+            bspwmrc_logger "setting 1440_single"
+            "$CONF_DIR"/screenlayout/laptop/nvidia/1440p_single.sh
+      else
+            bspwmrc_logger "setting default"
+            "$CONF_DIR"/screenlayout/laptop/nvidia/default.sh
+      fi
+  fi
 }
