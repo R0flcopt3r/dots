@@ -21,6 +21,10 @@ bspwmrc_set_monitor_laptop(){
   bspwmrc_logger "::bpswmrc_set_monitor_laptop::"
   bspwmrc_logger "checking renderer"
 
+  # I wasn't able to use `prime-select get-current` here for some reason. It
+  # would work from the shell, but it would always fail when running through
+  # bspwm. `prime-select` would have made it into a nice and clean switch.
+
   if [ "$(glxinfo | grep 'OpenGL renderer string' | grep 'Intel' -o)" ]; then
     bspwmrc_logger "using intel"
       if [ "$(check_monitor "DP-3-2")" = "connected" ]; then
