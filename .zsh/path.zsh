@@ -12,4 +12,7 @@ $JAVA_HOME/bin:\
 /var/snap:\
 /opt/gradle/gradle-6.6.1/bin:\
 /opt/puppetlabs/pdk/bin:\
+$HOME/.cargo/bin:\
+/usr/local/go/bin:\
+$HOME/go/bin/:\
 "
