@@ -124,7 +124,7 @@ shift+XF86MonBrightnessUp
 XF86WLAN
 	/home/eirik/Documents/Script/using/wifi-toggle
 XF86AudioPlay
-	playerctl play-pause
+	playerctl play-pause --player spotify
 XF86AudioNext
 	playerctl next
 XF86AudioPrev

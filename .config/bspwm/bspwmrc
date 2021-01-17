@@ -33,6 +33,7 @@ for m in $(polybar --list-monitors | cut -d":" -f1); do
 done
 
 
+wmname LG3D
 launch feh --bg-fill $HOME/Pics/Wallpapers-laptop/wallpaper-current.jpg &
 launch sxhkd &
 launch blueman-applet &

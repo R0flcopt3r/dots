@@ -16,5 +16,3 @@
 (package! pyvenv)
 (package! elcord)
 (package! edit-server)
-(package! helm-ctest)
-(package! puppet-mode)

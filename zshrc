@@ -2,7 +2,7 @@
 
 zstyle :compinstall filename '/home/eirik/.zshrc'
 
-
+fpath+=~/.zfunc
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -11,7 +11,6 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=1000000
 setopt autocd extendedglob
-setopt HIST_SAVE_NO_DUPS
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
@@ -20,6 +19,7 @@ bindkey -e
 . $HOME/.zsh/path.zsh
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
+. $HOME/.zsh/completion/*.zsh
 
 WORDCHARS='*?~=^!%^'
 
@@ -45,5 +45,4 @@ FZF_DEFAULT_COMMAND="fd --type f"
 FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
 
-# Openstack
-. $HOME/.zsh/openstack.zsh
+
