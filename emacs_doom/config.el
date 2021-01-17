@@ -8,7 +8,7 @@
 
 (setq doom-font
       (font-spec
-       :family "JetBrains Mono"
+       :family "IBM Plex Mono"
        :size 13)
       doom-theme 'srcery
       display-line-numbers-type 'relative
