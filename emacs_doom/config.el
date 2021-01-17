@@ -25,6 +25,8 @@
         company-tooltip-idle-delay 0
         company-minimum-prefix-length 1))
 
+;; Amount of memory used before garbage collection
+(setq gc-cons-threshold 100000000)
 
 (after! projectile
   (setq projectile-project-search-path '("~/Git")))
