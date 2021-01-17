@@ -12,7 +12,7 @@
        :size 13)
       doom-theme 'srcery
       display-line-numbers-type 'relative
-      +format-on-save-enabled-modes '(c++-mode c-mode))
+      +format-on-save-enabled-modes '(c++-mode c-mode python-mode latex-mode))
 
 
 
