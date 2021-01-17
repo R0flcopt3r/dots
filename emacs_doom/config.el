@@ -23,8 +23,7 @@
 (after! company
   (setq company-idle-delay 0
         company-tooltip-idle-delay 0
-        company-minimum-prefix-length 1
-        company-auto-commit t))
+        company-minimum-prefix-length 1))
 
 
 (after! projectile
