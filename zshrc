@@ -20,6 +20,7 @@ bindkey -e
 . $HOME/.zsh/path.zsh
 . $HOME/.zsh/alias.zsh
 . $HOME/.zsh/functions.zsh
+. $HOME/.zsh/completion/*.zsh
 
 WORDCHARS='*?~=^!%^'
 
