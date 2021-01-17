@@ -463,7 +463,7 @@ key_bindings:
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
  
  
-  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize                 }
+  - { key: Plus,     mods: Control|Shift, action: IncreaseFontSize                 }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize                 }
   - { key: Equals,   mods: Control,       action: ResetFontSize                    }
   - { key: Paste,                         action: Paste                            }
