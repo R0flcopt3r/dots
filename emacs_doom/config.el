@@ -31,9 +31,6 @@
 (after! projectile
   (setq projectile-project-search-path '("~/Git")))
 
-(setq-hook! (c-mode
-             c++-mode)
-  tab-width 2)
 
 (after! evil
   (require 'evil-textobj-anyblock)
