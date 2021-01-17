@@ -15,4 +15,5 @@ $JAVA_HOME/bin:\
 $HOME/.cargo/bin:\
 /usr/local/go/bin:\
 $HOME/go/bin/:\
+$HOME/.poetry/bin:\
 "
