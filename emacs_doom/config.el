@@ -31,6 +31,10 @@
 (after! projectile
   (setq projectile-project-search-path '("~/Git")))
 
+(after! lsp-mode
+  (setq lsp-ui-doc-use-webkit t
+        lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
+        lsp-clients-clangd-args '("--header-insertion=never" "--suggest-missing-includes")))
 
 (after! evil
   (require 'evil-textobj-anyblock)
