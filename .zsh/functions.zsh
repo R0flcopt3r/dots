@@ -1,11 +1,5 @@
 #!/usr/bin/env zsh
 
-edit(){
-	# usage: edit [OPTION] /path/to/file
-	eval $EDITOR $@
-}
-
-
 git_clone (){
 	clip=$(xclip -sel clip -o)
 	[ ! -z $1 ] && (

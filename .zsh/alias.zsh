@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-alias e=edit
+alias e='emacsclient -n --alternate-editor=emacs'
 
 #Alias for the LS comand
 alias ll='ls -hAl --group-directories-first'
