@@ -7,7 +7,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export TERM="alacritty"
-export JAVA_HOME="/opt/jdk-14.0.2"
+export JAVA_HOME="/opt/jdk-15.0.1"
 export FrameworkPathOverride=/lib/mono/4.5
 
 # Find tumbleweed version
