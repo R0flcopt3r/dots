@@ -51,3 +51,19 @@ linx(){
 port_open(){
   (echo >/dev/tcp/"$1"/"$2") &>/dev/null && echo "open" || echo "closed"
 }
+## Connect to ntnu vpn using vpn slices. Uses pass to grab your password
+##
+## $1 required, your username
+##
+## Requires vpn-slices
+ntnu_vpn() {
+  if [ -z "$(locate vpn-slice)" ]; then
+    echo "can't find vpn-slice, install via pip3"
+    exit 1
+  fi
+  pass stud/ntnu/"$1" | sudo openconnect vpn.ntnu.no \
+    --user="$1" --passwd-on-stdin \
+    --script="vpn-slice 10.0.0.0/8 128.39.45.127" --disable-ipv6 \
+    --pid-file=/tmp/vpn_slice_pid --background \
+    --quiet
+}
