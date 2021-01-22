@@ -16,3 +16,4 @@
 (package! pyvenv)
 (package! elcord)
 (package! edit-server)
+(package! magit-delta)

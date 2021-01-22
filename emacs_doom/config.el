@@ -79,6 +79,9 @@
        :desc "poetry" "p"
        #'poetry))
 
+(after! magit
+  (add-hook! 'magit-mode-hook #'magit-delta-mode))
+
 ;; Found on random website
 ;; (after! (python flycheck)
 ;;     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
