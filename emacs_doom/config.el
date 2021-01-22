@@ -23,7 +23,9 @@
 (after! company
   (setq company-idle-delay 0
         company-tooltip-idle-delay 0
-        company-minimum-prefix-length 1))
+        company-minimum-prefix-length 1)
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000))
 
 ;; Amount of memory used before garbage collection
 (setq gc-cons-threshold 100000000)
