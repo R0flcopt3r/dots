@@ -1,5 +1,5 @@
 #! /bin/sh
 
-bspc rule -a VidyaGaym state=floating rectangle=800x600+0+0
-
 bspc rule -a Firefox:Toolkit state=floating sticky=on
+
+bspc rule -a zoom desktop=9 follow=off focus=off state=pseudo_tiled
