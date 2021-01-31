@@ -232,5 +232,78 @@
            :clock-in :clock-resume
            :empty-lines 1))))
 
+(after! circe
+
+  (load! "~/.doom.d/irc.el")
+
+  (set-irc-server! "znc"
+                   `(:port 5003
+                     :nick "R0flcopt3r"
+                     :host "irc.rflcptr.me"
+                     :pass (lambda (&rest _) (+pass-get-secret "irc/zncSnoo"))))
+
+  (set-irc-server! "Freenode"
+                   '(:tls t
+                     :host "irc.freenode.net"
+                     :nick "R0flcopt3r"
+                     :nickserv-password (lambda (&rest _) (+pass-get-secret "irc/freenode"))
+                     :channels ("#emacs-circe")))
+
+  (setq circe-format-server-rejoin nil
+        circe-new-day-notifier-format-message nil
+        circe-format-server-quit nil
+        circe-notifications-notify-function #'irc/highlight-buffer
+        circe-notifications-check-window-focus nil
+        circe-notifications-wait-for 0)
+
+  (add-hook! circe-server-connected-hook 'enable-circe-notifications)
+
+  (defun circe-command-SHRUG (&rest form)
+    (circe-command-SAY (shrug)))
+
+  (defun crice-command-LENNY (&rest form)
+    (circe-command-SAY (lenny)))
+
+  (map! :map circe-chat-mode-map
+        :localleader
+        :prefix ("s" . "shitposting")
+        :desc "SAY shrug" "s" #'shrug
+        :desc "SAY lenny" "l" #'lenny)
 
 
+
+  (defun circe-notifications-should-notify (nick userhost channel body)
+    "If NICK is not in either `circe-ignore-list' or `circe-fool-list' (only
+applicable if `lui-fools-hidden-p'), CHANNEL is either in `tracking-buffers'
+\(i.e., not currently visible) or Emacs is not currently focused by the window
+manager (detected if `circe-notifications-check-window-focus' is true), NICK has
+not triggered a notification in the last `circe-notifications-wait-for' seconds
+and NICK matches any of `circe-notifications-watch-strings', show a desktop
+notification."
+    (if (string-match circe-nick body) (message "heia"))
+    (unless (or (cond ((circe--ignored-p nick userhost body))
+                      ((and (circe--fool-p nick userhost body)
+                            (lui-fools-hidden-p))))
+                (string-match circe-nick nick))
+      ;; Checking `tracking-buffers' has the benefit of excluding
+      ;; `tracking-ignored-buffers'.  Also if a channel is in `tracking-buffers',
+      ;; it is not currently focused by Emacs.
+      (when (cond ((or (member channel tracking-buffers) ;; message to a channel
+                       (member nick tracking-buffers))) ;; private message
+                  ((and circe-notifications-check-window-focus
+                        (not circe-notifications-emacs-focused))))
+        (when (circe-notifications-not-getting-spammed-by nick)
+          (when (catch 'return
+                  (dolist (n circe-notifications-watch-strings)
+                    (when (or (string-match n nick)
+                              (string-match n body)
+                              (string-match n channel))
+                      (throw 'return t))))
+            (progn
+              (if (assoc nick circe-notifications-wait-list)
+                  (setf (cdr (assoc nick circe-notifications-wait-list))
+                        (float-time))
+                (setq circe-notifications-wait-list
+                      (append circe-notifications-wait-list
+                              (list (cons nick (float-time))))))
+              t)))))))
