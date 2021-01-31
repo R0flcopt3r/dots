@@ -28,7 +28,7 @@
 (setq-default prescient-history-length 1000))
 
 ;; Amount of memory used before garbage collection
-(setq gc-cons-threshold 100000000)
+(setq gcmh-high-cons-threshold (* 1024 1024 1024))
 
 (after! projectile
   (setq projectile-project-search-path '("~/Git")))
