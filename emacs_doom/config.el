@@ -93,8 +93,16 @@
 
 (after! dap-mode
   (require 'dap-python)
+  (require 'dap-lldb)
   (setq dap-python-executable "python3"
-        dap-python-debugger 'debugpy)
+        dap-python-debugger 'debugpy
+        dap-auto-configure-features '(breakpoints expressions controls tooltip repl locals)
+        dap-ui-buffer-configurations '(("*dap-ui-locals*" (side . right) (slot . 1) (window-width . 0.3))
+                                       ("*dap-ui-expressions*" (side . right) (slot . 2) (window-width . 0.3))
+                                       ("*dap-ui-sessions*" (side . right) (slot . 3) (window-width . 0.3))
+                                       ("*dap-ui-breakpoints*" (side . left) (slot . 2) (window-width . 35))
+                                       ("*debug-window*" (side . bottom) (slot . 3) (window-width . 0.2))
+                                       ("*dap-ui-repl*" (side . bottom) (slot . 1) (window-height . 0.45))))
   (map! :map dap-mode-map
         :leader
         :prefix ("d" . "dap")
@@ -118,8 +126,8 @@
         :desc "eval region"         "r" #'dap-eval-region
         :desc "eval thing at point" "s" #'dap-eval-thing-at-point
         :desc "add expression"      "a" #'dap-ui-expressions-add
+        :desc "remove expression"   "d" #'dap-ui-expressions-remove
 
-        ;; breakpoints
         :prefix ("db" . "Breakpoint")
         :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
         :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
