@@ -14,7 +14,10 @@
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode c-mode python-mode latex-mode))
 
+(add-hook! 'prog-mode-hook #'rainbow-delimiters-mode)
 
+(after! rainbow-delimiters
+  (setq rainbow-delimiters-max-face-count 9))
 
 (autoload 'dired-async-mode "dired-async.el" nil t)
 (dired-async-mode 1)
