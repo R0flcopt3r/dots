@@ -173,45 +173,7 @@
         :localleader
         :prefix ("s" . "shitposting")
         :desc "SAY shrug" "s" #'shrug
-        :desc "SAY lenny" "l" #'lenny)
-
-
-
-  (defun circe-notifications-should-notify (nick userhost channel body)
-    "If NICK is not in either `circe-ignore-list' or `circe-fool-list' (only
-applicable if `lui-fools-hidden-p'), CHANNEL is either in `tracking-buffers'
-\(i.e., not currently visible) or Emacs is not currently focused by the window
-manager (detected if `circe-notifications-check-window-focus' is true), NICK has
-not triggered a notification in the last `circe-notifications-wait-for' seconds
-and NICK matches any of `circe-notifications-watch-strings', show a desktop
-notification."
-    (if (string-match circe-nick body) (message "heia"))
-    (unless (or (cond ((circe--ignored-p nick userhost body))
-                      ((and (circe--fool-p nick userhost body)
-                            (lui-fools-hidden-p))))
-                (string-match circe-nick nick))
-      ;; Checking `tracking-buffers' has the benefit of excluding
-      ;; `tracking-ignored-buffers'.  Also if a channel is in `tracking-buffers',
-      ;; it is not currently focused by Emacs.
-      (when (cond ((or (member channel tracking-buffers) ;; message to a channel
-                       (member nick tracking-buffers))) ;; private message
-                  ((and circe-notifications-check-window-focus
-                        (not circe-notifications-emacs-focused))))
-        (when (circe-notifications-not-getting-spammed-by nick)
-          (when (catch 'return
-                  (dolist (n circe-notifications-watch-strings)
-                    (when (or (string-match n nick)
-                              (string-match n body)
-                              (string-match n channel))
-                      (throw 'return t))))
-            (progn
-              (if (assoc nick circe-notifications-wait-list)
-                  (setf (cdr (assoc nick circe-notifications-wait-list))
-                        (float-time))
-                (setq circe-notifications-wait-list
-                      (append circe-notifications-wait-list
-                              (list (cons nick (float-time))))))
-              t)))))))
+        :desc "SAY lenny" "l" #'lenny))
 
 (defun r0fl/python-args-to-docstring (&optional arguments)
   "return docstring format for the python arguments in yas-text or in ARGUMENTS"
