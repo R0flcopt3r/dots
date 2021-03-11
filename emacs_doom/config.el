@@ -34,7 +34,7 @@
 (setq gcmh-high-cons-threshold (* 1024 1024 1024))
 
 (after! projectile
-  (setq projectile-project-search-path '("~/Git")))
+  (setq projectile-project-search-path '("~/Git" "~/Git/School" "~/Git/School/bachelor")))
 
 (after! lsp-mode
   (setq lsp-ui-doc-use-webkit t
