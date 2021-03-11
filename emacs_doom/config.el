@@ -212,3 +212,33 @@ notification."
                       (append circe-notifications-wait-list
                               (list (cons nick (float-time))))))
               t)))))))
+
+(defun r0fl/python-args-to-docstring (&optional arguments)
+  "return docstring format for the python arguments in yas-text or in ARGUMENTS"
+  (let* ((indent  "\n" )
+         (args (if arguments
+                   (python-split-args arguments)
+                 (python-split-args yas-text)))
+         (formatted-args (mapconcat
+           (lambda (x)
+             (let ((arg (nth 0 x)))
+               (concat arg (if (string-match-p ":" arg) "\n" " :\n")))) args indent)))
+    (unless (string= formatted-args "")
+      (mapconcat 'identity (list "Parameter\n---------" formatted-args) indent))))
+
+(defun r0fl/python-return-to-docstring (&optional type)
+  "Return docstring format for the python return type in yas-text or in TYPE"
+  (let ((type-intern (or type yas-text)))
+    (when (not (equal "None" type-intern))
+      (concat "Return\n------\n" type-intern " :\n"))))
+
+(defun r0fl/py-args-to-doc (beg end)
+  "Convert python arguments between BEG and END to docstring."
+  (interactive "r")
+  (let ((args (buffer-substring beg end)))
+    (setq mark-active nil)
+    (end-of-line)
+      (yas-expand-snippet
+       (concat "\n\"\"\"\n"
+               (r0fl/python-args-to-docstring args)
+               "\n\"\"\""))))
