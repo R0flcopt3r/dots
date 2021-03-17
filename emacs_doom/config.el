@@ -12,9 +12,18 @@
        :size 13)
       doom-theme 'srcery
       display-line-numbers-type 'relative
-      +format-on-save-enabled-modes '(c++-mode c-mode python-mode latex-mode))
+      +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode)
+      projectile-enable-caching (not (executable-find doom-projectile-fd-binary)))
+
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--suggest-missing-includes"
+                                "--header-insertion=never"))
 
 (add-hook! 'prog-mode-hook #'rainbow-delimiters-mode)
+(setq-hook! 'python-mode-hook +format-with-lsp nil)
 
 (after! rainbow-delimiters
   (setq rainbow-delimiters-max-face-count 9))
@@ -39,7 +48,14 @@
 (after! lsp-mode
   (setq lsp-ui-doc-use-webkit t
         lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
-        lsp-clients-clangd-args '("--header-insertion=never" "--suggest-missing-includes")))
+        lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--suggest-missing-includes"
+                                "--header-insertion=never")
+        lsp-file-watch-threshold 100000))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 (after! evil
   (require 'evil-textobj-anyblock)
@@ -92,8 +108,6 @@
 ;;     (setq flycheck-pycheckers-checkers '(mypy pyflakes)))
 
 (after! dap-mode
-  (require 'dap-python)
-  (require 'dap-lldb)
   (setq dap-python-executable "python3"
         dap-python-debugger 'debugpy
         dap-auto-configure-features '(breakpoints expressions controls tooltip repl locals)
