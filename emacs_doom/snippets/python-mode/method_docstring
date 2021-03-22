@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: method_docstring
+# key: defd
+# uuid: defd
+# group: object oriented
+# --
+def ${1:name}(self$2) -> ${3:None}:
+    \"\"\"$4
+    ${2:$(r0fl/python-args-to-docstring)}
+    ${3:$(r0fl/python-return-to-docstring)}
+    \"\"\"
+    `%`$0
