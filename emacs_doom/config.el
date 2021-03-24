@@ -221,3 +221,18 @@
      (concat "\n\"\"\"\n"
              (r0fl/python-args-to-docstring args)
              "\n\"\"\""))))
+
+(defvar r0fl/linx-url "linx.rflcptr.me/upload")
+
+(defun r0fl/linx (beg end)
+  "Upload buffer to linx"
+  (interactive "r")
+      (request r0fl/linx-url
+        :type "PUT"
+        :sync t
+        :data (if (region-active-p)
+                  (buffer-substring beg end)
+                (buffer-string))
+        :success (lambda (&key data &allow-other-keys)
+                    (kill-new (string-trim data)))
+      :parser #'json-read)
