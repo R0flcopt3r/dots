@@ -49,11 +49,11 @@
   (setq lsp-ui-doc-use-webkit t
         lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
         lsp-clients-clangd-args '("-j=3"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--suggest-missing-includes"
-                                "--header-insertion=never")
+                                  "--background-index"
+                                  "--clang-tidy"
+                                  "--completion-style=detailed"
+                                  "--suggest-missing-includes"
+                                  "--header-insertion=never")
         lsp-file-watch-threshold 100000))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
@@ -196,9 +196,9 @@
                    (python-split-args arguments)
                  (python-split-args yas-text)))
          (formatted-args (mapconcat
-           (lambda (x)
-             (let ((arg (nth 0 x)))
-               (concat arg (if (string-match-p ":" arg) "\n" " :\n")))) args indent)))
+                          (lambda (x)
+                            (let ((arg (nth 0 x)))
+                              (concat arg (if (string-match-p ":" arg) "\n" " :\n")))) args indent)))
     (unless (string= formatted-args "")
       (mapconcat 'identity (list "Parameter\n---------" formatted-args) indent))))
 
@@ -214,7 +214,7 @@
   (let ((args (buffer-substring beg end)))
     (setq mark-active nil)
     (end-of-line)
-      (yas-expand-snippet
-       (concat "\n\"\"\"\n"
-               (r0fl/python-args-to-docstring args)
-               "\n\"\"\""))))
+    (yas-expand-snippet
+     (concat "\n\"\"\"\n"
+             (r0fl/python-args-to-docstring args)
+             "\n\"\"\""))))
