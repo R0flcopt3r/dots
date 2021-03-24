@@ -233,6 +233,6 @@
         :data (if (region-active-p)
                   (buffer-substring beg end)
                 (buffer-string))
-        :success (lambda (&key data &allow-other-keys)
-                    (kill-new (string-trim data)))
-      :parser #'json-read)
+        :success (cl-function
+                  (lambda (&key data &allow-other-keys)
+                    (kill-new (string-trim data))))))
