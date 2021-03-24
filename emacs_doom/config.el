@@ -22,7 +22,10 @@
                                 "--suggest-missing-includes"
                                 "--header-insertion=never"))
 
-(add-hook! 'prog-mode-hook #'rainbow-delimiters-mode)
+(add-hook! 'prog-mode-hook
+           #'rainbow-delimiters-mode
+           #'evil-quickscope-always-mode)
+
 (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
 (after! rainbow-delimiters
