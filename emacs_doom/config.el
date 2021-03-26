@@ -235,7 +235,7 @@
 (defvar r0fl/linx-url "linx.rflcptr.me/upload")
 
 (defun r0fl/linx (beg end)
-  "Upload buffer to linx"
+  "Upload buffer or region to linx and puts the url in your kill-ring."
   (interactive "r")
       (request r0fl/linx-url
         :type "PUT"
