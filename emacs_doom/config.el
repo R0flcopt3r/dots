@@ -222,6 +222,16 @@
              (r0fl/python-args-to-docstring args)
              "\n\"\"\""))))
 
+(defun r0fl/py-def-to-doc (beg end)
+  (interactive "r")
+  (let ((def (buffer-substring beg end)))
+    (setq mark-active nil)
+    (end-of-line)
+    (yas-expand-snippet (concat
+                         "\n\"\"\""
+                         (replace-regexp-in-string "_" " " def)
+                         ".\"\"\"\n"))))
+
 (defvar r0fl/linx-url "linx.rflcptr.me/upload")
 
 (defun r0fl/linx (beg end)
