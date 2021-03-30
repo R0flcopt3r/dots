@@ -30,6 +30,9 @@ bspwmrc_set_monitor_laptop(){
       if [ "$(check_monitor "DP-3-2")" = "connected" ]; then
             bspwmrc_logger "setting 1440p_single"
             "$CONF_DIR"/screenlayout/laptop/intel/1440p_single.sh
+      elif [ "$(check_monitor "HDMI-1")" = "connected" ]; then
+            bspwmrc_logger "setting 1440p_single"
+            "$CONF_DIR"/screenlayout/laptop/intel/1080p-right.sh
       else
             bspwmrc_logger "setting default"
             "$CONF_DIR"/screenlayout/laptop/intel/default.sh
