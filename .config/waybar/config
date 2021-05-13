@@ -83,17 +83,17 @@
     },
     "disk#home": {
         "interval": 30,
-        "format": " {percentage_free}%",
+        "format": " {percentage_used}%",
         "path": "/home"
     },
     "disk#root": {
         "interval": 30,
-        "format": " {percentage_free}%",
+        "format": " {percentage_used}%",
         "path": "/"
     },
     "disk#storage": {
         "interval": 30,
-        "format": " {percentage_free}%",
+        "format": " {percentage_used}%",
         "path": "/mnt/storage"
     },
     "temperature": {
