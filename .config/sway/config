@@ -104,6 +104,7 @@ exec swayidle -w \
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+    bindsym $mod+alt+l exec kill -USR1 $(pgrep swayidle)
 #
 # Workspaces:
 #
