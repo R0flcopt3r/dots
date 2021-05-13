@@ -26,13 +26,13 @@
         "format": " {}"
     },
     "custom/spotify": {
-        "format": " {}",
-        "escape": true,
-        "return-type": "json",
-        "max-length": 40,
-        "interval": 30, // Remove this if your script is endless and write in loop
-        "exec": "$HOME/Git/dots/scripts/playerctl.sh 2> /dev/null", // Script in resources/custom_modules folder
-        "exec-if": "pgrep spotify"
+         "format": " {}",
+         "escape": true,
+         "return-type": "json",
+         "max-length": 40,
+         "interval": 30, // Remove this if your script is endless and write in loop
+         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+         "exec-if": "pgrep spotify"
     },
     "sway/workspaces": {
         "all-outputs": false,
