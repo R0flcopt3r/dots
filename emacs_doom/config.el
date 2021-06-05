@@ -160,44 +160,6 @@
 
 
 
-(after! circe
-
-  (load! "~/.doom.d/irc.el")
-
-  (set-irc-server! "znc"
-                   `(:port 5003
-                     :nick "R0flcopt3r"
-                     :host "irc.rflcptr.me"
-                     :pass (lambda (&rest _) (+pass-get-secret "irc/zncSnoo"))))
-
-  (set-irc-server! "Freenode"
-                   '(:tls t
-                     :host "irc.freenode.net"
-                     :nick "R0flcopt3r"
-                     :nickserv-password (lambda (&rest _) (+pass-get-secret "irc/freenode"))
-                     :channels ("#emacs-circe")))
-
-  (setq circe-format-server-rejoin nil
-        circe-new-day-notifier-format-message nil
-        circe-format-server-quit nil
-        circe-notifications-notify-function #'irc/highlight-buffer
-        circe-notifications-check-window-focus nil
-        circe-notifications-wait-for 0)
-
-  (add-hook! circe-server-connected-hook 'enable-circe-notifications)
-
-  (defun circe-command-SHRUG (&rest form)
-    (circe-command-SAY (shrug)))
-
-  (defun crice-command-LENNY (&rest form)
-    (circe-command-SAY (lenny)))
-
-  (map! :map circe-chat-mode-map
-        :localleader
-        :prefix ("s" . "shitposting")
-        :desc "SAY shrug" "s" #'shrug
-        :desc "SAY lenny" "l" #'lenny))
-
 (defun r0fl/python-args-to-docstring (&optional arguments)
   "return docstring format for the python arguments in yas-text or in ARGUMENTS"
   (let* ((indent  "\n" )
