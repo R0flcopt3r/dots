@@ -6,10 +6,9 @@
 ;; Fixes error in tumbleweed for emacs 27.1
 ;; (assq-delete-all 'mouse-wheel-down-event load-history)
 
-(setq doom-font
-      (font-spec
-       :family "IBM Plex Mono"
-       :size 13)
+(setq doom-font (font-spec
+                 :family "IBM Plex Mono"
+                 :size 13)
       doom-theme 'srcery
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode)
