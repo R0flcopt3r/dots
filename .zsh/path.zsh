@@ -6,6 +6,7 @@ export PATH="\
 /bin:\
 /sbin:\
 $HOME/.local/go:\
+$HOME/.local/go/bin/:\
 $HOME/.pyenv/bin:\
 $HOME/.local/bin:\
 $JAVA_HOME/bin:\
@@ -16,4 +17,5 @@ $HOME/.cargo/bin:\
 /usr/local/go/bin:\
 $HOME/go/bin/:\
 $HOME/.poetry/bin:\
+/usr/local/bin/:\
 "
