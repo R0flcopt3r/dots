@@ -197,3 +197,10 @@
                          (replace-regexp-in-string "_" " " def)
                          ".\"\"\"\n"))))
 
+(defun r0fl/toggle-pyright-type ()
+  (interactive)
+  (if (string-match-p "basic" lsp-pyright-typechecking-mode)
+      (setq lsp-pyright-typechecking-mode "strict")
+    (setq lsp-pyright-typechecking-mode "basic"))
+  (lsp-restart-workspace)
+  (message "typechecking is: " lsp-pyright-typechecking-mode))
