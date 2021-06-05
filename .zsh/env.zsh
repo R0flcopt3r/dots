@@ -9,6 +9,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export TERM="alacritty"
 export JAVA_HOME="/opt/jdk-15.0.1"
 export FrameworkPathOverride=/lib/mono/4.5
+export MOZ_DBUS_REMOTE=1
+
+GUIX_PROFILE="/home/eirik/.config/guix/current"
+. "$GUIX_PROFILE/etc/profile"
 
 # Find tumbleweed version
 if [ -e /etc/os-release ]; then
