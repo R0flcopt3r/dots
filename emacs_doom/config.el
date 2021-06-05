@@ -11,7 +11,7 @@
                  :size 13)
       doom-theme 'srcery
       display-line-numbers-type 'relative
-      +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode)
+      +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode rust-mode)
       projectile-enable-caching (not (executable-find doom-projectile-fd-binary)))
 
 (setq lsp-clients-clangd-args '("-j=3"
