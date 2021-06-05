@@ -24,6 +24,10 @@
 (add-hook! 'prog-mode-hook
            #'rainbow-delimiters-mode
            #'evil-quickscope-always-mode)
+(after! tex
+  (setq +latex-viewers '(pdf-tools zathura))
+  (setq-default TeX-master nil)
+  (require 'doc-view))
 
 (setq-hook! 'python-mode-hook +format-with-lsp nil)
 
