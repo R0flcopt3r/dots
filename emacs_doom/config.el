@@ -96,9 +96,6 @@
 (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
 (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
 
-(use-package! elcord
-  :hook (after-init . elcord-mode))
-
 (load! "~/.doom.d/mail.el")
 
 (after! poetry
