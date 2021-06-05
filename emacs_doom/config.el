@@ -197,17 +197,3 @@
                          (replace-regexp-in-string "_" " " def)
                          ".\"\"\"\n"))))
 
-(defvar r0fl/linx-url "linx.rflcptr.me/upload")
-
-(defun r0fl/linx (beg end)
-  "Upload buffer or region to linx and puts the url in your kill-ring."
-  (interactive "r")
-      (request r0fl/linx-url
-        :type "PUT"
-        :sync t
-        :data (if (region-active-p)
-                  (buffer-substring beg end)
-                (buffer-string))
-        :success (cl-function
-                  (lambda (&key data &allow-other-keys)
-                    (kill-new (string-trim data))))))
