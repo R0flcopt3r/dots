@@ -154,9 +154,6 @@
         :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
         :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message))
 
-
-
-
 (defun r0fl/python-args-to-docstring (&optional arguments)
   "return docstring format for the python arguments in yas-text or in ARGUMENTS"
   (let* ((indent  "\n" )
