@@ -37,9 +37,15 @@
 (after! company
   (setq company-idle-delay 0
         company-tooltip-idle-delay 0
-        company-minimum-prefix-length 1)
+        company-minimum-prefix-length 2)
   (setq-default history-length 1000)
-  (setq-default prescient-history-length 1000))
+  (setq-default prescient-history-length 1000)
+
+  (map! :map company-active-map
+   :g "<tab>" 'company-complete-selection
+   :g "TAB" 'company-complete-selection
+   :g "<return>" 'nil
+   :g "RET" 'nil))
 
 ;; Amount of memory used before garbage collection
 (setq gcmh-high-cons-threshold (* 1024 1024 1024))
@@ -108,6 +114,7 @@
 ;; (after! (python flycheck)
 ;;     (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
 ;;     (setq flycheck-pycheckers-checkers '(mypy pyflakes)))
+
 
 (after! dap-mode
   (setq dap-python-executable "python3"
