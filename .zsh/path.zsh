@@ -18,4 +18,5 @@ $HOME/.cargo/bin:\
 $HOME/go/bin/:\
 $HOME/.poetry/bin:\
 /usr/local/bin/:\
+$HOME/.poetry/bin:\
 "
