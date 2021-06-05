@@ -44,5 +44,6 @@ fi
 FZF_DEFAULT_COMMAND="fd --type f"
 FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
+DISABLE_FZF_AUTO_COMPLETION="false"
 
 
