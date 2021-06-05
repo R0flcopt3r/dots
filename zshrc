@@ -46,4 +46,8 @@ FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
 DISABLE_FZF_AUTO_COMPLETION="false"
 
-
+hash -d bachelor=$HOME/Git/School/bachelor
+hash -d code=$HOME/Git/School/bachelor/code
+hash -d thesis=$HOME/Git/School/bachelor/reports/thesis
+hash -d dots=$HOME/Git/dots
+hash -d srv=$HOME/Git/kad-server
