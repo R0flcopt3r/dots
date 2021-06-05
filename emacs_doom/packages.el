@@ -53,3 +53,5 @@
 (package! elcord)
 (package! magit-delta)
 (package! evil-quickscope)
+(package! request)
+(package! jsonnet-mode)
