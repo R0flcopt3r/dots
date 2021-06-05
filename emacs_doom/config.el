@@ -100,10 +100,6 @@
 
 (after! poetry
   (map! :map python-mode-map
-        :leader
-        :desc "poetry run" "pc"
-        #'poetry-run)
-  (map! :map python-mode-map
         :localleader
         :desc "poetry" "p"
         #'poetry))
