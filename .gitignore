@@ -7,13 +7,14 @@ tmp/
 
 # Configs
 .config/*
-!.config/bspwm
+!.config/sway
 !.config/alacritty
 !.config/nvim
 !.config/rofi
 !.config/sxhkd
 !.config/systemd
 !.config/user-dirs.conf
+!.config/mako
 
 # Locals
 .local/*
