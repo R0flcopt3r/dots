@@ -96,7 +96,6 @@
 (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
 (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
 
-(load! "~/.doom.d/mail.el")
 
 (after! poetry
   (map! :map python-mode-map
