@@ -230,11 +230,11 @@
   (while (re-search-forward
           (concat "^image:\\(Pictures.*$\\)\n"
                   "\n"
-                  "_*Figure \\([0-9]+.?\\)+\\( *- *\\)\\(.*$\\)")
-          nil nil)
+                  "_*Figur\\(e\\|a\\) \\([0-9]+.?\\)+\\( *- *\\)\\(.*$\\)")
+          nil t)
     (replace-match (concat
                     "[#img-ANCHOR_ID]\n"
-                    "." (s-trim (or (match-string 4)
+                    "." (s-trim (or (match-string 5)
                                     "")) "\n"
                     "image::" (match-string 1)))))
 
@@ -244,5 +244,5 @@
     (narrow-to-region beg end)
     (set-mark nil)
     (goto-char (point-min))
-    (r0fl/fix_img_regxp)
+    (r0fl/fix_img)
     (widen)))
