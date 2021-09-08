@@ -12,7 +12,12 @@
       doom-theme 'srcery
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode rust-mode)
-      projectile-enable-caching (not (executable-find doom-projectile-fd-binary)))
+      projectile-enable-caching 't
+      display-time-24hr-format 't
+      window-divider-default-right-width 6)
+
+(display-time)
+
 
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
