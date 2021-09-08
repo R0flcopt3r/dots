@@ -223,3 +223,26 @@
     (setq lsp-pyright-typechecking-mode "basic"))
   (lsp-restart-workspace)
   (message "typechecking is: " lsp-pyright-typechecking-mode))
+
+
+(defun r0fl/fix_img ()
+  (interactive)
+  (while (re-search-forward
+          (concat "^image:\\(Pictures.*$\\)\n"
+                  "\n"
+                  "_*Figure \\([0-9]+.?\\)+\\( *- *\\)\\(.*$\\)")
+          nil nil)
+    (replace-match (concat
+                    "[#img-ANCHOR_ID]\n"
+                    "." (s-trim (or (match-string 4)
+                                    "")) "\n"
+                    "image::" (match-string 1)))))
+
+(defun r0fl/fix_img_region (beg end)
+  (interactive "r")
+  (save-excursion
+    (narrow-to-region beg end)
+    (set-mark nil)
+    (goto-char (point-min))
+    (r0fl/fix_img_regxp)
+    (widen)))
