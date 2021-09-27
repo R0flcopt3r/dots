@@ -1,11 +1,10 @@
-# dots
+* dots
 
-**Setup:**
+*Setup:*
 
-``` sh
+#+begin_src shell
 ln -s "$PWD"/.config "$HOME"/.config
 ln -s "$PWD"/.local "$HOME"/.local
 ln -s "$PWD"/.zsh "$HOME"/.zsh
 ln -s "$PWD"/zshrc "$HOME"/.zshrc
-```
-
+#+end_src
