@@ -267,3 +267,12 @@
   (save-excursion
     (goto-char (point-min))
     (insert (concat "(" r0fl/magit-current-branch "): "))))
+
+(defun r0fl/app-branch ()
+  (interactive)
+  (magit--branch-spinoff
+   (downcase (concat
+              (read-string "ticket id: ")
+              "-"
+              (replace-regexp-in-string "\\ " "_" (read-string "description: "))))
+   nil t))
