@@ -8,8 +8,8 @@
 
 (setq doom-font (font-spec
                  :family "IBM Plex Mono"
-                 :size 13)
-      doom-theme 'srcery
+                 :size 14)
+      doom-theme 'doom-gruvbox
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode rust-mode)
       projectile-enable-caching 't
@@ -23,7 +23,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme 'tango t))
-    ('dark (load-theme 'srcery t))))
+    ('dark (load-theme 'doom-gruvbox t))))
 
 (when IS-MAC
   (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
