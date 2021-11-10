@@ -276,3 +276,35 @@
               "-"
               (replace-regexp-in-string "\\ " "_" (read-string "description: "))))
    nil t))
+(defun r0fl/find-file--project-root (dir)
+  (if dir dir
+    (if (projectile-project-p)
+        (projectile-project-root)
+      default-directory)))
+
+(defun r0fl/find-file (&optional dir)
+  (interactive)
+  (let* ((project-root (r0fl/find-file--project-root dir))
+         (project-name (projectile-project-name))
+         (tramp (tramp-tramp-file-p project-root))
+         (default-directory (if (or tramp (projectile-project-p))
+                               "/"
+                             default-directory)))
+    (find-file
+     (concat
+      project-root
+      (completing-read (format "[%s] r-find-file %s: " project-name project-root)
+                       (split-string
+                        (shell-command-to-string
+                         (concat (if tramp
+                                     (concat "ssh " (nth 1 (split-string project-root ":")) " ")
+                                   nil)
+                                 (format "fd --color never --base-directory '%s'"
+                                         (if tramp (nth 2 (split-string project-root ":"))
+                                           project-root))))))))))
+
+(after! projectile
+  (setq +workspaces-switch-project-function 'r0fl/find-file))
+
+(map! :map doom-leader-map
+ :g "<SPC>" #'r0fl/find-file)
