@@ -239,3 +239,14 @@
     (goto-char (point-min))
     (r0fl/fix_img)
     (widen)))
+(require 'man)
+(setq r0fl/man-ssh-command "ssh app_desk man")
+(setq r0fl/man-default "man")
+
+(defun linman ()
+  (interactive)
+  (if (eq manual-program r0fl/man-default)
+      (setq manual-program r0fl/man-ssh-command)
+    (setq manual-program r0fl/man-ssh-command))
+  (message (concat "Man program is:" manual-program)))
+
