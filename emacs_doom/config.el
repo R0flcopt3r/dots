@@ -250,3 +250,20 @@
     (setq manual-program r0fl/man-ssh-command))
   (message (concat "Man program is:" manual-program)))
 
+(defun r0fl/app-com ()
+  (interactive)
+    (goto-char (point-min))
+    (insert (concat "(" (magit-get-current-branch) "): "))
+    (end-of-line))
+
+(defvar r0fl/magit-current-branch nil)
+
+(defun r0fl/save-branch ()
+  (interactive)
+  (setq r0fl/magit-current-branch (magit-get-current-branch)))
+
+(defun r0fl/app-com-rebase ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (insert (concat "(" r0fl/magit-current-branch "): "))))
