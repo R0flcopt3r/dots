@@ -28,13 +28,6 @@
 (when IS-MAC
   (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
 
-(setq lsp-clients-clangd-args '("-j=3"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--suggest-missing-includes"
-                                "--header-insertion=never"))
-
 (add-hook! 'prog-mode-hook
            #'rainbow-delimiters-mode
            #'evil-quickscope-always-mode)
@@ -74,12 +67,12 @@
 (after! lsp-mode
   (setq lsp-ui-doc-use-webkit t
         lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
-        lsp-clients-clangd-args '("-j=3"
-                                  "--background-index"
-                                  "--clang-tidy"
-                                  "--completion-style=detailed"
-                                  "--suggest-missing-includes"
-                                  "--header-insertion=never")
+        lsp-clients-clangd-args '("-j=7"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--suggest-missing-includes"
+                                "--header-insertion=never")
         lsp-file-watch-threshold 100000))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
