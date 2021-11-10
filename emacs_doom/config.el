@@ -53,13 +53,13 @@
   (setq-default prescient-history-length 1000)
 
   (map! :map company-active-map
-   :g "<tab>" 'company-complete-selection
-   :g "TAB" 'company-complete-selection
-   :g "<return>" 'nil
-   :g "RET" 'nil))
+        :g "<tab>" 'company-complete-selection
+        :g "TAB" 'company-complete-selection
+        :g "<return>" 'nil
+        :g "RET" 'nil))
 
 ;; Amount of memory used before garbage collection
-(setq gcmh-high-cons-threshold (* 1024 1024 1024))
+(setq gcmh-high-cons-threshold (* 1024 1024 1024 1024))
 
 (after! projectile
   (setq projectile-project-search-path '("~/Git" "~/Git/School" "~/Git/School/bachelor")))
