@@ -22,12 +22,16 @@
     ('light (load-theme 'tango t))
     ('dark (load-theme 'doom-gruvbox t))))
 
+
 (when IS-MAC
-  (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
+  (add-hook 'ns-system-appearance-change-functions #'my/apply-theme)
+  (after! pcap-mode
+    (setq pcap-mode-tshark-executable "/Applications/Wireshark.app/Contents/MacOS/tshark")))
 
 (add-hook! 'prog-mode-hook
            #'rainbow-delimiters-mode
            #'evil-quickscope-always-mode)
+
 (after! tex
   (setq +latex-viewers '(pdf-tools zathura))
   (setq-default TeX-master nil)
