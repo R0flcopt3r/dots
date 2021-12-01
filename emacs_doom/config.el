@@ -234,6 +234,11 @@
     (goto-char (point-min))
     (r0fl/fix_img)
     (widen)))
+
+(after! lsp-mode
+  (setq lsp-ui-doc-show-with-cursor nil
+        lsp-ui-doc-show-with-mouse t))
+
 (require 'man)
 (setq r0fl/man-ssh-command "ssh app_desk man")
 (setq r0fl/man-default "man")
