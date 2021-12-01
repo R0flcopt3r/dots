@@ -240,7 +240,7 @@
         lsp-ui-doc-show-with-mouse t))
 
 (require 'man)
-(setq r0fl/man-ssh-command "ssh app_desk man")
+(setq r0fl/man-ssh-command "ssh desk man")
 (setq r0fl/man-default "man")
 
 (defun linman ()
