@@ -13,10 +13,7 @@
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode rust-mode)
       projectile-enable-caching 't
-      display-time-24hr-format 't
       window-divider-default-right-width 6)
-
-(display-time)
 
 (defun my/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
