@@ -114,8 +114,7 @@
 (after! magit
   (add-hook! 'magit-mode-hook #'magit-delta-mode))
 
-
-;; Make workspace show
+;; Make workspace show all the time
 (after! persp-mode
   (defun display-workspaces-in-minibuffer ()
     (with-current-buffer " *Minibuf-0*"
