@@ -74,7 +74,50 @@
                                 "--completion-style=detailed"
                                 "--suggest-missing-includes"
                                 "--header-insertion=never")
-        lsp-file-watch-threshold 100000))
+        lsp-file-watch-threshold 100000
+        lsp-ui-doc-show-with-cursor nil
+        lsp-ui-doc-show-with-mouse t)
+
+  (defun lsp-tramp-connection@override (local-command &optional generate-error-file-fn)
+    "Create LSP stdio connection named name.
+LOCAL-COMMAND is either list of strings, string or function which
+returns the command to execute."
+    (defvar tramp-connection-properties)
+    (list :connect (lambda (filter sentinel name environment-fn)
+                     (let* ((final-command (lsp-resolve-final-function
+                                            local-command))
+                            (process-name (generate-new-buffer-name name))
+                            (stderr-buf (format "*%s::stderr*" process-name))
+                            (err-buf (generate-new-buffer stderr-buf))
+                            (process-environment
+                             (lsp--compute-process-environment environment-fn))
+                            (proc (make-process
+                                   :name process-name
+                                   :buffer (format "*%s*" process-name)
+                                   :command final-command
+                                   :connection-type 'pipe
+                                   :coding 'no-conversion
+                                   :noquery t
+                                   :filter filter
+                                   :sentinel sentinel
+                                   :stderr err-buf
+                                   :file-handler t)))
+                       (cons proc proc)))
+          :test? (lambda () (-> local-command lsp-resolve-final-function
+                                lsp-server-present?))))
+  (advice-add 'lsp-tramp-connection :override #'lsp-tramp-connection@override)
+
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                    :major-modes '(c-mode c++-mode)
+                    :remote? t
+                    :server-id 'clangd-remote))
+
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
+                    :major-modes '(python-mode)
+                    :remote? t
+                    :server-id 'pyright-remote)))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 (after! evil
@@ -234,10 +277,6 @@
     (goto-char (point-min))
     (r0fl/fix_img)
     (widen)))
-
-(after! lsp-mode
-  (setq lsp-ui-doc-show-with-cursor nil
-        lsp-ui-doc-show-with-mouse t))
 
 (require 'man)
 (setq r0fl/man-ssh-command "ssh desk man")
