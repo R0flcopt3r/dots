@@ -68,12 +68,6 @@
 (after! lsp-mode
   (setq lsp-ui-doc-use-webkit t
         lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
-        lsp-clients-clangd-args '("-j=7"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--suggest-missing-includes"
-                                "--header-insertion=never")
         lsp-file-watch-threshold 100000
         lsp-ui-doc-show-with-cursor nil
         lsp-ui-doc-show-with-mouse t)
@@ -107,18 +101,49 @@ returns the command to execute."
                                 lsp-server-present?))))
   (advice-add 'lsp-tramp-connection :override #'lsp-tramp-connection@override)
 
+  )
+
+(after! lsp-clangd
+  (set-lsp-priority! 'clangd 2)
+  lsp-clients-clangd-args '("-j=7"
+                            "--background-index"
+                            "--clang-tidy"
+                            "--completion-style=detailed"
+                            "--suggest-missing-includes"
+                            "--header-insertion=never")
   (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+   (make-lsp-client :new-connection (lsp-tramp-connection (cons "clangd" lsp-clients-clangd-args))
                     :major-modes '(c-mode c++-mode)
                     :remote? t
-                    :server-id 'clangd-remote))
+                    :server-id 'clangd-remote)))
 
+(after! lsp-pyright
+  (setq lsp-log-io t)
+  (setq lsp-pyright-use-library-code-for-types t)
+  (setq lsp-pyright-diagnostic-mode "workspace")
   (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "pyright")
-                    :major-modes '(python-mode)
-                    :remote? t
-                    :server-id 'pyright-remote)))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+   (make-lsp-client
+    :new-connection (lsp-tramp-connection (lambda ()
+                                            (cons "pyright-langserver"
+                                                  lsp-pyright-langserver-command-args)))
+    :major-modes '(python-mode)
+    :remote? t
+    :server-id 'pyright-remote
+    :multi-root t
+    :priority 3
+    :initialization-options (lambda () (ht-merge (lsp-configuration-section "pyright")
+                                                 (lsp-configuration-section "python")))
+    :initialized-fn (lambda (workspace)
+                      (with-lsp-workspace workspace
+                        (lsp--set-configuration
+                         (ht-merge (lsp-configuration-section "pyright")
+                                   (lsp-configuration-section "python")))))
+    :download-server-fn (lambda (_client callback error-callback _update?)
+                          (lsp-package-ensure 'pyright callback error-callback))
+    :notification-handlers (lsp-ht ("pyright/beginProgress" 'lsp-pyright--begin-progress-callback)
+                                   ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
+                                   ("pyright/endProgress" 'lsp-pyright--end-progress-callback))))
+  )
 
 (after! evil
   (require 'evil-textobj-anyblock)
