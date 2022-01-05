@@ -65,6 +65,10 @@
 (after! projectile
   (setq projectile-project-search-path '("~/Git" "~/Git/School" "~/Git/School/bachelor")))
 
+(after! eglot
+  (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "-j=7")))
+  (add-to-list 'eglot-server-programs '(yaml-mode . ("yaml-language-server" "--stdio"))))
+
 (after! lsp-mode
   (setq lsp-ui-doc-use-webkit t
         lsp-java-java-path "/opt/jdk-15.0.1/bin/java"
