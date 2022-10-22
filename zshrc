@@ -1,38 +1,39 @@
 # The following lines were added by compinstall
 
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' file-sort name
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*'
 zstyle :compinstall filename '/home/eirik/.zshrc'
 
-fpath+=~/.zfunc
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=100000
-SAVEHIST=1000000
+SAVEHIST=100000
 setopt autocd extendedglob
+unsetopt beep nomatch
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-. $HOME/.zsh/completion.zsh
-. $HOME/.zsh/env.zsh
-. $HOME/.zsh/path.zsh
-. $HOME/.zsh/alias.zsh
-. $HOME/.zsh/functions.zsh
-. $HOME/.zsh/completion/*.zsh
-
+PROMPT='%F{blue}%~ %F{green}@virt%(!.#.>)%f '
+EDITOR="emacsclient -c --alternate-editor=emacs"
 WORDCHARS='*?~=^!%^'
 
-# https://github.com/sindresorhus/pure
-if [ -e "$HOME/.zsh/pure/pure.zsh" ]; then
-	fpath+=$HOME/.zsh/pure
-	autoload -U promptinit; promptinit
-	prompt pure
-fi
 
-if [ -e "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-  . $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+alias ls='ls --color'
+alias ll='ls -hAl --group-directories-first --color'
+alias l='ls -GghB --group-directories-first --color'
+alias lc='ls -gGht --color'
+alias llc='ls -hAlt --color'
+alias zypper='sudo zypper'
+alias dnf='sudo dnf'
+alias zy='sudo zypper'
+alias e='emacsclient -n --alternate-editor=emacs'
+alias c='wl-copy'
+alias p='cl-paste'
+
 
 #### FZF ####
 # Tumbleweed
@@ -46,8 +47,3 @@ FZF_CTRL_T_COMMAND="fd --type f"
 FZF_ALT_C_COMMAND="fd --type d"
 DISABLE_FZF_AUTO_COMPLETION="false"
 
-hash -d bachelor=$HOME/Git/School/bachelor
-hash -d code=$HOME/Git/School/bachelor/code
-hash -d thesis=$HOME/Git/School/bachelor/reports/thesis
-hash -d dots=$HOME/Git/dots
-hash -d srv=$HOME/Git/kad-server
