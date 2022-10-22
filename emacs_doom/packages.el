@@ -55,3 +55,4 @@
 (package! evil-quickscope)
 (package! request)
 (package! jsonnet-mode)
+(package! platformio-mode)

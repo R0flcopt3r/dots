@@ -12,7 +12,6 @@
       doom-theme 'doom-gruvbox
       display-line-numbers-type 'relative
       +format-on-save-enabled-modes '(c++-mode python-mode c-mode latex-mode rust-mode)
-      projectile-enable-caching 't
       window-divider-default-right-width 6)
 
 (defun my/apply-theme (appearance)
@@ -59,11 +58,8 @@
         :g "<return>" 'nil
         :g "RET" 'nil))
 
-;; Amount of memory used before garbage collection
-(setq gcmh-high-cons-threshold 1073741824)
-
 (after! projectile
-  (setq projectile-project-search-path '("~/Git" "~/Git/School" "~/Git/School/bachelor")))
+  (setq projectile-project-search-path '("~/Git")))
 
 (after! eglot
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "-j=7")))
@@ -75,40 +71,10 @@
         lsp-file-watch-threshold 100000
         lsp-ui-doc-show-with-cursor nil
         lsp-ui-doc-show-with-mouse t)
-
-  (defun lsp-tramp-connection@override (local-command &optional generate-error-file-fn)
-    "Create LSP stdio connection named name.
-LOCAL-COMMAND is either list of strings, string or function which
-returns the command to execute."
-    (defvar tramp-connection-properties)
-    (list :connect (lambda (filter sentinel name environment-fn)
-                     (let* ((final-command (lsp-resolve-final-function
-                                            local-command))
-                            (process-name (generate-new-buffer-name name))
-                            (stderr-buf (format "*%s::stderr*" process-name))
-                            (err-buf (generate-new-buffer stderr-buf))
-                            (process-environment
-                             (lsp--compute-process-environment environment-fn))
-                            (proc (make-process
-                                   :name process-name
-                                   :buffer (format "*%s*" process-name)
-                                   :command final-command
-                                   :connection-type 'pipe
-                                   :coding 'no-conversion
-                                   :noquery t
-                                   :filter filter
-                                   :sentinel sentinel
-                                   :stderr err-buf
-                                   :file-handler t)))
-                       (cons proc proc)))
-          :test? (lambda () (-> local-command lsp-resolve-final-function
-                                lsp-server-present?))))
-  (advice-add 'lsp-tramp-connection :override #'lsp-tramp-connection@override)
-
+  (set-lsp-priority! 'ccls 10)
   )
 
 (after! lsp-clangd
-  (set-lsp-priority! 'clangd 2)
   lsp-clients-clangd-args '("-j=7"
                             "--background-index"
                             "--clang-tidy"
@@ -175,16 +141,6 @@ returns the command to execute."
 
 (define-key evil-inner-text-objects-map "q" 'my-evil-textobj-anyblock-inner-quote)
 (define-key evil-outer-text-objects-map "q" 'my-evil-textobj-anyblock-a-quote)
-
-
-(after! poetry
-  (map! :map python-mode-map
-        :localleader
-        :desc "poetry" "p"
-        #'poetry))
-
-(after! magit
-  (add-hook! 'magit-mode-hook #'magit-delta-mode))
 
 ;; Make workspace show all the time
 (after! persp-mode
@@ -283,96 +239,3 @@ returns the command to execute."
     (setq lsp-pyright-typechecking-mode "basic"))
   (lsp-restart-workspace)
   (message "typechecking is: " lsp-pyright-typechecking-mode))
-
-
-(defun r0fl/fix_img ()
-  (interactive)
-  (while (re-search-forward
-          (concat "^image:\\(Pictures.*$\\)\n"
-                  "\n"
-                  "_*Figur\\(e\\|a\\) \\([0-9]+.?\\)+\\( *- *\\)\\(.*$\\)")
-          nil t)
-    (replace-match (concat
-                    "[#img-ANCHOR_ID]\n"
-                    "." (s-trim (or (match-string 5)
-                                    "")) "\n"
-                    "image::" (match-string 1)))))
-
-(defun r0fl/fix_img_region (beg end)
-  (interactive "r")
-  (save-excursion
-    (narrow-to-region beg end)
-    (set-mark nil)
-    (goto-char (point-min))
-    (r0fl/fix_img)
-    (widen)))
-
-(require 'man)
-(setq r0fl/man-ssh-command "ssh desk man")
-(setq r0fl/man-default "man")
-
-(defun linman ()
-  (interactive)
-  (if (eq manual-program r0fl/man-default)
-      (setq manual-program r0fl/man-ssh-command)
-    (setq manual-program r0fl/man-ssh-command))
-  (message (concat "Man program is:" manual-program)))
-
-(defun r0fl/app-com ()
-  (interactive)
-    (goto-char (point-min))
-    (insert (concat "(" (magit-get-current-branch) "): "))
-    (end-of-line))
-
-(defvar r0fl/magit-current-branch nil)
-
-(defun r0fl/save-branch ()
-  (interactive)
-  (setq r0fl/magit-current-branch (magit-get-current-branch)))
-
-(defun r0fl/app-com-rebase ()
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (insert (concat "(" r0fl/magit-current-branch "): "))))
-
-(defun r0fl/app-branch ()
-  (interactive)
-  (magit--branch-spinoff
-   (downcase (concat
-              (read-string "ticket id: ")
-              "-"
-              (replace-regexp-in-string "\\ " "_" (read-string "description: "))))
-   nil t))
-(defun r0fl/find-file--project-root (dir)
-  (if dir dir
-    (if (projectile-project-p)
-        (projectile-project-root)
-      default-directory)))
-
-(defun r0fl/find-file (&optional dir)
-  (interactive)
-  (let* ((project-root (r0fl/find-file--project-root dir))
-         (project-name (projectile-project-name))
-         (tramp (tramp-tramp-file-p project-root))
-         (default-directory (if (or tramp (projectile-project-p))
-                               "/"
-                             default-directory)))
-    (find-file
-     (concat
-      project-root
-      (completing-read (format "[%s] r-find-file %s: " project-name project-root)
-                       (split-string
-                        (shell-command-to-string
-                         (concat (if tramp
-                                     (concat "ssh " (nth 1 (split-string project-root ":")) " ")
-                                   nil)
-                                 (format "fd --color never --base-directory '%s'"
-                                         (if tramp (nth 2 (split-string project-root ":"))
-                                           project-root))))))))))
-
-(after! projectile
-  (setq +workspaces-switch-project-function 'r0fl/find-file))
-
-(map! :map doom-leader-map
- :g "<SPC>" #'r0fl/find-file)
